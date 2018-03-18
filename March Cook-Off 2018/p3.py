@@ -45,5 +45,47 @@ def checkint(x):
 
 MOD = 10 ** 9 + 7
 
+
 for __ in range(readInt()):
-    n,k = readInts()
+    x = readInt()
+    n = (math.sqrt(1+8*x)-1)/2
+    # print n
+    check = checkint(n)
+    if(check):
+        print int(n)
+        continue
+    else:
+        a = int(math.floor(n))
+        b = int(math.ceil(n))
+        # print a,b
+        a1 = a*(a+1)/2
+        b1 = b*(b+1)/2
+        diff1 = abs(a1-x)
+        diff2 = abs(b1-x)
+        if(diff1<=diff2):
+            ans = a+int(math.ceil(abs(a1-x)))
+            # print int(math.ceil(abs(a1-x)/2.0))
+        else:
+            ans = b+int(math.ceil(abs(b1-x)))
+            # print int(math.ceil(abs(b1-x)/2.0))
+        print ans
+
+
+
+
+
+
+
+'''
+Input:
+
+1
+9
+
+Output:
+
+1
+2
+2
+5
+'''

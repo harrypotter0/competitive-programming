@@ -73,9 +73,12 @@ int main() {
   cin>>t;
   while(t--)
     {
-      ll n,k;
-      cin>>
+      ll n,ans=0;
+      cin>>n;
+      ll res=fast_power(2,n,mod);
+      ans=takemod(res%mod-(n+1)%mod);
+      ans%=mod;
+      cout<<ans<<"\n";
     }
-
 return 0;
 }

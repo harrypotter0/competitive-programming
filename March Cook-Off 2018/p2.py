@@ -40,10 +40,44 @@ def sort1(yy,index):
     return yy.sort(key = lambda x:x[index])
 def reversepair(yy):
     return yy[::-1]
-def checkint(x):
-    return (x).is_integer()
 
 MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
-    n,k = readInts()
+    n = readInt()
+    a = readInts()
+    b = readInts()
+    a= sorted(a)
+    b= sorted(b)
+    suma = sum(a)-a[n-1]
+    sumb = sum(b)-b[n-1]
+    # print suma,sumb
+    if(suma>sumb):
+        print "Bob"
+    elif(suma<sumb):
+        print "Alice"
+    else:
+        print "Draw"
+
+
+
+'''
+Input:
+
+3
+5
+3 1 3 3 4
+1 6 2 5 3
+5
+1 6 2 5 3
+3 1 3 3 4
+3
+4 1 3
+2 2 7
+
+Output:
+
+Alice
+Bob
+Draw
+'''

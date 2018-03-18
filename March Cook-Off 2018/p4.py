@@ -40,8 +40,6 @@ def sort1(yy,index):
     return yy.sort(key = lambda x:x[index])
 def reversepair(yy):
     return yy[::-1]
-def checkint(x):
-    return (x).is_integer()
 
 MOD = 10 ** 9 + 7
 
