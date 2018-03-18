@@ -1,1 +1,0 @@
-main(n){scanf("%d",&n);puts(n%4?"0":"4");}

@@ -1,1 +1,0 @@
-float a,s;main(n,i){scanf("%d",&n);i=n;for(;i--;scanf("%f",&a),s+=a);printf("%f",s/n);exit(0);}
