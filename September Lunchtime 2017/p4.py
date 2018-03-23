@@ -61,3 +61,4 @@ MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
     n,k = readInts()
+
