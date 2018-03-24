@@ -4,7 +4,7 @@
 import math
 # from itertools import permutations
 # import statistics
-
+import calendar
 def readInts():
     return list(map(int, raw_input().strip().split()))
 def readInt():
@@ -42,38 +42,39 @@ def reversepair(yy):
     return yy[::-1]
 def checkint(x):
     return (x).is_integer()
-def dmatrix(w,h):
-    Matrix = [[0 for x in range(w)] for y in range(h)]
-    return Matrix
-
+def sum_digits(n):
+    s = 0
+    while n:
+        s += n % 10
+        n //= 10
+    return s
+def vowel_count(str):
+    count = 0
+    vowel = set("aeiouAEIOU")
+    for alphabet in str:
+        if alphabet in vowel:
+            count = count + 1
+    return count
+def leapyear(year):
+    return calendar.isleap(year)
 MOD = 10 ** 9 + 7
 
-# for __ in range(readInt()):
-n = readInt()
-m = readInt()
-p =readInts()
-a =readInts()
-b =readInts()
-# arr = [0 for i in range(3):[for j in range(3)]]
-arr = dmatrix(n,m)
-print arr
-l = len(p)
-for i in range(l):
-    arr[a[i]-1][b[i]-1] ^=p[i]
-print arr
-
-
-
+for __ in range(readInt()):
+    n,k = readInts()
 
 '''
-
+Input:
 3
-3
-3 3 1 3 2
-2 2 1 2 2
-3 1 1 2 3
+2 1
+3 6
+4 10
 
-3 3 3
-1 1 3
-3 3 0
+Output:
+01
+00
+-1
+0100
+0011
+1001
+1000
 '''
