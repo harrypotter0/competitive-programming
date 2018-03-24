@@ -1,8 +1,9 @@
 # Akash Kandpal
 # My Domain => http://harrypotter.tech/
-from fractions import gcd
+# from fractions import gcd
 import math
 # from itertools import permutations
+from itertools import combinations
 # import statistics
 import calendar
 def readInts():
@@ -36,7 +37,7 @@ def findpermute(word):
     perms = [''.join(p) for p in permutations(word)]
     return set(perms)
 def findsubsets(S,m):
-    return set(itertools.combinations(S, m))
+    return list(combinations(S, m))
 def sort1(yy,index):
     return yy.sort(key = lambda x:x[index])
 def reversepair(yy):
@@ -61,37 +62,18 @@ def leapyear(year):
 
 MOD = 10 ** 9 + 7
 
-for __ in range(readInt()):
-    n,m = readInts()
-    sumi = n*(n+1)/2
-    sumx =sumi-m
-    if(m==0 or sumx<0):
-        print "No"
-        continue
-    if(sumx&1):
-        print "No"
-        continue
-    else:
-        a = sumx/2+m
-        b = sumx/2
-        if(gcd(a,b)==1):
-            print "Yes"
-            continue
-    print "No"
-
-
+# for __ in range(readInt()):
+n,k = readInts()
+arr =readInts()
+a = findsubsets(arr,2)
+# print a
+c=0
+a = list(a)
+for i in range(len(a)):
+    if(abs(a[i][0]-a[i][1])>=k):
+        c+=1
+print c
 '''
-Input:
-7
-4 0
-4 1
-4 2
-4 3
-4 4
-4 5
-4 9
-
-Output:
-Yes
-No
+3 1
+3 1 3
 '''

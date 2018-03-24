@@ -1,6 +1,6 @@
 # Akash Kandpal
 # My Domain => http://harrypotter.tech/
-from fractions import gcd
+# from fractions import gcd
 import math
 # from itertools import permutations
 # import statistics
@@ -62,36 +62,24 @@ def leapyear(year):
 MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
-    n,m = readInts()
-    sumi = n*(n+1)/2
-    sumx =sumi-m
-    if(m==0 or sumx<0):
-        print "No"
-        continue
-    if(sumx&1):
-        print "No"
-        continue
-    else:
-        a = sumx/2+m
-        b = sumx/2
-        if(gcd(a,b)==1):
-            print "Yes"
-            continue
-    print "No"
-
+    n,k = readInts()
 
 '''
-Input:
-7
-4 0
-4 1
-4 2
-4 3
-4 4
-4 5
-4 9
+Sample Input:
+1
+6
+4 7
+0 8
+9 1
+5 12
+3 7
+4 11
+2
+1 4
+2 5
 
 Output:
-Yes
-No
+1 5
+4 6
+1 3
 '''

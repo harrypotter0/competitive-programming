@@ -1,32 +1,32 @@
-#include <iostream>
-#include <cstdio>
+#include <bits/stdc++.h>
 using namespace std;
-int m,x,y,p,q;
-double s;
-int calc(int p,int i){
-	int f=0,pos;
-	if(p>=i-1)p-=i-1,f=1;
-	s=i,s*=x,s/=y;
-	pos=(int)s;
-	if(p>=pos)p++;
-	return p*2+f;
+int foo(int pos, int size, int x, int y) {
+	int where = 1LL * size * x / y;
+	if (pos < where + 1) {
+		return 2 * pos - 1;
+	} else if (pos < size) {
+		return 2 * pos + 1;
+	} else if (pos < where + size) {
+		return 2 * (pos - size + 1);
+	}
+	return 2 * (pos - size + 1) + 2;
 }
-int main(){
-	int T;
-	scanf("%d",&T);
-	while(T--){
-		scanf("%d%d%d",&m,&x,&y);
-		p=0,q=1;
-		for(int i=2;i<=m/2;i++)p=calc(p,i),q=calc(q,i);
-		printf("%d\n",(p+1)^(q+1));
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	assert (1 <= t && t <= 1000);
+// 	int em = 0;
+	while (t --> 0) {
+		int m, x, y;
+		scanf("%d%d%d", &m, &x, &y);
+// 		em += m;
+		int a = 1, b = 2;
+		for (int size = 2; size <= m / 2; ++size) {
+			a = foo(a, size, x, y);
+			b = foo(b, size, x, y);
+		}
+		printf("%d\n", a ^ b);
 	}
 	return 0;
 }
-/*
-Input:
-1
-6 1 2
-
-Output:
-4
-*/

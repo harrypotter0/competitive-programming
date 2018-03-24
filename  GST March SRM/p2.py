@@ -1,10 +1,10 @@
 # Akash Kandpal
 # My Domain => http://harrypotter.tech/
-from fractions import gcd
+# from fractions import gcd
 import math
 # from itertools import permutations
 # import statistics
-import calendar
+# import calendar
 def readInts():
     return list(map(int, raw_input().strip().split()))
 def readInt():
@@ -60,38 +60,28 @@ def leapyear(year):
     return calendar.isleap(year)
 
 MOD = 10 ** 9 + 7
-
 for __ in range(readInt()):
-    n,m = readInts()
-    sumi = n*(n+1)/2
-    sumx =sumi-m
-    if(m==0 or sumx<0):
-        print "No"
-        continue
-    if(sumx&1):
-        print "No"
-        continue
+    n,k,p = readInts()
+    s = readStr()
+    a = s.count('A')
+    ap = s.count('P')
+    # print a,ap
+    if(ap+k>=p):
+        print "yes"
     else:
-        a = sumx/2+m
-        b = sumx/2
-        if(gcd(a,b)==1):
-            print "Yes"
-            continue
-    print "No"
-
+        print "no"
 
 '''
+
 Input:
-7
-4 0
-4 1
-4 2
-4 3
-4 4
-4 5
-4 9
+2
+5 1 2
+AAAA
+5 1 2
+APAP
 
 Output:
-Yes
-No
+no
+yes
+
 '''

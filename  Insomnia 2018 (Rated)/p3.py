@@ -63,3 +63,11 @@ MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
     n,k = readInts()
+
+
+
+	
+
+
+A =' '.join(str(e) for e in A)
+print A

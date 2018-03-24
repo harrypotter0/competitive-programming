@@ -4,7 +4,7 @@
 import math
 # from itertools import permutations
 # import statistics
-import calendar
+# import calendar
 def readInts():
     return list(map(int, raw_input().strip().split()))
 def readInt():
@@ -58,8 +58,34 @@ def vowel_count(str):
     return count
 def leapyear(year):
     return calendar.isleap(year)
+def swap(brr,i,j):
+    brr[i], brr[j] = brr[j], brr[i]
+    return brr
 
 MOD = 10 ** 9 + 7
 
-for __ in range(readInt()):
-    n,k = readInts()
+N, K = readInts()
+K += 1
+A = readInts()
+B = []
+for i in range(N):
+    if i - K >= 0 or i + K < N: B.append(A[i])
+    print B
+# print B
+B = rsorted(B)
+print B
+for i in range(N):
+    if i - K >= 0 or i + K < N: A[i] = B.pop()
+    print B
+print ' '.join(str(e) for e in A)
+
+'''
+Input:
+
+6 2
+4 6 3 2 5 1
+
+Output:
+
+1 2 3 4 5 6
+'''

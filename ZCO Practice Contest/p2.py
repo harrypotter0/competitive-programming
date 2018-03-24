@@ -62,36 +62,33 @@ def leapyear(year):
 MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
-    n,m = readInts()
-    sumi = n*(n+1)/2
-    sumx =sumi-m
-    if(m==0 or sumx<0):
-        print "No"
-        continue
-    if(sumx&1):
-        print "No"
-        continue
-    else:
-        a = sumx/2+m
-        b = sumx/2
-        if(gcd(a,b)==1):
-            print "Yes"
-            continue
-    print "No"
-
+    n = readInt()
+    arr = readInts()
+    m = readInt()
+    a = []
+    arr =sorted(arr)
+    for i in range(n):
+        for j in range(i,n):
+            if(gcd(arr[i],arr[j])==m):
+                a.append(arr[i])
+                a.append(arr[j])
+                if(len(set(a))==n):
+                    print len(set(a))
+                    continue
+    print len(set(a))
 
 '''
 Input:
-7
-4 0
-4 1
-4 2
-4 3
-4 4
-4 5
-4 9
+
+2
+3
+1 2 3
+3
+5
+25 500 11 3 15
+5
 
 Output:
-Yes
-No
+1
+3
 '''
