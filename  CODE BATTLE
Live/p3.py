@@ -61,33 +61,46 @@ def leapyear(year):
 
 MOD = 10 ** 9 + 7
 
-for __ in range(readInt()):
-    x,y=readInts()
-    a=[]
-    for i in range(x):
-        a.append(readInts())
-    # print a
-    first=second=0
-    for i in range(x):
-        for j in range(y):
-            if((i+j)%2 == a[i][j]%2):
-                first+=1
-            else:
-                second+=1
-    print(min(first//2,second//2))
+def summm(arr,i,j):
+    sumx =0
+    # print n,k,i,j
+    if(i+1<=n-1):
+        sumx += arr[i+1][j]
+    if(i-1>=0):
+        sumx += arr[i-1][j]
+    if(j+1<=k-1):
+        sumx += arr[i][j+1]
+    if(j-1>=0):
+        sumx += arr[i][j-1]
+    return sumx
 
+
+
+for __ in range(readInt()):
+    n,k = readInts()
+    arr = [[0 for col in range(k)] for row in range(n)]
+    # print arr
+    for i in range(n):
+        for j in range(k):
+            if((i+j)%2==0):
+                arr[i][j] =1
+    sumi =0
+    for i in range(n):
+        for j in range(k):
+            if((i+j)&1):
+                sumi +=summm(arr,i,j)
+                # print sumi
+    # print arr,sumi
+    print sumi
 
 '''
-Example input:
-2
-1 2
-3 2
-3 3
-1 0 1
-1 0 0
-1 0 1
 
-Example output:
-0
-1
+5
+2 2
+3 2
+1 2
+1 10
+3 3
+
+
 '''

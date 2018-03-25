@@ -1,9 +1,9 @@
 # Akash Kandpal
 # My Domain => http://harrypotter.tech/
-# from fractions import gcd
+from fractions import gcd
 import math
-# from itertools import permutations
-# import statistics
+from itertools import permutations
+from itertools import combinations
 import calendar
 def readInts():
     return list(map(int, raw_input().strip().split()))
@@ -58,36 +58,64 @@ def vowel_count(str):
     return count
 def leapyear(year):
     return calendar.isleap(year)
+def primes_sieve(limit):
+    limitn = limit+1
+    not_prime = set()
+    primes = []
 
-MOD = 10 ** 9 + 7
+    for i in range(2, limitn):
+        if i in not_prime:
+            continue
 
-for __ in range(readInt()):
-    x,y=readInts()
-    a=[]
-    for i in range(x):
-        a.append(readInts())
-    # print a
-    first=second=0
-    for i in range(x):
-        for j in range(y):
-            if((i+j)%2 == a[i][j]%2):
-                first+=1
-            else:
-                second+=1
-    print(min(first//2,second//2))
+        for f in range(i*2, limitn, i):
+            not_prime.add(f)
+
+        primes.append(i)
+
+    return primes
+def distinctstr(s):
+    t =''.join(set(s))
+    return t
+def countdict(s):
+    d ={}
+    for i in range(len(s)):
+        if s[i] not in d.keys():
+            d[s[i]]=1
+        else:
+            d[s[i]]+=1
+    return d
+import operator as op
+def nck(n, k):
+    k = min(n-k,k)
+    result = 1
+    for i in range(1, k+1):
+        result = result* (n-i+1) / i
+    return result
+
+mod = 10 ** 9 + 7
+
+def solve(vowcount, S):
+    vowels = [ S.count(i) for i in 'aeiou' ]
+    #you have vowdiff stuff, and vowels places to put it
+    # therefore you should use vowels-1 dividers, so *= binom(vowdiff+vowels-1,vowels-1)
+    ans = 1
+    P = 10**9 + 7
+    for i in xrange(5):
+        if vowels[i] == 0: continue
+        ans *= nck( vowcount[i] - 1, vowels[i] - 1)
+        ans %= P
+    return ans
+
+for testcase in xrange(readInt()):
+    print solve( readInts(), readStr() )
 
 
 '''
-Example input:
-2
-1 2
-3 2
-3 3
-1 0 1
-1 0 0
-1 0 1
-
-Example output:
-0
+Input:
 1
+3 2 2 3 1
+bababu
+
+Output:
+2
 '''

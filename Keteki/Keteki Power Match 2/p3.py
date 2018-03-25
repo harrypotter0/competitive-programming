@@ -58,36 +58,75 @@ def vowel_count(str):
     return count
 def leapyear(year):
     return calendar.isleap(year)
+def primes_sieve(limit):
+    limitn = limit+1
+    not_prime = set()
+    primes = []
+
+    for i in range(2, limitn):
+        if i in not_prime:
+            continue
+
+        for f in range(i*2, limitn, i):
+            not_prime.add(f)
+
+        primes.append(i)
+
+    return primes
+def distinctstr(s):
+    t =''.join(set(s))
+    return t
+def roam(a,f,i,j,v):
+  f[i][j]=True
+
+  if i+1<len(a) and v==a[i+1][j] and not f[i+1][j]:
+    roam(a,f,i+1,j,v)
+
+  if j+1<len(a[0]) and v==a[i][j+1] and not f[i][j+1]:
+    roam(a,f,i,j+1,v)
+
+  if i>0 and v==a[i-1][j] and not f[i-1][j]:
+    roam(a,f,i-1,j,v)
+
+  if j>0 and v==a[i][j-1] and not f[i][j-1]:
+    roam(a,f,i,j-1,v)
 
 MOD = 10 ** 9 + 7
 
-for __ in range(readInt()):
-    x,y=readInts()
-    a=[]
-    for i in range(x):
-        a.append(readInts())
-    # print a
-    first=second=0
-    for i in range(x):
-        for j in range(y):
-            if((i+j)%2 == a[i][j]%2):
-                first+=1
-            else:
-                second+=1
-    print(min(first//2,second//2))
+# for __ in range(readInt()):
+#     n,k = readInts()
 
+
+
+for tc in xrange(int(raw_input().strip())):
+  r,c= map(int,raw_input().split())
+  a=[]
+  f=[[False for i in xrange(c)]for j in xrange(r)]
+  for i in xrange(r):
+    a.append(map(int,raw_input().split()))
+  ans = 0
+  for i in xrange(r):
+    for j in xrange(c):
+      if f[i][j]:
+        continue
+      ans += 1
+      roam(a,f,i,j,a[i][j])
+    # print f
+  print ans
 
 '''
-Example input:
-2
-1 2
-3 2
-3 3
-1 0 1
-1 0 0
-1 0 1
-
-Example output:
-0
+Input:
 1
+4 6
+1 1 1 1 1 1
+1 1 1 1 0 0
+1 1 1 1 0 0
+0 0 0 1 1 1
+2 2
+0 0
+2 1
+
+Output:
+3
+3
 '''

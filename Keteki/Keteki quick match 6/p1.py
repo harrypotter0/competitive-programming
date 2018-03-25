@@ -1,10 +1,20 @@
-# Akash Kandpal
-# My Domain => http://harrypotter.tech/
-# from fractions import gcd
+# /*
+#  *
+#  ********************************************************************************************
+#  * AUTHOR : Akash Kandpal                                                                    *
+#  * Language: Python2                                                                          *
+#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * IDE used: Atom                                                                           *
+#  * My Domain : http://harrypotter.tech/                                                     *
+#  ********************************************************************************************
+#  *
+#  */
+from fractions import gcd
 import math
-# from itertools import permutations
-# import statistics
+from itertools import permutations
+from itertools import combinations
 import calendar
+from itertools import product
 def readInts():
     return list(map(int, raw_input().strip().split()))
 def readInt():
@@ -13,6 +23,8 @@ def readStrs():
     return raw_input().split()
 def readStr():
     return raw_input()
+def readarr(n):
+    return [map(int,list(readStr())) for i in xrange(n)]
 def readnumbertolist():
     a=[int(i) for i in list(raw_input())]
     return a
@@ -76,8 +88,44 @@ def primes_sieve(limit):
 def distinctstr(s):
     t =''.join(set(s))
     return t
+def countdict(s):
+    d ={}
+    for i in range(len(s)):
+        if s[i] not in d.keys():
+            d[s[i]]=1
+        else:
+            d[s[i]]+=1
+    return d
+import operator as op
+def nck(n, k):
+    k = min(n-k,k)
+    result = 1
+    for i in range(1, k+1):
+        result = result* (n-i+1) / i
+    return result
+def matrixcheck(x,y):
+    faadu = []
+    directions = zip((0,0,1,-1),(1,-1,0,0))
+    for dx,dy in directions:
+        if R>x+dx>=0<=y+dy<C and A[x+dx][y+dy]==0:
+            faadu.append((x+dx,y+dy))
+    return faadu
+def stringcount(s):
+    return [s.count(i) for i in "abcdefghijklmnopqrstuvwxyz"]
 
-MOD = 10 ** 9 + 7
+mod = 10 ** 9 + 7
+# for i,j in product(xrange(R),xrange(C)):
 
 for __ in range(readInt()):
-    n,k = readInts()
+    n = readInt()
+    print (2*n**3+n)/3
+
+
+'''
+Input:
+1
+2
+
+Output:
+6
+'''

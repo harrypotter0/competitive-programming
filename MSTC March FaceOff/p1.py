@@ -61,33 +61,43 @@ def leapyear(year):
 
 MOD = 10 ** 9 + 7
 
-for __ in range(readInt()):
-    x,y=readInts()
-    a=[]
-    for i in range(x):
-        a.append(readInts())
-    # print a
-    first=second=0
-    for i in range(x):
-        for j in range(y):
-            if((i+j)%2 == a[i][j]%2):
-                first+=1
-            else:
-                second+=1
-    print(min(first//2,second//2))
+# for __ in range(readInt()):
+a =readInts()
+b =readInts()
+c =readInts()
+a =sorted(a)
+b =sorted(b)
+c =sorted(c)
+print a[0]+b[0]+c[0]
 
 
 '''
-Example input:
-2
-1 2
-3 2
-3 3
-1 0 1
-1 0 0
-1 0 1
+Input:
+5 4 3
+7 6 11
+7 9 2
 
-Example output:
-0
-1
+Output:
+11
+
+
+
+Input:
+1 2 2
+2 1 2
+2 2 1
+
+Output:
+3
+
+
+
+Input:
+3 2 7
+1 5 8
+3 3 10
+
+Output:
+6
+
 '''

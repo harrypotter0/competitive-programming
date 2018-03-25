@@ -58,36 +58,61 @@ def vowel_count(str):
     return count
 def leapyear(year):
     return calendar.isleap(year)
+def distinctstr(s):
+    t =''.join(set(s))
+    return t
 
 MOD = 10 ** 9 + 7
 
-for __ in range(readInt()):
-    x,y=readInts()
-    a=[]
-    for i in range(x):
-        a.append(readInts())
-    # print a
-    first=second=0
-    for i in range(x):
-        for j in range(y):
-            if((i+j)%2 == a[i][j]%2):
-                first+=1
-            else:
-                second+=1
-    print(min(first//2,second//2))
+# for __ in range(readInt()):
+n,k = readInts()
+for i in range(n):
+    s = readStr()
+    t =''.join(set(s))
+    # print t
+    ans =-1
+    maxi =-1
+    if(len(t)<=k):
+        ans = len(s)
+    if(ans>maxi):
+        maxi =ans
+
+print maxi
 
 
 '''
-Example input:
-2
-1 2
+Input:
 3 2
-3 3
-1 0 1
-1 0 0
-1 0 1
+abba
+abccbaabc
+baaab
 
-Example output:
-0
-1
+Output:
+5
+
+
+
+Input:
+5 5
+kayak
+analysis
+home
+queue
+dequeue
+
+Output:
+7
+
+
+
+Input:
+4 3
+house
+brick
+fence
+window
+
+Output:
+-1
+
 '''

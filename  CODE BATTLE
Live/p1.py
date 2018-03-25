@@ -60,34 +60,50 @@ def leapyear(year):
     return calendar.isleap(year)
 
 MOD = 10 ** 9 + 7
+def primes_sieve(limit):
+    limitn = limit+1
+    not_prime = set()
+    primes = []
 
-for __ in range(readInt()):
-    x,y=readInts()
-    a=[]
-    for i in range(x):
-        a.append(readInts())
-    # print a
-    first=second=0
-    for i in range(x):
-        for j in range(y):
-            if((i+j)%2 == a[i][j]%2):
-                first+=1
-            else:
-                second+=1
-    print(min(first//2,second//2))
+    for i in range(2, limitn):
+        if i in not_prime:
+            continue
+
+        for f in range(i*2, limitn, i):
+            not_prime.add(f)
+
+        primes.append(i)
+
+    return primes
+
+# for __ in range(readInt()):
+arr = primes_sieve(1000)
+# print arr
+n = readInt()
+f=0
+for i in range(1000):
+    if(arr[i]>n):
+        # print arr[i]
+        break
+    if(arr[i]==n):
+        f=1
+        break
+# print arr[i]
+if(f==1):
+    # print arr[i+1],arr[i-1]
+    sum = arr[i+1]*arr[i-1]
+    sum%=100
+else:
+    sum = arr[i]*arr[i-1]
+    # print arr[i],arr[i-1]
+    sum%=100
+
+print sum
 
 
 '''
-Example input:
-2
-1 2
-3 2
-3 3
-1 0 1
-1 0 0
-1 0 1
+30
 
-Example output:
-0
-1
+99
+
 '''

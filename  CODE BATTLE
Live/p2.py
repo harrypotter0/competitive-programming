@@ -58,36 +58,54 @@ def vowel_count(str):
     return count
 def leapyear(year):
     return calendar.isleap(year)
-
+# Python3 program to print
+# given matrix in spiral form
 MOD = 10 ** 9 + 7
+def spiral(n,arr):
+    dx,dy = 1,0            # Starting increments
+    x,y = 0,0              # Starting location
+    myarray = [[None]* n for j in range(n)]
+    t=0
+    for i in xrange(n**2):
+        myarray[x][y] = arr[t]
+        nx,ny = x+dx, y+dy
+        if 0<=nx<n and 0<=ny<n and myarray[nx][ny] == None:
+            x,y = nx,ny
+        else:
+            dx,dy = -dy,dx
+            x,y = x+dx, y+dy
+        t+=1
+    return myarray
 
-for __ in range(readInt()):
-    x,y=readInts()
-    a=[]
-    for i in range(x):
-        a.append(readInts())
-    # print a
-    first=second=0
-    for i in range(x):
-        for j in range(y):
-            if((i+j)%2 == a[i][j]%2):
-                first+=1
-            else:
-                second+=1
-    print(min(first//2,second//2))
+def printspiral(myarray):
+    n = range(len(myarray))
+    for y in n:
+        for x in n:
+            print myarray[x][y],
+        print
 
+# for __ in range(readInt()):
+n = readInt()
+a,b =[],[]
+for i in range(n):
+    arr = readInts()
+    b.extend(arr)
+b =sorted(b)
+# print b
+
+if(n==1):
+    print b[0]
+else:
+    printspiral(spiral(n,b))
 
 '''
-Example input:
-2
-1 2
-3 2
-3 3
-1 0 1
-1 0 0
-1 0 1
-
-Example output:
-0
+3
+2  5  12
+22 45 55
+1  6  8
 1
+4
+2
+3 2
+5 7
 '''

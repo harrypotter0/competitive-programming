@@ -52,42 +52,44 @@ def sum_digits(n):
 def vowel_count(str):
     count = 0
     vowel = set("aeiouAEIOU")
+    arr =[]
     for alphabet in str:
         if alphabet in vowel:
             count = count + 1
-    return count
+            arr.append(alphabet)
+    n = len(arr)
+    return arr[n-1]
 def leapyear(year):
     return calendar.isleap(year)
+def distinctstr(s):
+    t =''.join(set(s))
+    return t
 
 MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
-    x,y=readInts()
-    a=[]
-    for i in range(x):
-        a.append(readInts())
-    # print a
-    first=second=0
-    for i in range(x):
-        for j in range(y):
-            if((i+j)%2 == a[i][j]%2):
-                first+=1
-            else:
-                second+=1
-    print(min(first//2,second//2))
+    n = readInt()
+    s = readStrs()
+    n = len(s)
+    ar = []
+    for i in range(n):
+        t = vowel_count(s[i])
+        ar.append(t)
+    arrr = distinctstr(ar)
+    length = len(ar)-len(arrr)
+    print length*2
 
 
 '''
-Example input:
+Input:
 2
-1 2
-3 2
-3 3
-1 0 1
-1 0 0
-1 0 1
-
-Example output:
-0
 1
+you
+4
+you are dell
+
+Output:
+0
+2
+
 '''
