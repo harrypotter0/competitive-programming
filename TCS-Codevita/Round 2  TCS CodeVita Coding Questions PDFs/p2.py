@@ -6,7 +6,7 @@ import math
 # import statistics
 import calendar
 def readInts():
-    return list(map(int, raw_input().strip().split()))
+    return list(map(int, raw_input().strip().split(',')))
 def readInt():
     return int(raw_input())
 def readStrs():
@@ -58,41 +58,47 @@ def vowel_count(str):
     return count
 def leapyear(year):
     return calendar.isleap(year)
+def distinctstr(s):
+    t =''.join(set(s))
+    return t
 
 MOD = 10 ** 9 + 7
 
-for __ in range(readInt()):
-    m,n = readInts()
-    arr = readInts()
-    brr = readInts()
-    arr = rsorted(arr)
-    brr = rsorted(brr)
-    # print arr,brr
-    sumi,suma,sumb =0,0,0
-    # if(m<n):
-    #     m,n=n,m
-    #     arr,brr=brr,arr
-    for i in range(m-1):
-        sumb+=brr[i]*i
-    # print sumb
-    for i in range(n-1):
-        suma+=arr[i]*(i+1)*(m)
-    # print suma
-    sumi = suma+sumb
-    print sumi
+# for __ in range(readInt()):
+def increase(n):
+    f = 0
+    for i in range(len(n)-1):
+        if (n[i]>n[i+1] or n):
+            f =1
+            break
+    return f==0
+
+n = readnumbertolist()
+# print n
+f = 0
+for i in range(len(n)-1):
+    if n[i]>n[i+1]:
+        f =1
+        break
+if(f==0):
+    print numlistTostr(n)
+else:
+    for i in range(len(n)):
+        for j in range(len(n)):
+            if(n[i])
 
 
 '''
-Input:
-1
-2 2
-2
-1
+Input
+89
+Output
+89
+Explanation
+89 itself has non-decreasing digits.
 
-1
-3 3
-1 2
-3 4
-Output:
-4
+Example 2
+Input
+549
+Output
+499
 '''

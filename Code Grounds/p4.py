@@ -118,6 +118,7 @@ def bubbleSort(arr):
         for j in range(0, n-i-1):
             if arr[j] > arr[j+1] :
                 arr[j], arr[j+1] = arr[j+1], arr[j]
+
 def isSubsetSum(st, n, sm) :
     # arr, n, k
     subset=[[True] * (sm+1)] * (n+1)
@@ -131,22 +132,40 @@ def isSubsetSum(st, n, sm) :
                 subset[i][j] = subset[i-1][j]
             if (j >= st[i-1]) :
                 subset[i][j] = subset[i-1][j] or subset[i - 1][j-st[i-1]]
+    """uncomment this code to print table
+    for i in range(0,n+1) :
+        for j in range(0,sm+1) :
+            print(subset[i][j],end="")
+    print(" ")"""
     return subset[n][sm];
-def decimal_to_octal(dec):
-    decimal = int(dec)
-    return oct(decimal)
-def decimal_to_binary(dec):
-    decimal = int(dec)
-    return bin(decimal)
-def decimal_to_hexadecimal(dec):
-    decimal = int(dec)
-    return hex(decimal)
+
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
+# for __ in range(readInt()):
+n,k = readInts()
+for i in range(k,1,-1):
+    f =1
+    # print i
+    for j in range(n,1,-1):
+        if(i%j==0):
+            tae = i
+            f=0
+            break
+    if(f):
+        ans = i
+        break
+if(f):
+    print ans
+else:
+    print "-1"
 
-MOD = 10 ** 9 + 7
 
-for __ in range(readInt()):
-    n,k = readInts()
+'''
+Input:
+3 6
+
+Output:
+5
+'''

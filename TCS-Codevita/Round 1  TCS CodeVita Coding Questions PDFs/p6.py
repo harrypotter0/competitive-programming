@@ -118,35 +118,9 @@ def bubbleSort(arr):
         for j in range(0, n-i-1):
             if arr[j] > arr[j+1] :
                 arr[j], arr[j+1] = arr[j+1], arr[j]
-def isSubsetSum(st, n, sm) :
-    # arr, n, k
-    subset=[[True] * (sm+1)] * (n+1)
-    for i in range(0, n+1) :
-        subset[i][0] = True
-    for i in range(1, sm + 1) :
-        subset[0][i] = False
-    for i in range(1, n+1) :
-        for j in range(1, sm+1) :
-            if(j < st[i-1]) :
-                subset[i][j] = subset[i-1][j]
-            if (j >= st[i-1]) :
-                subset[i][j] = subset[i-1][j] or subset[i - 1][j-st[i-1]]
-    return subset[n][sm];
-def decimal_to_octal(dec):
-    decimal = int(dec)
-    return oct(decimal)
-def decimal_to_binary(dec):
-    decimal = int(dec)
-    return bin(decimal)
-def decimal_to_hexadecimal(dec):
-    decimal = int(dec)
-    return hex(decimal)
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
-# print "Case #{}: {}".format(i+1,ans)
-
-MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
     n,k = readInts()

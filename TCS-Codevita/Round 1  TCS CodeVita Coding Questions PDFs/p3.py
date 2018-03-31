@@ -62,37 +62,8 @@ def leapyear(year):
 MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
-    m,n = readInts()
-    arr = readInts()
-    brr = readInts()
-    arr = rsorted(arr)
-    brr = rsorted(brr)
-    # print arr,brr
-    sumi,suma,sumb =0,0,0
-    # if(m<n):
-    #     m,n=n,m
-    #     arr,brr=brr,arr
-    for i in range(m-1):
-        sumb+=brr[i]*i
-    # print sumb
-    for i in range(n-1):
-        suma+=arr[i]*(i+1)*(m)
-    # print suma
-    sumi = suma+sumb
-    print sumi
-
+    n,k = readInts()
 
 '''
-Input:
-1
-2 2
-2
-1
 
-1
-3 3
-1 2
-3 4
-Output:
-4
 '''

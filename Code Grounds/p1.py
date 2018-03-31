@@ -145,8 +145,22 @@ def decimal_to_hexadecimal(dec):
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
-
-MOD = 10 ** 9 + 7
-
 for __ in range(readInt()):
-    n,k = readInts()
+    n = readInt()
+    o = decimal_to_octal(n)
+    # print o
+    print list(o).count("5")
+    # o  =''.join(str(e) for e in o)
+    # print o.count(5)
+
+
+'''
+Input:
+2
+29
+44
+
+Output:
+1
+1
+'''

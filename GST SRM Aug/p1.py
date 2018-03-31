@@ -112,41 +112,40 @@ def matrixcheck(x,y):
     return faadu
 def stringcount(s):
     return [s.count(i) for i in "abcdefghijklmnopqrstuvwxyz"]
-def bubbleSort(arr):
-    n = len(arr)
-    for i in range(n):
-        for j in range(0, n-i-1):
-            if arr[j] > arr[j+1] :
-                arr[j], arr[j+1] = arr[j+1], arr[j]
-def isSubsetSum(st, n, sm) :
-    # arr, n, k
-    subset=[[True] * (sm+1)] * (n+1)
-    for i in range(0, n+1) :
-        subset[i][0] = True
-    for i in range(1, sm + 1) :
-        subset[0][i] = False
-    for i in range(1, n+1) :
-        for j in range(1, sm+1) :
-            if(j < st[i-1]) :
-                subset[i][j] = subset[i-1][j]
-            if (j >= st[i-1]) :
-                subset[i][j] = subset[i-1][j] or subset[i - 1][j-st[i-1]]
-    return subset[n][sm];
-def decimal_to_octal(dec):
-    decimal = int(dec)
-    return oct(decimal)
-def decimal_to_binary(dec):
-    decimal = int(dec)
-    return bin(decimal)
-def decimal_to_hexadecimal(dec):
-    decimal = int(dec)
-    return hex(decimal)
+# def bubbleSort(arr):
+#     n = len(arr)
+#     for i in range(n):
+#         for j in range(0, n-i-1):
+#             if arr[j] > arr[j+1] :
+#                 arr[j], arr[j+1] = arr[j+1], arr[j]
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
-# print "Case #{}: {}".format(i+1,ans)
-
-MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
     n,k = readInts()
+    arr = readInts()
+    arr = rsorted(arr)
+    sumi = 0
+    f =0
+    for i in range(n):
+        if(sumi >= k):
+            f =1
+            break
+        sumi+=arr[i]
+    if f :
+        print "YES"
+    else:
+        print "NO"
+
+'''
+Input:
+2
+5 10
+-1 2 3 -1 3
+3 5
+4 4 4
+Output:
+NO
+YES
+'''

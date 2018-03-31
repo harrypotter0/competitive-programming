@@ -6,7 +6,7 @@ import math
 # import statistics
 import calendar
 def readInts():
-    return list(map(int, raw_input().strip().split()))
+    return list(map(int, raw_input().strip().split(',')))
 def readInt():
     return int(raw_input())
 def readStrs():
@@ -60,39 +60,49 @@ def leapyear(year):
     return calendar.isleap(year)
 
 MOD = 10 ** 9 + 7
+def dec2hex(num):
+    if num == 0:
+        return 0
+    ans = ""
+    while num > 0:
+        ans = str(num%6) + ans
+        num /= 6
+    return int(ans)
 
-for __ in range(readInt()):
-    m,n = readInts()
-    arr = readInts()
-    brr = readInts()
-    arr = rsorted(arr)
-    brr = rsorted(brr)
-    # print arr,brr
-    sumi,suma,sumb =0,0,0
-    # if(m<n):
-    #     m,n=n,m
-    #     arr,brr=brr,arr
-    for i in range(m-1):
-        sumb+=brr[i]*i
-    # print sumb
-    for i in range(n-1):
-        suma+=arr[i]*(i+1)*(m)
-    # print suma
-    sumi = suma+sumb
-    print sumi
+def hex2dec(num):
+    if num == 0:
+        return 0
+    num = str(num)
+    ans = int(num[0])
+    for i in num[1:]:
+        ans *= 6
+        ans += int(i)
+    return ans
 
-
+# for __ in range(readInt()):
+n = readInt()
+arr =readInts()
+print arr
+a = []
+for i in range(n):
+    a.append(sum_digits(dec2hex(arr[i])))
+print a
+c =0
+for i in range(n):
+    for j in range(i,n):
+        if a[i]>a[j]:
+            print a[i],a[j]
+            c+=1
+print c
 '''
-Input:
-1
-2 2
-2
-1
 
-1
-3 3
-1 2
-3 4
-Output:
-4
+5
+55, 53, 88, 27, 33
+
+2
+
+8
+120,21,47,64,72,35,18,98
+11
+
 '''

@@ -118,35 +118,35 @@ def bubbleSort(arr):
         for j in range(0, n-i-1):
             if arr[j] > arr[j+1] :
                 arr[j], arr[j+1] = arr[j+1], arr[j]
-def isSubsetSum(st, n, sm) :
-    # arr, n, k
-    subset=[[True] * (sm+1)] * (n+1)
-    for i in range(0, n+1) :
-        subset[i][0] = True
-    for i in range(1, sm + 1) :
-        subset[0][i] = False
-    for i in range(1, n+1) :
-        for j in range(1, sm+1) :
-            if(j < st[i-1]) :
-                subset[i][j] = subset[i-1][j]
-            if (j >= st[i-1]) :
-                subset[i][j] = subset[i-1][j] or subset[i - 1][j-st[i-1]]
-    return subset[n][sm];
-def decimal_to_octal(dec):
-    decimal = int(dec)
-    return oct(decimal)
-def decimal_to_binary(dec):
-    decimal = int(dec)
-    return bin(decimal)
-def decimal_to_hexadecimal(dec):
-    decimal = int(dec)
-    return hex(decimal)
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
-
 for __ in range(readInt()):
-    n,k = readInts()
+    s = readStr()
+    arr = [s.count(i) for i in "abcdefghijklmnopqrstuvwxyz"]
+    si = []
+    # print arr
+    for i in range(26):
+        character =chr(i+97)
+        if arr[i]>1:
+            si.append(character)
+            si.append(arr[i])
+        elif arr[i]==1:
+            si.append(character)
+        else:
+            continue
+    # print si
+    print numlistTostr(si)
+
+'''
+Input:
+2
+ellioooottt
+yyoouuu
+
+Output:
+eil2o4t3
+o2u3y2
+'''

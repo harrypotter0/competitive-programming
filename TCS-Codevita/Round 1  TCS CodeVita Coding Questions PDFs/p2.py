@@ -6,7 +6,7 @@ import math
 # import statistics
 import calendar
 def readInts():
-    return list(map(int, raw_input().strip().split()))
+    return list(map(int, raw_input().strip().split(',')))
 def readInt():
     return int(raw_input())
 def readStrs():
@@ -58,41 +58,46 @@ def vowel_count(str):
     return count
 def leapyear(year):
     return calendar.isleap(year)
+def distinctstr(s):
+    t =''.join(set(s))
+    return t
 
 MOD = 10 ** 9 + 7
 
-for __ in range(readInt()):
-    m,n = readInts()
-    arr = readInts()
-    brr = readInts()
-    arr = rsorted(arr)
-    brr = rsorted(brr)
-    # print arr,brr
-    sumi,suma,sumb =0,0,0
-    # if(m<n):
-    #     m,n=n,m
-    #     arr,brr=brr,arr
-    for i in range(m-1):
-        sumb+=brr[i]*i
-    # print sumb
-    for i in range(n-1):
-        suma+=arr[i]*(i+1)*(m)
-    # print suma
-    sumi = suma+sumb
-    print sumi
-
-
+# for __ in range(readInt()):
+arr = readInts()
+arr = sorted(arr)
+a,b,c=[],[],[]
+for i in range(len(arr)):
+    if(arr[i]<=2):
+        a.append(arr[i])
+    if(arr[i]<=5):
+        b.append(arr[i])
+    c.append(arr[i])
+# print a,b,c
+# print c
+a = rsorted(a)
+b = rsorted(b)
+c = rsorted(c)
+s =""
+a = numlistTostr(a)
+b = numlistTostr(b)
+c = numlistTostr(c)
+if(len(a)==0 or len(b)==0 or len(c)==0):
+    print "Impossible"
+else:
+    s += a[0]+c[0]+":"+b[0]+c[1]+":"+b[1]+c[2]
+    print s
 '''
-Input:
-1
-2 2
-2
-1
 
-1
-3 3
-1 2
-3 4
+Input:
+0,0,1,1,3,5,6,7,7
 Output:
-4
+17:57:36
+
+Input:
+3,3,3,3,3,3,3,3,3
+Output:
+Impossible
+
 '''

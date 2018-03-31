@@ -1,10 +1,20 @@
-# Akash Kandpal
-# My Domain => http://harrypotter.tech/
-# from fractions import gcd
+# /*
+#  *
+#  ********************************************************************************************
+#  * AUTHOR : Akash Kandpal                                                                    *
+#  * Language: Python2                                                                          *
+#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * IDE used: Atom                                                                           *
+#  * My Domain : http://harrypotter.tech/                                                     *
+#  ********************************************************************************************
+#  *
+#  */
+from fractions import gcd
 import math
-# from itertools import permutations
-# import statistics
+from itertools import permutations
+from itertools import combinations
 import calendar
+from itertools import product
 def readInts():
     return list(map(int, raw_input().strip().split()))
 def readInt():
@@ -13,6 +23,8 @@ def readStrs():
     return raw_input().split()
 def readStr():
     return raw_input()
+def readarr(n):
+    return [map(int,list(readStr())) for i in xrange(n)]
 def readnumbertolist():
     a=[int(i) for i in list(raw_input())]
     return a
@@ -76,6 +88,63 @@ def primes_sieve(limit):
 def distinctstr(s):
     t =''.join(set(s))
     return t
+def countdict(s):
+    d ={}
+    for i in range(len(s)):
+        if s[i] not in d.keys():
+            d[s[i]]=1
+        else:
+            d[s[i]]+=1
+    return d
+import operator as op
+def nck(n, k):
+    k = min(n-k,k)
+    result = 1
+    for i in range(1, k+1):
+        result = result* (n-i+1) / i
+    return result
+def matrixcheck(x,y):
+    faadu = []
+    directions = zip((0,0,1,-1),(1,-1,0,0))
+    for dx,dy in directions:
+        if R>x+dx>=0<=y+dy<C and A[x+dx][y+dy]==0:
+            faadu.append((x+dx,y+dy))
+    return faadu
+def stringcount(s):
+    return [s.count(i) for i in "abcdefghijklmnopqrstuvwxyz"]
+def bubbleSort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1] :
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+def isSubsetSum(st, n, sm) :
+    # arr, n, k
+    subset=[[True] * (sm+1)] * (n+1)
+    for i in range(0, n+1) :
+        subset[i][0] = True
+    for i in range(1, sm + 1) :
+        subset[0][i] = False
+    for i in range(1, n+1) :
+        for j in range(1, sm+1) :
+            if(j < st[i-1]) :
+                subset[i][j] = subset[i-1][j]
+            if (j >= st[i-1]) :
+                subset[i][j] = subset[i-1][j] or subset[i - 1][j-st[i-1]]
+    return subset[n][sm];
+def decimal_to_octal(dec):
+    decimal = int(dec)
+    return oct(decimal)
+def decimal_to_binary(dec):
+    decimal = int(dec)
+    return bin(decimal)
+def decimal_to_hexadecimal(dec):
+    decimal = int(dec)
+    return hex(decimal)
+
+mod = 10 ** 9 + 7
+# for i,j in product(xrange(R),xrange(C)):
+# print "Case #{}: {}".format(i+1,ans)
 
 MOD = 10 ** 9 + 7
 
