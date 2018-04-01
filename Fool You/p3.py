@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : AKASH KANDPAL                                                                   *
-#  * Language : Python2                                                                       *
-#  * Motto : The master has failed more times than the beginner has even tried.               *   
+#  * AUTHOR : Akash Kandpal                                                                    *
+#  * Language: Python2                                                                          *
+#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -148,5 +148,19 @@ mod = 10 ** 9 + 7
 
 MOD = 10 ** 9 + 7
 
-for __ in range(readInt()):
-    n,k = readInts()
+# for __ in range(readInt()):
+arr = readInts()
+arr = sorted(arr)
+n = len(arr)
+a= n/2
+arr[a-1], arr[a] = arr[a], arr[a-1]
+
+for i in arr:
+    print i,
+'''
+
+Input:
+4 2 7 23 66 97 24 989 13 91 213 80 234 45 65 90 12 21
+Output:
+2 4 7 12 13 21 23 24 65 45 66 80 90 91 97 213 234 989
+'''

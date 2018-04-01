@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : AKASH KANDPAL                                                                   *
-#  * Language : Python2                                                                       *
-#  * Motto : The master has failed more times than the beginner has even tried.               *   
+#  * AUTHOR : Akash Kandpal                                                                    *
+#  * Language: Python2                                                                          *
+#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -146,7 +146,29 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
-
+count =0
 for __ in range(readInt()):
-    n,k = readInts()
+    s = readStr()
+    c =0
+    c+=s.count("ch")
+    c+=s.count("he")
+    c+=s.count("ef")
+    if c>0:
+        count+=1
+print count
+
+
+'''
+Input:
+
+4
+gennady.korotkevich
+kefaa
+fhlasek
+chemthan
+
+Output:
+
+3
+
+'''

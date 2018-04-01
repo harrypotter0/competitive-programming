@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : AKASH KANDPAL                                                                   *
-#  * Language : Python2                                                                       *
-#  * Motto : The master has failed more times than the beginner has even tried.               *   
+#  * AUTHOR : Akash Kandpal                                                                    *
+#  * Language: Python2                                                                          *
+#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -149,4 +149,39 @@ mod = 10 ** 9 + 7
 MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
-    n,k = readInts()
+    a,b,c = readInts()
+    s = a+c
+    if s%2==1:
+        if s<=2*b:
+            s = (s+1)/2
+            # print s,"loop1"
+            ans = abs(s-b)+1
+        elif s>2*b:
+            s = (s-1)/2
+            # print s,"loop2"
+            ans = abs(s-b)+1
+    else:
+        s /=2
+        # print s,"loop3"
+        ans = abs(s-b)
+    print ans
+
+
+'''
+Input:
+
+5
+-5 0 5
+-5 7 6
+-10 -100 20
+1 -1 1
+51 23 10
+
+Output:
+
+0
+7
+105
+2
+8
+'''

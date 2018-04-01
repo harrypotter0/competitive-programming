@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : AKASH KANDPAL                                                                   *
-#  * Language : Python2                                                                       *
-#  * Motto : The master has failed more times than the beginner has even tried.               *   
+#  * AUTHOR : Akash Kandpal                                                                    *
+#  * Language: Python2                                                                          *
+#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -150,3 +150,25 @@ MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
     n,k = readInts()
+    arr =readInts()
+    sumi = sum(arr)
+    c=0
+    for i in range(n):
+        if(arr[i]+k>sumi-arr[i]):
+            c+=1
+    print c
+
+'''
+Input:
+
+2
+4 4
+2 1 6 7
+4 2
+2 1 5 4
+
+Output:
+
+1
+0
+'''

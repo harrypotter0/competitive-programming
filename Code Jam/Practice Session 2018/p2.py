@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : AKASH KANDPAL                                                                   *
-#  * Language : Python2                                                                       *
-#  * Motto : The master has failed more times than the beginner has even tried.               *   
+#  * AUTHOR : Akash Kandpal                                                                    *
+#  * Language: Python2                                                                          *
+#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -149,4 +149,27 @@ mod = 10 ** 9 + 7
 MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
-    n,k = readInts()
+    n = readInt()
+    arr = readInts()
+    
+
+'''
+4
+2
+2 2
+3
+3 2 2
+3
+1 1 2
+3
+2 3 1
+
+
+
+Case #1: AB BA
+Case #2: AA BC C BA
+Case #3: C C AB
+Case #4: BA BB CA
+
+
+'''

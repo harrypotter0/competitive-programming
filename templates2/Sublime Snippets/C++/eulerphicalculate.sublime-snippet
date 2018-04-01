@@ -1,0 +1,38 @@
+<snippet>
+	<content><![CDATA[
+vector<int> lp, primes;
+
+void factor_sieve() {
+	lp.resize(MAX);
+	lp[1] = 1;
+	for (int i = 2; i < MAX; ++i) {
+		if (lp[i] == 0) {
+			lp[i] = i;
+			primes.emplace_back(i);
+		}
+		for (int j = 0; j < primes.size() && primes[j] <= lp[i]; ++j) {
+			int x = i * primes[j];
+			if (x >= MAX) break;
+			lp[x] = primes[j];
+		}
+	}
+}
+
+int phi(int n) {
+	if (n == 1) return 1;
+	int etf = n, val;
+	while (n != 1) {
+		val = lp[n];
+		etf -= etf/val;
+		while (n % val==0) n /= val;
+	}
+	return etf;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>eulerphicalculate</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.cpp, source.c++, source.c</scope>
+	<!-- Optional: Description to show in the menu -->
+	<description>Euler Totient Function Calculation</description>
+</snippet>

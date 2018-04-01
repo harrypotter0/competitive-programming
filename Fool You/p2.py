@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : AKASH KANDPAL                                                                   *
-#  * Language : Python2                                                                       *
-#  * Motto : The master has failed more times than the beginner has even tried.               *   
+#  * AUTHOR : Akash Kandpal                                                                    *
+#  * Language: Python2                                                                          *
+#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -141,12 +141,30 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+import re
+def sequence_in(s1, s2):
+    """Does `s1` appear in sequence in `s2`?"""
+    return bool(re.search(".*".join(s1), s2))
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
+# for __ in range(readInt()):
+s = readStr()
+arr = ['A', 'E', 'L', 'M', 'O', 'R', 'S', 'U']
+a = findpermute(strlistTostr(arr))
+a = list(a)
+# print a
+for i in range(len(a)):
+    if(sequence_in(s,a[i])):
+        print a[i]
 
-for __ in range(readInt()):
-    n,k = readInts()
+'''
+Input:
+LAM
+
+Output:
+?!???!!!
+
+'''

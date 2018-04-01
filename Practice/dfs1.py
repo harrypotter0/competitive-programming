@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : AKASH KANDPAL                                                                   *
-#  * Language : Python2                                                                       *
-#  * Motto : The master has failed more times than the beginner has even tried.               *   
+#  * AUTHOR : Akash Kandpal                                                                    *
+#  * Language: Python2                                                                          *
+#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -148,5 +148,45 @@ mod = 10 ** 9 + 7
 
 MOD = 10 ** 9 + 7
 
-for __ in range(readInt()):
-    n,k = readInts()
+arr=readStr()
+l=len(arr)
+num=[]
+h={}
+for i in range(0,l):
+	num.append(int(arr[i]))
+for i in range(10):
+	h[i]=[]
+for i in xrange(l):
+	h[num[i]].append(i)
+
+#print h
+visited=[]
+a={0:0}
+q=[0]
+
+def bfs():
+
+	i=q.pop(0)
+	if i==l-1:
+		return a[i]
+	x=num[i]
+	m=[]
+	if x not in visited:
+		visited.append(x)
+		m=h[x]
+	if i-1 not in a and i-1>=0:
+		q.append(i-1)
+		a[i-1]=a[i]+1
+	if i+1 not in a and i+1<l:
+		q.append(i+1)
+		a[i+1]=a[i]+1
+	for y in m:
+		if y not in a:
+			q.append(y)
+			a[y]=a[i]+1
+
+while(True):
+	ans=bfs()
+	if ans is not None:
+		print ans
+		break

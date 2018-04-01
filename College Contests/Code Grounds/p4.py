@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : AKASH KANDPAL                                                                   *
-#  * Language : Python2                                                                       *
-#  * Motto : The master has failed more times than the beginner has even tried.               *   
+#  * AUTHOR : Akash Kandpal                                                                    *
+#  * Language: Python2                                                                          *
+#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -118,6 +118,7 @@ def bubbleSort(arr):
         for j in range(0, n-i-1):
             if arr[j] > arr[j+1] :
                 arr[j], arr[j+1] = arr[j+1], arr[j]
+
 def isSubsetSum(st, n, sm) :
     # arr, n, k
     subset=[[True] * (sm+1)] * (n+1)
@@ -131,22 +132,34 @@ def isSubsetSum(st, n, sm) :
                 subset[i][j] = subset[i-1][j]
             if (j >= st[i-1]) :
                 subset[i][j] = subset[i-1][j] or subset[i - 1][j-st[i-1]]
+    """uncomment this code to print table
+    for i in range(0,n+1) :
+        for j in range(0,sm+1) :
+            print(subset[i][j],end="")
+    print(" ")"""
     return subset[n][sm];
-def decimal_to_octal(dec):
-    decimal = int(dec)
-    return oct(decimal)
-def decimal_to_binary(dec):
-    decimal = int(dec)
-    return bin(decimal)
-def decimal_to_hexadecimal(dec):
-    decimal = int(dec)
-    return hex(decimal)
+
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
+# for __ in range(readInt()):
+p,y = map(int,raw_input().split())
+for a in xrange(y,p,-1):
+	f = 1
+	for b in xrange(2,min(int(a**0.5)+1,p+1)):
+		if a%b==0:
+			f = 0
+			break
+	if f:
+		print a
+		exit(0)
+print -1
 
-MOD = 10 ** 9 + 7
+'''
+Input:
+3 6
 
-for __ in range(readInt()):
-    n,k = readInts()
+Output:
+5
+'''

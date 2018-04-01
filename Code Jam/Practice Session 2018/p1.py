@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : AKASH KANDPAL                                                                   *
-#  * Language : Python2                                                                       *
-#  * Motto : The master has failed more times than the beginner has even tried.               *   
+#  * AUTHOR : Akash Kandpal                                                                    *
+#  * Language: Python2                                                                          *
+#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -141,6 +141,17 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def binarySearch (arr, l, r, x):
+    if r >= l:
+        mid = l + (r - l)/2
+        if arr[mid] == x:
+            return mid
+        elif arr[mid] > x:
+            return binarySearch(arr, l, mid-1, x)
+        else:
+            return binarySearch(arr, mid+1, r, x)
+    else:
+        return -1
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
@@ -148,5 +159,20 @@ mod = 10 ** 9 + 7
 
 MOD = 10 ** 9 + 7
 
-for __ in range(readInt()):
-    n,k = readInts()
+t = readInt()
+for __ in range(t):
+    a,b = readInts()
+    moves = b-a+1
+    arr =[0]*moves
+    for i in range(moves):
+        arr[i] =a+i
+    print arr
+    n = readInt()
+    print moves-1
+    ans = binarySearch(arr,0,moves-1,n)
+    print ans
+'''
+1
+3 20
+5
+'''
