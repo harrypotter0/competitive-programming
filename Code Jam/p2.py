@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python2                                                                          *
-#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * AUTHOR : AKASH KANDPAL                                                                   *
+#  * Language : Python2                                                                       *
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -141,23 +141,63 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def dictlist(keys,values):
+    {d.setdefault(key,[]).append(value) for key, value in zip(keys,values)}
+    return d
+def mullistbyconst(my_list,r):
+    my_new_list = []
+    for i in my_list:
+        my_new_list.append(i * r)
+    return my_new_list
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
+def tripSort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-2):
+            if arr[j] > arr[j+2] :
+                tmp = arr[j]
+                arr[j] = arr[j+2]
+                arr[j+2] = tmp
+        # print arr
+    return arr
 
-string = raw_input()
-ans=''
-for letter in string:
-    ans+=chr(ord(letter) ^ 18)
+for pandora in range(readInt()):
+    n = readInt()
+    brr = readInts()
+    arr = tripSort(brr)
+    brr = sorted(brr)
+    # print arr,brr
+    f =0
+    for i in range(n):
+        if arr[i] != brr[i]:
+            f=1
+            break
+    if f:
+        print "Case #{}: {}".format(pandora+1,i)
+    else:
+        print "Case #{}: {}".format(pandora+1,"OK")
 
-print ans 
 
 '''
-Input:
-keu
-Output:
-ywg
+Input
+
+2
+1.000000
+1.414213
+
+Output
+
+Case #1:
+0.5 0 0
+0 0.5 0
+0 0 0.5
+Case #2:
+0.3535533905932738 0.3535533905932738 0
+-0.3535533905932738 0.3535533905932738 0
+0 0 0.5
+
 '''

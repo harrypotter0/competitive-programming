@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python2                                                                          *
-#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * AUTHOR : AKASH KANDPAL                                                                   *
+#  * Language : Python2                                                                       *
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -70,21 +70,15 @@ def vowel_count(str):
     return count
 def leapyear(year):
     return calendar.isleap(year)
-def primes_sieve(limit):
-    limitn = limit+1
-    not_prime = set()
-    primes = []
+primes = []
+flag = [False]*10000007
 
-    for i in range(2, limitn):
-        if i in not_prime:
-            continue
-
-        for f in range(i*2, limitn, i):
-            not_prime.add(f)
-
-        primes.append(i)
-
-    return primes
+def sieve():
+  for i in range(2,len(flag)):
+    if not flag[i]:
+      primes.append(i)
+      for j in range(i<<1,len(flag),i):
+        flag[j] = True
 def distinctstr(s):
     t =''.join(set(s))
     return t
@@ -148,16 +142,26 @@ mod = 10 ** 9 + 7
 
 MOD = 10 ** 9 + 7
 
-string = raw_input()
-ans=''
-for letter in string:
-    ans+=chr(ord(letter) ^ 18)
-
-print ans 
+sieve()
+for __ in range(readInt()):
+    n = readInt()
+    for i in primes:
+        if not flag[n]:
+            print n
+            break
+        n += i
 
 '''
 Input:
-keu
+4
+3
+8
+45
+82
+
 Output:
-ywg
+3
+13
+47
+211
 '''

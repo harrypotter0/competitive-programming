@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python2                                                                          *
-#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * AUTHOR : AKASH KANDPAL                                                                   *
+#  * Language : Python2                                                                       *
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -11,6 +11,7 @@
 #  */
 from fractions import gcd
 import math
+import itertools
 from itertools import permutations
 from itertools import combinations
 import calendar
@@ -46,9 +47,11 @@ def binar(x):
     return '{0:031b}'.format(x)
 def findpermute(word):
     perms = [''.join(p) for p in permutations(word)]
-    return set(perms)
+    perms = set(perms)
+    return list(perms)
 def findsubsets(S,m):
-    return set(itertools.combinations(S, m))
+    a = set(itertools.combinations(S, m))
+    return list(a)
 def sort1(yy,index):
     return yy.sort(key = lambda x:x[index])
 def reversepair(yy):
@@ -141,23 +144,54 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def dictlist(keys,values):
+    {d.setdefault(key,[]).append(value) for key, value in zip(keys,values)}
+    return d
+def mullistbyconst(my_list,r):
+    my_new_list = []
+    for i in my_list:
+        my_new_list.append(i * r)
+    return my_new_list
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
+# for __ in range(readInt()):
+n = readInt()
+arr = readInts()
+# arr  = numlistTostr(arr)
+# a= findpermute(arr)
+# a= list(a)
+count = 0
+k = 0
+for i in range(n):
+    # a = findsubsets(arr,i+1)
+    for j in range(n-k):
+        # print arr[j],
+        if arr[j]==arr[j+k]:
+            # print arr[j:j+k+1]
+            count+=1
+            # break
+    # print
+    k+=1
 
-string = raw_input()
-ans=''
-for letter in string:
-    ans+=chr(ord(letter) ^ 18)
+print count
 
-print ans 
+
 
 '''
-Input:
-keu
-Output:
-ywg
+
+Sample Input:
+
+5
+1 1 0 0 1
+Sample Output:
+
+9
+EXPLANATION:
+
+Subarrays which starts and ends from same numbers are:
+{1},{1},{0},{0},{1},{1,1},{0,0},{1,0,0,1},{1,1,0,0,1}.
+Hence, output is 9.
 '''

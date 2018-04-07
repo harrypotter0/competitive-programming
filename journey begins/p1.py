@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python2                                                                          *
-#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * AUTHOR : AKASH KANDPAL                                                                   *
+#  * Language : Python2                                                                       *
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -141,23 +141,30 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def dictlist(keys,values):
+    {d.setdefault(key,[]).append(value) for key, value in zip(keys,values)}
+    return d
+def mullistbyconst(my_list,r):
+    my_new_list = []
+    for i in my_list:
+        my_new_list.append(i * r)
+    return my_new_list
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
-
-string = raw_input()
-ans=''
-for letter in string:
-    ans+=chr(ord(letter) ^ 18)
-
-print ans 
+# for __ in range(readInt()):
+s = readStr()
+print s.swapcase()
 
 '''
-Input:
-keu
-Output:
-ywg
+Sample Input:
+
+AbcDEFgh
+
+Sample Output:
+
+aBCdefGH
+
 '''

@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python2                                                                          *
-#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * AUTHOR : AKASH KANDPAL                                                                   *
+#  * Language : Python2                                                                       *
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -141,23 +141,62 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def mullistbyconst(my_list,r):
+    my_new_list = []
+    for i in my_list:
+        my_new_list.append(i * r)
+    return my_new_list
+def binarySearch(arr, l, r, x):
+    while l <= r:
+        mid = l + (r - l)/2;
+        if arr[mid] == x:
+            return mid
+        elif arr[mid] < x:
+            l = mid + 1
+        else:
+            r = mid - 1
+    return -1
+
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
+for __ in range(readInt()):
+    n = readInt()
+    arr = readInts()
+    arr = sorted(arr)
+    count = 0
+    for i in range(n):
+        for j in range(i+1,n):
+            if arr[i]==arr[j]:
+                count+=1
+                continue
+            if (arr[i]+arr[j])&1:
+                continue
+            x = (arr[i]+arr[j])/2.0
+            result = binarySearch(arr, i, j, x)
+            if result!=-1:
+                count+=1
+    print count
 
-string = raw_input()
-ans=''
-for letter in string:
-    ans+=chr(ord(letter) ^ 18)
-
-print ans 
 
 '''
-Input:
-keu
-Output:
-ywg
+Example Input
+
+4
+2
+2 2
+3
+2 1 3
+6
+4 2 5 1 3 5
+5
+5 5 5 5 5
+Example Output
+
+1
+1
+7
+
 '''

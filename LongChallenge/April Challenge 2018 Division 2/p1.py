@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python2                                                                          *
-#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * AUTHOR : AKASH KANDPAL                                                                   *
+#  * Language : Python2                                                                       *
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -11,10 +11,10 @@
 #  */
 from fractions import gcd
 import math
-from itertools import permutations
-from itertools import combinations
-import calendar
-from itertools import product
+# from itertools import permutations
+# from itertools import combinations
+# import calendar
+# from itertools import product
 def readInts():
     return list(map(int, raw_input().strip().split()))
 def readInt():
@@ -141,23 +141,56 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def dictlist(keys,values):
+    {d.setdefault(key,[]).append(value) for key, value in zip(keys,values)}
+    return d
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
-
-string = raw_input()
-ans=''
-for letter in string:
-    ans+=chr(ord(letter) ^ 18)
-
-print ans 
+# for __ in range(readInt()):
+n = readInt()
+arr = readInts()
+brr = readInts()
+d ={}
+d = dictlist(brr,arr)
+# print d
+sum1,sum2 = 0,0
+a1,b1,c1 = 1e9,1e9,1e9
+for i in range(1,4):
+    if i not in d:
+        continue
+    arr = d[i]
+    arr = sorted(arr)
+    if i ==1 :
+        a1 = arr[0]
+    elif i==2:
+        b1 = arr[0]
+    elif i==3:
+        c1 = arr[0]
+sum1 = a1+b1
+sum2 = c1
+# print a1,b1,c1
+print min(sum1,sum2)
 
 '''
-Input:
-keu
-Output:
-ywg
+Example Input
+
+3
+1 4 8
+1 1 3
+
+4
+1 4 3 8
+1 1 2 3
+
+2
+3 8
+2 3
+
+Example Output
+
+4
+
 '''

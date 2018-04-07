@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python2                                                                          *
-#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * AUTHOR : AKASH KANDPAL                                                                   *
+#  * Language : Python2                                                                       *
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -141,23 +141,43 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def dictlist(keys,values):
+    {d.setdefault(key,[]).append(value) for key, value in zip(keys,values)}
+    return d
+def mullistbyconst(my_list,r):
+    my_new_list = []
+    for i in my_list:
+        my_new_list.append(i * r)
+    return my_new_list
+def coinchange(S, m, n):
+    # (arr,length,sum)
+    table = [0 for k in range(n+1)]
+    table[0] = 1
+    for i in range(0,m):
+        for j in range(S[i],n+1):
+            table[j] += table[j-S[i]]
+    return table[n]
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
+for __ in range(readInt()):
+    n = readInt()
+    arr = [i+1 for i in range(n-1)]
+    # print arr
+    x = coinchange(arr, n-1, n)
+    print x
 
-string = raw_input()
-ans=''
-for letter in string:
-    ans+=chr(ord(letter) ^ 18)
-
-print ans 
 
 '''
-Input:
-keu
-Output:
-ywg
+Sample Input:
+
+1
+4
+
+Sample Output:
+
+4
+
 '''

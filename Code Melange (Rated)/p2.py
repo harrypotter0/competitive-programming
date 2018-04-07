@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python2                                                                          *
-#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * AUTHOR : AKASH KANDPAL                                                                   *
+#  * Language : Python2                                                                       *
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -148,16 +148,22 @@ mod = 10 ** 9 + 7
 
 MOD = 10 ** 9 + 7
 
-string = raw_input()
-ans=''
-for letter in string:
-    ans+=chr(ord(letter) ^ 18)
+for __ in range(readInt()):
+    n,k = readInts()
+    g = gcd(n,k)
+    print 2*g
 
-print ans 
 
 '''
-Input:
-keu
-Output:
-ywg
+Sample Input:
+
+3
+5 3
+10 10
+4 8
+Sample Output:
+
+2
+20
+8
 '''

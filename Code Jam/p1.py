@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python2                                                                          *
-#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * AUTHOR : AKASH KANDPAL                                                                   *
+#  * Language : Python2                                                                       *
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -141,23 +141,100 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def dictlist(keys,values):
+    {d.setdefault(key,[]).append(value) for key, value in zip(keys,values)}
+    return d
+def mullistbyconst(my_list,r):
+    my_new_list = []
+    for i in my_list:
+        my_new_list.append(i * r)
+    return my_new_list
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
-
-MOD = 10 ** 9 + 7
-
-string = raw_input()
-ans=''
-for letter in string:
-    ans+=chr(ord(letter) ^ 18)
-
-print ans 
+for pandora in range(readInt()):
+    d,st = readStrs()
+    c = st.count("C")
+    s = st.count("S")
+    v = 1
+    d = int(d)
+    # print d,"d "
+    # arr = strTolist(st)
+    n = len(st)
+    # print "Case #{}:".format(pandora+1)
+    if s==0:
+        print "Case #{}: {}".format(pandora+1,0)
+        # print "lodu1"
+        continue
+    if c==0 and s>d:
+        print "Case #{}: {}".format(pandora+1,"IMPOSSIBLE")
+        # print "lodu2"
+        continue
+    sumi = 0
+    for i in range(n):
+        if st[i]=="C":
+            v*=2
+        else:
+            sumi+=v
+    # print sumi,"sum"
+    if sumi<=d:
+        print "Case #{}: {}".format(pandora+1,0)
+        # print "lodu3"
+        continue
+    v = 1
+    f = True
+    # loda=1
+    ans = 0
+    while True:
+        counts = st.count("CS")
+        tot = counts
+        if counts ==0:
+            f = False
+            break
+        ind = 0
+        if counts>0:
+            ind = st.rfind("CS")
+        arr = list(st)
+        # print ind
+        # print arr
+        cca = st.count("C",ind+1)
+        ccb = c-cca
+        # print st
+        # print ccb,"ccb",cca,"cca",sumi,"sum"
+        arr[ind],arr[ind+1] = arr[ind+1],arr[ind]
+        sumi -= (pow(2,ccb)-pow(2,ccb-1))
+        # print sumi,"sumi",(pow(2,ccb)-pow(2,ccb-1)),"reduction"
+        counts-=1
+        # print sumi,"sum"
+        st = strlistTostr(arr)
+        # print st
+        ans +=1
+        if sumi<=d:
+            print "Case #{}: {}".format(pandora+1,ans)
+            # print "lodu4"
+            f = True
+            break
+    if not f:
+        print "Case #{}: {}".format(pandora+1,"IMPOSSIBLE")
+        # print "lodu5"
+        continue
 
 '''
-Input:
-keu
-Output:
-ywg
+7
+1 CS
+2 CS
+1 SS
+6 SCCSSC
+2 CC
+3 CSCSS
+12 CS
+
+Case #1: 1
+Case #2: 0
+Case #3: IMPOSSIBLE
+Case #4: 2
+Case #5: 0
+Case #6: 5
+
 '''

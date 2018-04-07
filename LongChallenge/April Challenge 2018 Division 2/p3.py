@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python2                                                                          *
-#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * AUTHOR : AKASH KANDPAL                                                                   *
+#  * Language : Python2                                                                       *
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -148,16 +148,32 @@ mod = 10 ** 9 + 7
 
 MOD = 10 ** 9 + 7
 
-string = raw_input()
-ans=''
-for letter in string:
-    ans+=chr(ord(letter) ^ 18)
+for __ in range(readInt()):
+    n,w = readInts()
+    a = [1,2,3,4,5,6,7,8,9]
+    sumi =0
+    if w>8:
+        print "0"
+        continue
+    
 
-print ans 
 
 '''
-Input:
-keu
-Output:
-ywg
+Example Input
+
+1
+2 3
+
+Example Output
+
+6
+
+1
+4 8
+ Remember that the digits are arranged from most significant to least significant as D1,D2.
+ The two-digit integers with weight 3 are 14,25,36,47,58,69.
+ For example, the weight of 14 is D2−D1=4−1=3.
+ We can see that there are no other possible numbers.
+
+
 '''

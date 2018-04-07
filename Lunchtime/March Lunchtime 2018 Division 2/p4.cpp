@@ -1,80 +1,56 @@
-#include <stdio.h>
-#include<iostream>
-#include<set>
-#include<bits/stdc++.h>
-#define ll long long
+#include <bits/stdc++.h>
+
 using namespace std;
-#define MAX  1000005
 
-int preSum[MAX];
-void preprocess(int arr[],int n){
-  preSum[0] = arr[0];
-  for (int i = 1; i < n; i++) {
-      preSum[i] = preSum[i - 1] + arr[i];
-  }
-}
+#define lli long long
+#define rep(i,a) for(i = 0 ; i < a ; i++)
+#define REP(i,a,b) for(i = a ; i <= b ; i++)
+#define opt ios_base::sync_with_stdio(false);cin.tie(NULL);
 
-int findSplit(int arr[], int n, int partu)
-{
-    int i;
-    int index[n+1];
-    int count = 0;
-    int k = 0;
-    int S = preSum[n - 1] / partu;
-    // cout<<S<<"S ka value ";
-    int f = 1;
-    if(S == ((float)preSum[n - 1] / (float)partu))
-    f=1;
-    else
-    f=0;
-    // cout<<f<<"f value";
+void solve() {
+    lli i,n,sum = 0;
+    cin >> n;
+    vector<lli > v(n);
 
-    for (i = 0; i < n; i++) {
-        if (preSum[i] % S == 0 && f) {
-            count++;
-            index[k++] = i;
+    rep(i,n) {
+        cin >> v[i];
+        sum += v[i];
+    }
+    REP(i,1,n) {
+        if (sum % i == 0) {
+            lli temp = sum / i, sum1 = 0,k = 0;
+            bool flag = false;
+            for (int j = 0; j < n; ++j) {
+                sum1 += v[j];
+                if(sum1 > temp) {
+                    cout << 0;
+                    flag = true;
+                    break;
+                }
+                if (sum1 == temp) {
+                    k++;
+                    sum1 = 0;
+                }
+            }
+            if(flag)
+                continue;
+            if(k == i)
+                cout << 1;
+            else
+                cout << 0;
+        }
+        else {
+            cout << 0;
         }
     }
-
-    if ( count==partu ) {
-        return 1;
-    }
-
-    return 0;
+    cout << "\n";
 }
-
 int main()
 {
-int t;
-cin>>t;
-while(t--){
-int arr[MAX]={0};
-int ans[MAX]={0};
-int n;
-cin>>n;
-for(int i=0;i<n;i++)cin>>arr[i];
-ans[1]=1;
-preprocess(arr,n);
-for(int i=2;i<=n;i++){
-    if (findSplit(arr, n, i) == 1){
-        ans[i]=1;
-    }
-    else{
-        ans[i]=0;
-    }
+	opt;
+	int t = 1;
+    cin >> t;
+	while(t--)
+	    solve();
+	return 0;
 }
-for(int i=1;i<=n;i++){
-    cout<<ans[i];
-}
-cout<<"\n";
-}
-return 0;
-}
-/*
-
-Output:
-
-10100
-1101
-1010
-*/

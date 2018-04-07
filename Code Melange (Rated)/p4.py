@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python2                                                                          *
-#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * AUTHOR : AKASH KANDPAL                                                                   *
+#  * Language : Python2                                                                       *
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -141,6 +141,15 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def printDivisors(n) :
+    i = 1
+    while i <= math.sqrt(n):
+        if (n % i == 0) :
+            if (n / i == i) :
+                print i,
+            else :
+                print i , n/i,
+        i = i + 1
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
@@ -148,16 +157,41 @@ mod = 10 ** 9 + 7
 
 MOD = 10 ** 9 + 7
 
-string = raw_input()
-ans=''
-for letter in string:
-    ans+=chr(ord(letter) ^ 18)
-
-print ans 
+for __ in range(readInt()):
+    n = readInt()
+    ans = ""
+    i = 1
+    t = 0
+    sqr = math.sqrt(n)
+    t = int(math.ceil(sqr))
+    if checkint(sqr):
+        ans += "X"*t+"D"*t
+        print ans
+        continue
+    if n ==2:
+        print "XDD"
+        continue
+    arr = []
+    arr.extend(["X"] * t)
+    arr.extend(["D"] * t)
+    left = int(n/t)
+    for i in range(t-1,left,-1):
+        arr[i],arr[i+t] = arr[i+t],arr[i]
+    tot = n- left*t
+    # if tot>0:
+    arr[left],arr[-(tot+t-left)] = arr[-(tot+t-left-1)],arr[left]
+    # print arr
+    # print left
+    arr = strlistTostr(arr)
+    arr =arr.rstrip('X')
+    print arr
+    # print arr
 
 '''
 Input:
-keu
+1
+9
+
 Output:
-ywg
+XXXDDD
 '''

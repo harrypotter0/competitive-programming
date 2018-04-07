@@ -1,9 +1,9 @@
 # /*
 #  *
 #  ********************************************************************************************
-#  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python2                                                                          *
-#  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
+#  * AUTHOR : AKASH KANDPAL                                                                   *
+#  * Language : Python2                                                                       *
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -141,23 +141,57 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def dictlist(keys,values):
+    {d.setdefault(key,[]).append(value) for key, value in zip(keys,values)}
+    return d
+def mullistbyconst(my_list,r):
+    my_new_list = []
+    for i in my_list:
+        my_new_list.append(i * r)
+    return my_new_list
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
-
-string = raw_input()
-ans=''
-for letter in string:
-    ans+=chr(ord(letter) ^ 18)
-
-print ans 
-
+# for __ in range(readInt()):
+c = readInts()
+m = readInts()
+c1,c2=0,0
+for i in range(len(c)):
+    if c[i]>m[i]:
+        c1+=1
+    elif c[i]<m[i]:
+        c2+=1
+if c1==c2:
+    print "draw"
+elif c1>c2:
+    print "cse"
+else:
+    print "mech"
 '''
-Input:
-keu
-Output:
-ywg
+Example
+
+Input1:
+0 1 2 3 4 5 6
+0 2 2 3 4 5 6
+
+Output1:
+mech
+
+Input2:
+4 5 6 7 8 9 3
+1 2 3 4 5 6 7
+
+Output2:
+cse
+
+Input3:
+7 6 5 4 3 2 1
+1 2 3 4 5 6 7
+
+Output3:
+draw
+
+
 '''
