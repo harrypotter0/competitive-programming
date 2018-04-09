@@ -27,6 +27,18 @@ const int inf =1e9;
 
 using namespace std;
 
+ll exp(ll a,ll b,ll mod=1e9+7)
+{
+	ll tem=1;
+	while(b)
+	{
+		if(b%2)
+			tem=(tem*a)%mod;
+		a=(a*a)%mod;
+		b=b/2;
+	}
+	return tem;
+}
 ll takemod(ll num)
 {
     if(num<0)
@@ -64,6 +76,43 @@ void uni(int x,int y){
     dad[X]=Y;
 }
 
+bool isOperand(char c) { return (c >= '0' && c <= '9'); }
+
+// utility function to find value of and operand
+int value(char c) {  return (c - '0'); }
+
+// This function evaluates simple expressions. It returns -1 if the
+// given expression is invalid.
+int evaluate(char *exp)
+{
+    // Base Case: Given expression is empty
+    if (*exp == '\0')  return -1;
+
+    // The first character must be an operand, find its value
+    int res = value(exp[0]);
+
+    // Traverse the remaining characters in pairs
+    for (int i = 1; exp[i]; i += 2)
+    {
+        // The next character must be an operator, and
+        // next to next an operand
+        char opr = exp[i], opd = exp[i+1];
+
+        // If next to next character is not an operand
+        if (!isOperand(opd))  return -1;
+
+        // Update result according to the operator
+        if (opr == '+')       res += value(opd);
+        else if (opr == '-')  res -= value(opd);
+        else if (opr == '*')  res *= value(opd);
+        else if (opr == '/')  res /= value(opd);
+
+        // If not a valid operator
+        else                  return -1;
+    }
+    return res;
+}
+
 int main() {
   // your code goes here
   ios_base::sync_with_stdio(0);
@@ -75,6 +124,7 @@ int main() {
     {
       ll n,k;
       cin>>
+      // cout << setprecision(3) << dis << "\n";
     }
 
 return 0;

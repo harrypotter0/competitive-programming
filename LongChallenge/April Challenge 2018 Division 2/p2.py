@@ -180,7 +180,6 @@ for __ in range(readInt()):
                 count+=1
     print count
 
-
 '''
 Example Input
 

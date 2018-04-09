@@ -3,7 +3,7 @@
 #  ********************************************************************************************
 #  * AUTHOR : AKASH KANDPAL                                                                   *
 #  * Language : Python2                                                                       *
-#  * Motto : The master has failed more times than the beginner has even tried.               *   
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -143,10 +143,92 @@ def decimal_to_hexadecimal(dec):
     return hex(decimal)
 
 mod = 10 ** 9 + 7
-# for i,j in product(xrange(R),xrange(C)):
-# print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
+def solve(s1,s1len):
+    a,b,ca,cb = 0,0,0,0
+    point = 0
+    for j in range(n):
+        len1,len2 = 0,0
+        k=0
+        for k in range(s1len):
+            if s1[k]=='a':
+                a+=1
+            else:
+                b+=1
+            if a>b:
+                ca+=1
+                len1+=1
+            else:
+                cb+=1
+                len2+=1
+        # print s1len,len1,len2,"parta"
+        # print point,ca,cb,"partb"
+        if len1 == s1len or len2 == s1len:
+            point =j+1
+            # print a,b
+            break
+    # print point,ca,cb
+    # sumi = ca+(n-point)*len(s1)
+    # print sumi,"sum"
+    if point>0 and ca>cb:
+        sumi = ca+(n-point)*len(s1)
+        print sumi
+    else:
+        print ca
 
 for __ in range(readInt()):
-    n,k = readInts()
+    arr = readStrs()
+    s1 = arr[0]
+    n = int(arr[1])
+    a,b,ca,cb = 0,0,0,0
+    s1len = len(s1)
+    for i in range(s1len):
+        if s1[i]=='a':
+            a+=1
+        else:
+            b+=1
+        if a>b:
+            ca+=1
+        else:
+            cb+=1
+    if a==0 :
+        print "0"
+        continue
+    elif b==0:
+        print ca*n
+    else:
+        print a,b,ca,cb
+
+
+
+'''
+Sample Input
+4
+bbaaa 20
+aaaaa 10
+ababa 12
+ababababababbaabaabababbaaaabababbababababababababababbbbaaaaabbaaa 50
+
+3
+babababaa 2
+baa 10
+a 21
+
+4
+bbaaa 20
+aabbb 20
+bbbaaa 12
+aaabbb 12
+
+Sample Input
+
+2
+ababababa 30
+aaabbaabbbbbaa 5
+
+3
+aba 2
+baa 3
+bba 3
+
+'''

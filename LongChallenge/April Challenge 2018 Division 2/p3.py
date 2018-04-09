@@ -142,21 +142,65 @@ def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
 
-mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
+
+# count = 0
+# for i in range(1,10):
+#     for j in range(0,10):
+#         sumi = j-i
+#         if sumi ==3:
+#             print i,j
+#             count+=1
+# print count
+
+# for i in range(1,10):
+#     for j in range(0,10):
+#         for k in range(0,10):
+#             for l in range(0,10):
+#                 for m in range(0,10):
+#                     sumi = m-i
+#                     if sumi ==3:
+#                         print i,j,k,l,m
+#                         count+=1
+#
+# print count
+mod = 10 ** 9 + 7
+
+# for __ in range(readInt()):
+#     n,w = readInts()
+#     if w>0:
+#         if abs(w)>8:
+#             print "0"
+#             continue
+#         thoko = 9-abs(w)
+#         sumi = pow(10,n-2,mod)
+#         sumi%=mod
+#         print (sumi*thoko)%mod
+#     else:
+#         if abs(w)>9:
+#             print "0"
+#             continue
+#         thoko = 10-abs(w)
+#         sumi = pow(10,n-2,mod)
+#         sumi%=mod
+#         print (sumi*thoko)%mod
 
 for __ in range(readInt()):
     n,w = readInts()
-    a = [1,2,3,4,5,6,7,8,9]
-    sumi =0
-    if w>8:
-        print "0"
-        continue
-    
-
+    # if abs(w)>8:
+    #     print "0"
+    #     continue
+    thoko = 0
+    for i in range(1,10):
+        for j in range(10):
+            if j-i==w :
+                # print i,j
+                thoko+=1
+    sumi = pow(10,n-2,mod)
+    sumi%=mod
+    print (sumi*thoko)%mod
 
 '''
 Example Input
@@ -170,10 +214,5 @@ Example Output
 
 1
 4 8
- Remember that the digits are arranged from most significant to least significant as D1,D2.
- The two-digit integers with weight 3 are 14,25,36,47,58,69.
- For example, the weight of 14 is D2−D1=4−1=3.
- We can see that there are no other possible numbers.
-
 
 '''
