@@ -9,10 +9,9 @@
 #  ********************************************************************************************
 #  *
 #  */
-from collections import Counter
-from math import ceil
 from fractions import gcd
 import math
+import itertools
 from itertools import permutations
 from itertools import combinations
 import calendar
@@ -143,41 +142,46 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
-def countchars(stra):
-    s=Counter(stra)
-    return s
+
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
 MOD = 10 ** 9 + 7
-for _ in range(int(raw_input())):
-    s=Counter(raw_input())
-    # print s
-    a=s['a']
-    b=s['b']
-    if 5*a==4*b:
-        print 0
-    elif (a+b)%9 == 0:
-        print abs((4*b - 5*a)/9)
-    else:
-        t=int(ceil((a+b)/9.))
-        s=9*t-a-b
-        if 4*t>=a:
-            s+= 4*t- min(4*t,a+s)
-        else:
-            s+= 5*t- min(5*t,b+s)
-        print s
+
+from fractions import gcd
+
+def su(x,m):
+    return (m/x)*(x+x*(m/x))/2
+
+def sol(a,b,m):
+    return su(a,m)+su(b,m)-su(a*b/gcd(a,b),m)
+
+for t in range(input()):
+    SUM=0
+    n=input()
+    a=map(int,raw_input().split())
+    m=input()-1
+    for i in range(n):
+        for j in range(i+1,n):
+            SUM += sol(a[i],a[j],m)
+    print SUM%1000000007
 
 '''
+Example:
+
 Input:
+
+2
 3
-baaabbbba
-aa
-aaaabbbb
+3 4 7
+20
+2
+5 6
+30
 
 Output:
-0
-7
-1
+236
+135
+
 '''

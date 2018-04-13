@@ -3,7 +3,7 @@
 #  ********************************************************************************************
 #  * AUTHOR : AKASH KANDPAL                                                                   *
 #  * Language : Python2                                                                       *
-#  * Motto : The master has failed more times than the beginner has even tried.               *   
+#  * Motto : The master has failed more times than the beginner has even tried.               *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
@@ -141,6 +141,8 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def printdec(ans):
+    print '{0:.6f}'.format(ans)
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
@@ -149,4 +151,135 @@ mod = 10 ** 9 + 7
 MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
-    n,k = readInts()
+    n,s,w = readInts()
+    v = readInts()
+    d = readInts()
+    p = readInts()
+    c = readInts()
+    t =[]
+    carl,sumi = 0,0
+    for i in range(n):
+        if d[i]==0 and p[i]>0:
+            carl = p[i]*1.0+c[i]*1.0
+            if i>=1:
+                carl -= v[i]*1.0*sum(t)*1.0
+                if carl<0:
+                    carl = 0
+            # print carl,"carl1"
+            if (((carl*1.0-c[i])/v[i]*1.0)>(w*1.0/s*1.0)) and ((((carl*1.0-c[i])/v[i]*1.0)-(w*1.0/s*1.0))*1.0*v[i]>0.000001):
+                t.append(w*1.0/s*1.0)
+            else:
+                t.append(carl*1.0/v[i]*1.0)
+                t.append(w*1.0/s*1.0)
+        elif d[i]==0 and p[i]<=0:
+            carl = p[i]*1.0+c[i]*1.0
+            if carl<0:
+                carl = 0
+            if i>=1:
+                carl -= v[i]*1.0*sum(t)*1.0
+                if carl<0:
+                    carl = 0
+            # print carl,"carl2"
+            if (((carl*1.0-c[i])/v[i]*1.0)>(w*1.0/s*1.0)) and ((((carl*1.0-c[i])/v[i]*1.0)-(w*1.0/s*1.0))*1.0*v[i]>0.000001):
+                t.append(w*1.0/s*1.0)
+            else:
+                t.append(carl*1.0/v[i]*1.0)
+                t.append(w*1.0/s*1.0)
+        elif d[i]==1 and p[i]<0:
+            carl = abs(p[i]*1.0)+c[i]*1.0
+            # print carl
+            if i>=1:
+                carl -= v[i]*1.0*sum(t)*1.0
+                if carl<0:
+                    carl = 0
+            # print carl,"carl3"
+            if (((carl*1.0-c[i])/v[i]*1.0)>(w*1.0/s*1.0)) and ((((carl*1.0-c[i])/v[i]*1.0)-(w*1.0/s*1.0))*1.0*v[i]>0.000001):
+                t.append(w*1.0/s*1.0)
+            else:
+                t.append(carl*1.0/v[i]*1.0)
+                t.append(w*1.0/s*1.0)
+        elif d[i]==1 and p[i]>=0:
+            carl = p[i]*-1.0+c[i]*1.0
+            if carl<0:
+                carl = 0
+            if i>=1:
+                carl -= v[i]*1.0*sum(t)*1.0
+                if carl<0:
+                    carl = 0
+            # print carl,"carl4"
+            if (((carl*1.0-c[i])/v[i]*1.0)>(w*1.0/s*1.0)) and ((((carl*1.0-c[i])/v[i]*1.0)-(w*1.0/s*1.0))*1.0*v[i]>0.000001):
+                t.append(w*1.0/s*1.0)
+            else:
+                t.append(carl*1.0/v[i]*1.0)
+                t.append(w*1.0/s*1.0)
+        # print t
+    printdec(sum(t))
+
+
+'''
+Example Input
+
+1
+3 6 6
+15 10 15
+1 1 0
+7 -14 -7
+8 7 8
+
+
+1
+2 6 6
+5 10
+1 0
+-1 0
+4 72
+
+
+1
+3 6 6
+5 12 15 5 12 15
+1 0 1 1 0 1
+-1 0 -4 -1 0 -34
+4 70 8 4 70 8
+
+1
+3 6 6
+5 10 15
+1 0 1
+5 0 0
+4 7 8
+
+
+1
+3 6 6
+15 10 15
+0 1 0
+-7 -15 -7
+8 7 8
+
+
+3
+2 6 6
+5 10
+1 0
+-1 23
+4 7
+1 8 177
+190
+0
+4201
+21
+1 1 1000
+100
+1
+-100000
+10
+
+Example Output
+
+
+4.000000
+44.346053
+2000.100000
+
+'''

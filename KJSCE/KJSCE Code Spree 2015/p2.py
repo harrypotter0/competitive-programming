@@ -149,8 +149,20 @@ mod = 10 ** 9 + 7
 MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
-    n,k = readInts()
+    n = readInt()
+    s = readStr()
+    # for i in range():
+    #     a.append(s.count(i))
+    print stringcount(s)
 
 '''
-
+Input:
+2
+7
+abcbdca
+3
+abb
+Output:
+d
+a
 '''

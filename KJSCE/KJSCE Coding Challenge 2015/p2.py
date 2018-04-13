@@ -149,8 +149,26 @@ mod = 10 ** 9 + 7
 MOD = 10 ** 9 + 7
 
 for __ in range(readInt()):
-    n,k = readInts()
+    n = readInt()
+    s = readStr()
+    # for i in range():
+    #     a.append(s.count(i))
+    # print stringcount(s)
+    arr = stringcount(s)
+    for i in range(len(arr)):
+        if arr[i]&1:
+            break
+    print chr(97+i)
 
 '''
+Input:
+2
+7
+abcbdca
+3
+abb
 
+Output:
+d
+a
 '''

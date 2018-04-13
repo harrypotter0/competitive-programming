@@ -147,10 +147,26 @@ mod = 10 ** 9 + 7
 # print "Case #{}: {}".format(i+1,ans)
 
 MOD = 10 ** 9 + 7
-
-for __ in range(readInt()):
-    n,k = readInts()
+t  = readInt()
+n = readInt()
+for __ in range(t):
+    a,b = readInts()
+    print (pow(a,b))%n
 
 '''
+Example
+
+Input:
+3
+3
+5 2
+2 5
+3 3
+
+Output:
+1
+2
+0
+
 
 '''

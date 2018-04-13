@@ -9,6 +9,8 @@
 #  ********************************************************************************************
 #  *
 #  */
+from collections import Counter
+from math import ceil
 from fractions import gcd
 import math
 import itertools
@@ -19,6 +21,11 @@ from itertools import product
 from datetime import date
 from string import ascii_uppercase
 
+def printdec(ans):
+    print '{0:.6f}'.format(ans)
+def countchars(stra):
+    s=Counter(stra)
+    return s
 def readInts():
     return list(map(int, raw_input().strip().split()))
 def readInt():
@@ -47,7 +54,7 @@ def precise(num):
 def rsorted(a):
     return sorted(a,reverse=True)
 def binar(x):
-    return '{0:031b}'.format(x)
+    return '{0:063b}'.format(x)
 def findpermute(word):
     perms = [''.join(p) for p in permutations(word)]
     perms = list(set(perms))
@@ -202,8 +209,29 @@ from functools import reduce
 def factors(n):
     return set(reduce(list.__add__,
                 ([i, n//i] for i in range(1, int(pow(n, 0.5) + 1)) if n % i == 0)))
+def prelongfact(factt):
+    for i in reversed(range(1,int(factt**0.5))):
+        if factt%i==0:
+            break
+    return  factt/i
+def factmul(n,lim,m):
+    mul=1
+    ans=1
+    if(n>=lim):
+        print 0
+    else:
+        for j in range(1,n+1):
+            mul=(mul*j)%m
+            ans=(ans*mul)%m
+        print ans
+
+m = 329885391853
+lim =  prelongfact(m)
 
 mod = 10 ** 9 + 7
+# fact=[1]
+# for i in xrange(1,100001):
+#     fact.append(((arr[i-1]%mod)*(i%mod))%mod)
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 

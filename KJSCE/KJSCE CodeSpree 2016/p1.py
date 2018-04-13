@@ -141,16 +141,33 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
-
 for __ in range(readInt()):
-    n,k = readInts()
+    n = readInt()
+    f = factorial(n)%1589540031
+    print f
 
 '''
+Input:
+4
+1
+2
+3
+4
 
+
+Output:
+1
+2
+6
+24
 '''

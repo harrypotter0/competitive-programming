@@ -148,9 +148,61 @@ mod = 10 ** 9 + 7
 
 MOD = 10 ** 9 + 7
 
-for __ in range(readInt()):
-    n,k = readInts()
+# for __ in range(readInt()):
+#     s = readStr()
+n=readInt()
+keys=[]
+a=[ [0 for i in range(26)] for j in range(n) ]
+for i in range(n):
+    for x in raw_input():
+        if x<'a' or x>'z':
+            continue
+        a[i][ord(x)-97]+=1
+
+for i in range(26):
+    f=1
+    for j in range(n):
+        if a[j][i]!=1:
+            f=0
+            break
+    if f:
+        keys.append( i+1 )
+
+if len(keys)==0:
+    key=7
+else:
+    key=0
+    for x in keys:
+        key = ( key + x ) % 26
+
+fib=[0,1,2,3,5,8,13,21,34,55,89,144]
+
+ans=""
+s=raw_input()
+L=len(s)
+for i in range(L):
+    if s[i]<'a' or s[i]>'z':
+        ans += s[i]
+        continue
+    # print ans
+    if i in fib:
+        ans += chr( 97 + ( ord(s[i])-97+26-key )%26 )
+    else:
+        ans += chr( 97 + ( ord(s[i])-97+key )%26 )
+
+print ans
 
 '''
+Input:
+4
+azfjybgbxnpyatfgcaxqylbxd
+gzbbbgaxnfatxqdjfaypgcyafl
+yjbfpcygxlgznyfbgxtqgxydaaa
+xxyyxxyyxdlbqffctpbngggjz
+cbkumuwlwkmtt_zwksa!!
+
+
+Output:
+kjscecodecell_rocks!!
 
 '''

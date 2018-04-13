@@ -1,3 +1,4 @@
+
 # /*
 #  *
 #  ********************************************************************************************
@@ -9,8 +10,6 @@
 #  ********************************************************************************************
 #  *
 #  */
-from collections import Counter
-from math import ceil
 from fractions import gcd
 import math
 from itertools import permutations
@@ -143,41 +142,64 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
-def countchars(stra):
-    s=Counter(stra)
-    return s
+def mullistbyconst(my_list,r):
+    my_new_list = []
+    for i in my_list:
+        my_new_list.append(i * r)
+    return my_new_list
+
+def binarySearch(arr, l, r, x):
+    while l <= r:
+        mid = l + (r - l)/2;
+        if arr[mid] == x:
+            return mid
+        elif arr[mid] < x:
+            l = mid + 1
+        else:
+            r = mid - 1
+    return -1
+
+
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-MOD = 10 ** 9 + 7
-for _ in range(int(raw_input())):
-    s=Counter(raw_input())
-    # print s
-    a=s['a']
-    b=s['b']
-    if 5*a==4*b:
-        print 0
-    elif (a+b)%9 == 0:
-        print abs((4*b - 5*a)/9)
-    else:
-        t=int(ceil((a+b)/9.))
-        s=9*t-a-b
-        if 4*t>=a:
-            s+= 4*t- min(4*t,a+s)
-        else:
-            s+= 5*t- min(5*t,b+s)
-        print s
+for __ in range(readInt()):
+    n = readInt()
+    arr = readInts()
+    arr = sorted(arr)
+    count = 0
+    for i in range(n):
+        for j in range(i+1,n):
+            if (arr[i]+arr[j])&1:
+                continue
+            x = (arr[i]+arr[j])/2.0
+            result = binarySearch(arr, i, j, x)
+            if result!=-1:
+                print arr[i],arr[j],x
+                count+=1
+    print count
+
 
 '''
-Input:
-3
-baaabbbba
-aa
-aaaabbbb
+Example Input
 
-Output:
-0
-7
+3
+2
+2 2
+3
+2 1 3
+6
+4 2 5 1 3 5
+
 1
+9
+4 2 5 1 3 5 3 5 5
+
+Example Output
+
+1
+1
+7
+
 '''

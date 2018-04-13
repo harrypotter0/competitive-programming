@@ -156,42 +156,90 @@ def binarySearch(arr, l, r, x):
         else:
             r = mid - 1
     return -1
+# def solve(arr):
+#     n = len(arr)
+#     ar = set(arr)
+#     # print ar
+#     for i in range(n):
+#         for j in range(i+1,n):
+#             if (arr[i]+arr[j])&1:
+#                 continue
+#             if checkint(x)
+#             x = (arr[i]+arr[j])/2.0
+#
+#             count+=1
+#     print count
+#
+# def find_pairs(L,sum):
+#     s = set(L)
+#     edgeCase = sum/2
+#     if L.count(edgeCase) ==2:
+#         print edgeCase, edgeCase
+#     s.remove(edgeCase)
+#     for i in s:
+#         diff = sum-i
+#         if diff in s:
+#             print i, diff
+#
+#     if (word.find('pawan') != -1):
+#     print ("Contains given substring ")
+#     else:
+#     print ("Doesn't contains given substring")
+
+
 
 
 mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
+# count = [[0 for j in range(1005)]for i in range(1005)]
+# print count
 for __ in range(readInt()):
     n = readInt()
     arr = readInts()
     arr = sorted(arr)
+    ar = list(set(arr))
+    # print ar
+    # count = [[0 for j in range(1005)]for i in range(1005)]
+    lis = []
+    ar = sorted(ar)
     count = 0
-    for i in range(n):
-        for j in range(i+1,n):
-            if arr[i]==arr[j]:
-                count+=1
-                continue
-            if (arr[i]+arr[j])&1:
-                continue
-            x = (arr[i]+arr[j])/2.0
-            result = binarySearch(arr, i, j, x)
-            if result!=-1:
-                count+=1
-    print count
+    t =0
+    for i in range(len(ar)):
+        for j in range(i,len(ar)):
+            if (ar[i]+ar[j])/2.0 in ar:
+                lis.append((ar[i],ar[j]))
+    lis = list(set(lis))
+    # print lis
+    for i in range(len(lis)):
+        a = arr.count(lis[i][0])
+        b = arr.count(lis[i][1])
+        if lis[i][0]==lis[i][1] and a>=2:
+            count+=nck(a,2)
+            # print "hi1"
+            t+=1
+        else:
+            count+=a*b
+            # print "hi2"
+        # print ar[i],ar[j],(ar[i]+ar[j])/2.0,count
+    print count-(len(ar)-t)
 
 '''
 Example Input
 
-4
+3
 2
 2 2
 3
 2 1 3
-6
-4 2 5 1 3 5
-5
-5 5 5 5 5
+8
+4 2 5 1 3 5 3 5
+
+1
+9
+4 2 5 1 3 5 3 5 5
+
 Example Output
 
 1
