@@ -83,10 +83,10 @@ def vowel_count(str):
 def leapyear(year):
     return calendar.isleap(year)
 def factorial(n):
-    if n == 0:
-        return 1
-    else:
-        return n * factorial(n-1)
+	p=1
+	for i in range(2,n+1):
+		p=p*i
+	return p
 def primes_sieve(limit):
     limitn = limit+1
     not_prime = set()
@@ -217,9 +217,70 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-for __ in range(readInt()):
-    n,k = readInts()
+t=input()
+for i in range(t):
+	n=raw_input()
+	a=n.split()
+	f=fc=factorial(int(a[0]))/factorial(int(a[1]))/factorial(int(a[0])-int(a[1]))
+	bc=dc=0
+	while f!=0:
+		dc=dc+1;
+		f=f/10
+	while fc!=0:
+		bc=bc+1;
+		fc=fc>>1
+	print dc,bc
 
 '''
+Input:
+
+
+
+20
+5 2
+3 3
+5 4
+2 2
+4 1
+5 5
+2 1
+4 4
+3 1
+3 0
+1 1
+2 0
+3 2
+5 3
+4 2
+4 0
+5 1
+4 3
+1 0
+5 0
+
+Output:
+
+
+2 4
+1 1
+1 3
+1 1
+1 3
+1 1
+1 2
+1 1
+1 2
+1 1
+1 1
+1 1
+1 2
+2 4
+1 3
+1 1
+1 3
+1 3
+1 1
+1 1
+
 
 '''

@@ -144,60 +144,96 @@ def decimal_to_hexadecimal(dec):
 
 mod = 10 ** 9 + 7
 
-def solve(s1,s1len):
-    a,b,ca,cb = 0,0,0,0
-    point = 0
-    for j in range(n):
-        len1,len2 = 0,0
-        k=0
-        for k in range(s1len):
-            if s1[k]=='a':
+# def solve(s1,s1len):
+#     a,b,ca,cb = 0,0,0,0
+#     point = 0
+#     for j in range(n):
+#         len1,len2 = 0,0
+#         k=0
+#         for k in range(s1len):
+#             if s1[k]=='a':
+#                 a+=1
+#             else:
+#                 b+=1
+#             if a>b:
+#                 ca+=1
+#                 len1+=1
+#             else:
+#                 cb+=1
+#                 len2+=1
+#         # print s1len,len1,len2,"parta"
+#         # print point,ca,cb,"partb"
+#         if len1 == s1len or len2 == s1len:
+#             point =j+1
+#             # print a,b
+#             break
+#     # print point,ca,cb
+#     # sumi = ca+(n-point)*len(s1)
+#     # print sumi,"sum"
+#     if point>0 and ca>cb:
+#         sumi = ca+(n-point)*len(s1)
+#         print sumi
+#     else:
+#         print ca
+
+tc=int(raw_input().strip())
+for __ in range(tc):
+    arr=raw_input().strip().split()
+    s,n=arr[0],int(arr[1])
+    a,b=0,0
+    l=len(s)
+    total=0
+    while(n>0):
+        count=0
+        for i in s:
+            if(i=='a'):
                 a+=1
             else:
                 b+=1
-            if a>b:
-                ca+=1
-                len1+=1
-            else:
-                cb+=1
-                len2+=1
-        # print s1len,len1,len2,"parta"
-        # print point,ca,cb,"partb"
-        if len1 == s1len or len2 == s1len:
-            point =j+1
-            # print a,b
+            if(a>b):
+                count+=1
+        total+=count
+        if(a==b):
+            total=n*count
             break
-    # print point,ca,cb
-    # sumi = ca+(n-point)*len(s1)
-    # print sumi,"sum"
-    if point>0 and ca>cb:
-        sumi = ca+(n-point)*len(s1)
-        print sumi
-    else:
-        print ca
-
-for __ in range(readInt()):
-    arr = readStrs()
-    s1 = arr[0]
-    n = int(arr[1])
-    a,b,ca,cb = 0,0,0,0
-    s1len = len(s1)
-    for i in range(s1len):
-        if s1[i]=='a':
-            a+=1
-        else:
-            b+=1
-        if a>b:
-            ca+=1
-        else:
-            cb+=1
-    if a==0 :
-        print "0"
-        continue
-    elif b==0:
-        print ca*n
-    else:
-        print a,b,ca,cb
+        if(count==0):
+            break
+        n-=1
+        if(count==l):
+            total+=n*l
+            break
+    print total
+# for _ in range(input()):
+#     [s, n] = raw_input().split()
+#     ans = 0
+#     n = int(n)
+#     prev = [-2]*len(s)
+#     tmp = [0]*len(s)
+#     acount = 0
+#     bcount = 0
+#     ctr = 0
+#     while(ctr<n):
+#         for i in range(len(s)):
+#             if s[i] == 'a':
+#                 acount += 1
+#             else:
+#                 bcount += 1
+#             if acount > bcount:
+#                 tmp[i] = 1
+#                 ans += 1
+#             elif acount == bcount:
+#                 tmp[i] = 0
+#             else:
+#                 tmp[i] = -1
+#         #print "Prev:", prev
+#         #print "Tmp:", tmp
+#         if tmp == prev:
+#             ans += (n-ctr-1)*tmp.count(1)
+#             #print prev, tmp
+#             break
+#         prev = tmp[:]
+#         ctr += 1
+#     print ans
 
 
 

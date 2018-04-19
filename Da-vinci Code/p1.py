@@ -209,6 +209,14 @@ from functools import reduce
 def factors(n):
     return set(reduce(list.__add__,
                 ([i, n//i] for i in range(1, int(pow(n, 0.5) + 1)) if n % i == 0)))
+def knapSack(W , wt , val , n):
+    if n == 0 or W == 0 :
+        return 0
+    if (wt[n-1] > W):
+        return knapSack(W , wt , val , n-1)
+    else:
+        return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
+                   knapSack(W , wt , val , n-1))
 
 mod = 10 ** 9 + 7
 # fact=[1]
@@ -216,10 +224,29 @@ mod = 10 ** 9 + 7
 #     fact.append(((arr[i-1]%mod)*(i%mod))%mod)
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
-
+#
 for __ in range(readInt()):
-    n,k = readInts()
+    n,W = readInts()
+    val=[0]*n
+    wt=[0]*n
+    for i in range(n):
+        wt[i],val[i] = readInts()
+    print wt,val
+    print knapSack(W,wt,val,n)
+
 
 '''
+Sample Input:
+2
+1 3
+2 2
+3 4
+2 1
+2 2
+3 5
+
+Sample Output:
+2
+5
 
 '''

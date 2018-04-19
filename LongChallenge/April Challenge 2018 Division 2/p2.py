@@ -141,50 +141,6 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
-def mullistbyconst(my_list,r):
-    my_new_list = []
-    for i in my_list:
-        my_new_list.append(i * r)
-    return my_new_list
-def binarySearch(arr, l, r, x):
-    while l <= r:
-        mid = l + (r - l)/2;
-        if arr[mid] == x:
-            return mid
-        elif arr[mid] < x:
-            l = mid + 1
-        else:
-            r = mid - 1
-    return -1
-# def solve(arr):
-#     n = len(arr)
-#     ar = set(arr)
-#     # print ar
-#     for i in range(n):
-#         for j in range(i+1,n):
-#             if (arr[i]+arr[j])&1:
-#                 continue
-#             if checkint(x)
-#             x = (arr[i]+arr[j])/2.0
-#
-#             count+=1
-#     print count
-#
-# def find_pairs(L,sum):
-#     s = set(L)
-#     edgeCase = sum/2
-#     if L.count(edgeCase) ==2:
-#         print edgeCase, edgeCase
-#     s.remove(edgeCase)
-#     for i in s:
-#         diff = sum-i
-#         if diff in s:
-#             print i, diff
-#
-#     if (word.find('pawan') != -1):
-#     print ("Contains given substring ")
-#     else:
-#     print ("Doesn't contains given substring")
 
 
 
@@ -195,35 +151,30 @@ mod = 10 ** 9 + 7
 
 # count = [[0 for j in range(1005)]for i in range(1005)]
 # print count
-for __ in range(readInt()):
-    n = readInt()
-    arr = readInts()
-    arr = sorted(arr)
-    ar = list(set(arr))
-    # print ar
-    # count = [[0 for j in range(1005)]for i in range(1005)]
-    lis = []
-    ar = sorted(ar)
-    count = 0
-    t =0
-    for i in range(len(ar)):
-        for j in range(i,len(ar)):
-            if (ar[i]+ar[j])/2.0 in ar:
-                lis.append((ar[i],ar[j]))
-    lis = list(set(lis))
-    # print lis
-    for i in range(len(lis)):
-        a = arr.count(lis[i][0])
-        b = arr.count(lis[i][1])
-        if lis[i][0]==lis[i][1] and a>=2:
-            count+=nck(a,2)
-            # print "hi1"
-            t+=1
-        else:
-            count+=a*b
-            # print "hi2"
-        # print ar[i],ar[j],(ar[i]+ar[j])/2.0,count
-    print count-(len(ar)-t)
+
+for _ in range(input()):
+    n = input()
+    l = map(int, raw_input().split())
+    l = [x + 1000 for x in l]
+    check1 = [0]*(2*(10**3) + 10)
+    check2 = [0]*(4*(10**3) + 10)
+    for i in l:
+        check1[i] += 1
+    l = list(set(l))
+    ans = 0
+    for i in range(len(l)):
+        for j in range(i, len(l)):
+            if i == j:
+                check2[l[i]*2] += check1[l[i]]*(check1[l[i]] - 1)/2
+            else:
+                check2[l[i] + l[j]] += check1[l[i]]*check1[l[j]]
+            # print check2
+    for i in l:
+        ans += check2[2*i]
+
+    print ans
+
+
 
 '''
 Example Input

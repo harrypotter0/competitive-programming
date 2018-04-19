@@ -218,8 +218,27 @@ mod = 10 ** 9 + 7
 # print "Case #{}: {}".format(i+1,ans)
 
 for __ in range(readInt()):
-    n,k = readInts()
+    i = readInt()
+    if i>0:
+        i-=1
+        print 4*i*i+5*i+1
+    else:
+        print "0"
 
 '''
+Input
+
+
+3
+0
+1
+2
+
+Output
+
+
+0
+1
+10
 
 '''

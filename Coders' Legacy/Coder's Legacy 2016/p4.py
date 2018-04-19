@@ -83,10 +83,10 @@ def vowel_count(str):
 def leapyear(year):
     return calendar.isleap(year)
 def factorial(n):
-    if n == 0:
-        return 1
-    else:
-        return n * factorial(n-1)
+	p=1
+	for i in range(2,n+1):
+		p=p*i
+	return p
 def primes_sieve(limit):
     limitn = limit+1
     not_prime = set()
@@ -209,6 +209,39 @@ from functools import reduce
 def factors(n):
     return set(reduce(list.__add__,
                 ([i, n//i] for i in range(1, int(pow(n, 0.5) + 1)) if n % i == 0)))
+def prelongfact(factt):
+    for i in reversed(range(1,int(factt**0.5))):
+        if factt%i==0:
+            break
+    return  factt/i
+def factmul(n,lim,m):
+    mul=1
+    ans=1
+    if(n>=lim):
+        print 0
+    else:
+        for j in range(1,n+1):
+            mul=(mul*j)%m
+            ans=(ans*mul)%m
+        print ans
+def knapSack(W , wt , val , n):
+    if n == 0 or W == 0 :
+        return 0
+    if (wt[n-1] > W):
+        return knapSack(W , wt , val , n-1)
+    else:
+        return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
+                   knapSack(W , wt , val , n-1))
+# def lengthOfNumber(a):
+#        curr = 0
+#        while 1:
+#                if a < 2**curr:
+#                        return curr
+#                        break
+#                curr += 1
+
+m = 329885391853
+lim =  prelongfact(m)
 
 mod = 10 ** 9 + 7
 # fact=[1]

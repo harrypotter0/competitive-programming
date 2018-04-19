@@ -221,5 +221,11 @@ for __ in range(readInt()):
     n,k = readInts()
 
 '''
+Input:
+1
+321 100000000
 
+Output:
+
+177
 '''

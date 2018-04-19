@@ -83,10 +83,10 @@ def vowel_count(str):
 def leapyear(year):
     return calendar.isleap(year)
 def factorial(n):
-    if n == 0:
-        return 1
-    else:
-        return n * factorial(n-1)
+	p=1
+	for i in range(2,n+1):
+		p=p*i
+	return p
 def primes_sieve(limit):
     limitn = limit+1
     not_prime = set()
@@ -209,6 +209,39 @@ from functools import reduce
 def factors(n):
     return set(reduce(list.__add__,
                 ([i, n//i] for i in range(1, int(pow(n, 0.5) + 1)) if n % i == 0)))
+def prelongfact(factt):
+    for i in reversed(range(1,int(factt**0.5))):
+        if factt%i==0:
+            break
+    return  factt/i
+def factmul(n,lim,m):
+    mul=1
+    ans=1
+    if(n>=lim):
+        print 0
+    else:
+        for j in range(1,n+1):
+            mul=(mul*j)%m
+            ans=(ans*mul)%m
+        print ans
+def knapSack(W , wt , val , n):
+    if n == 0 or W == 0 :
+        return 0
+    if (wt[n-1] > W):
+        return knapSack(W , wt , val , n-1)
+    else:
+        return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
+                   knapSack(W , wt , val , n-1))
+# def lengthOfNumber(a):
+#        curr = 0
+#        while 1:
+#                if a < 2**curr:
+#                        return curr
+#                        break
+#                curr += 1
+
+m = 329885391853
+lim =  prelongfact(m)
 
 mod = 10 ** 9 + 7
 # fact=[1]
@@ -217,73 +250,9 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-def fact(n):
-    p = 1
-    k = 1
-    while(k <= n):
-        p = p*k
-        k+=1
-    return p
-def comb(n,k):
-    p = 1
-    j = 1
-    l = n
-    while(p <= k):
-        j = j*l
-        l = l-1
-        p+=1
-    return j/fact(k)
-def noofdigits(n):
-    k = n
-    s = 0
-    while(k > 0):
-        s+=1
-        k = k/10
-    return s
-def power(n,k):
-    p = 1
-    l = 0
-    while(l < k):
-        p = p*n
-        l+=1
-    return p
-ui = readInt()
-while(ui > 0):
-    ui = ui-1
-    h = readInts()
-    n = h[0]
-    ew = h[1]
-    k = n
-    p = 0
-    noofdigits = 0
-    while(k > 0):
-        p = p*10+k%10
-        k = k/10
-        noofdigits+=1
-    # print p,"p",noofdigits,"noofdigits"
-    k = p
-    s = 0
-    l = 0
-    j = noofdigits-1
-    while(k > 0):
-        s = s + (k%10)*(power(2,j))
-        p = 10
-        w = 1
-        while(l >= w):
-            s = s+p*power(2,j)*(k%10)*comb(l,w)
-            w = w+1
-            p = p*10
-        j = j-1
-        l = l+1
-        k = k/10
-    print (s%ew)
+for __ in range(readInt()):
+    n,k = readInts()
 
 '''
-Input:
-1
-321 100000000
 
-Output:
-
-177
 '''
