@@ -233,8 +233,8 @@ def knapSack(W , wt , val , n):
         return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
                    knapSack(W , wt , val , n-1))
 
-# m = 329885391853
-# lim =  prelongfact(m)
+m = 329885391853
+lim =  prelongfact(m)
 
 mod = 10 ** 9 + 7
 # fact=[1]
@@ -244,8 +244,17 @@ mod = 10 ** 9 + 7
 # print "Case #{}: {}".format(i+1,ans)
 
 for __ in range(readInt()):
-    n,k = readInts()
+    arr = readInts()
+    # print sum(arr)
+    print (sum(arr)-1)/2
 
 '''
+
+5
+0 0 0 0 2 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+1 2 2 3 4 0 3 4 4 1 3 1 4 4 1 0 0 0 0 0 4 2 3 2 2 1
+1 1 3 3 1 1 4 4 3 1 3 3 3 0 1 2 0 4 2 1 3 0 3 1 1 1
+3 3 0 2 2 2 4 1 2 1 1 1 3 3 0 0 3 2 2 4 1 4 4 1 2 1
+2 1 4 1 0 2 0 3 1 2 0 3 1 1 2 0 1 4 2 3 2 3 2 0 2 1
 
 '''

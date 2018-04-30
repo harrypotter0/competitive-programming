@@ -233,8 +233,8 @@ def knapSack(W , wt , val , n):
         return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
                    knapSack(W , wt , val , n-1))
 
-# m = 329885391853
-# lim =  prelongfact(m)
+m = 329885391853
+lim =  prelongfact(m)
 
 mod = 10 ** 9 + 7
 # fact=[1]

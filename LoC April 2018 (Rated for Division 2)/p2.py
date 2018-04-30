@@ -243,9 +243,76 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-for __ in range(readInt()):
-    n,k = readInts()
+m = 1000000007
+from math import pow
 
+def modInverse(a, m) :
+
+        # If a and m are relatively prime,
+        # then modulo inverse is a^(m-2) mode m
+    return power(a, m - 2, m)
+
+# To compute x^y under modulo m
+def power(x, y, m) :
+
+    if (y == 0) :
+        return 1
+
+    p = power(x, y // 2, m) % m
+    p = (p * p) % m
+
+    if(y % 2 == 0) :
+        return p
+    else :
+        return (x * p) % m
+
+# Function to return gcd of a and b
+def gcd(a, b) :
+    if (a == 0) :
+        return b
+
+    return gcd(b % a, a)
+
+
+k = 576923081
+
+
+for _ in xrange(input()):
+
+    n = input()
+
+    if n%2==1:
+
+        p = n/2
+
+        if p == 0:
+            print 1
+        elif p == 1:
+             ans = 1+(2*576923081)%m
+             print ans
+        else:
+            print  (  1%m +  2%m *  k%m  *  (power(k,p,m) - 1 ) * modInverse(k-1,m)   )%m
+
+    else:
+
+        p = n/2 - 1
+
+        if n == 2:
+            print k+1
+
+        else:
+
+            print  ((  1%m +  2%m *  k%m  *  (power(k,p,m) - 1 ) * modInverse(k-1,m)   )%m + power(k,p+1,m))%m
 '''
+Input:
+3
+2
+3
+4
+
+Output:
+576923082
+153846156
+214497044
 
 '''

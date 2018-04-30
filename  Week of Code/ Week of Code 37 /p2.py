@@ -233,8 +233,8 @@ def knapSack(W , wt , val , n):
         return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
                    knapSack(W , wt , val , n-1))
 
-# m = 329885391853
-# lim =  prelongfact(m)
+m = 329885391853
+lim =  prelongfact(m)
 
 mod = 10 ** 9 + 7
 # fact=[1]
@@ -242,10 +242,55 @@ mod = 10 ** 9 + 7
 #     fact.append(((arr[i-1]%mod)*(i%mod))%mod)
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
-
+x = 0
+maxi,a=-1e9,-1e9
 for __ in range(readInt()):
-    n,k = readInts()
+    s = readStrs()
+    n = int(s[1])
+    if x>maxi:
+        maxi=x
+    if s[0]=="add" and n>0:
+        x+=n
+    if x>maxi:
+        maxi=x
+    # maxi%=(1e9+7)
+    if s[0]=="set" and n>maxi:
+        # a = max(a,n)
+        x = n
+print max(int(maxi),a)
 
 '''
+Sample Input 0
+
+3
+add 2
+set 1
+add -1
+
+Sample Output 0
+
+2
+
+Sample Input 1
+
+2
+set 5
+add 6
+
+Sample Output 1
+
+11
+
+Sample Input 2
+
+3
+add -1
+set -3
+add -2
+
+Sample Output 2
+
+0
+
 
 '''

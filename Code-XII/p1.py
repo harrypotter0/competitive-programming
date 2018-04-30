@@ -243,9 +243,26 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-for __ in range(readInt()):
-    n,k = readInts()
+# for __ in range(readInt()):
+    # n,k = readInts()
+s = readStrs()
+s1= ""
+arr = ['a','e','i','o','u',' ']
+for j in range(len(s)):
+    for i in range(len(s[j])):
+        if s[j][i] not in arr:
+            # print s[j][i]
+            s1+=(s[j][i]+'o'+s[j][i])
+        else:
+            s1+=s[j][i]
+    s1+=' '
+
+print s1
 
 '''
+###Sample Input :
+this is fun
 
+###Sample Output:
+tothohisos isos fofunon
 '''

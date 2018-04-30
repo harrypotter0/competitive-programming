@@ -22,7 +22,7 @@ from datetime import date
 from string import ascii_uppercase
 
 def printdec(ans):
-    print '{0:.6f}'.format(ans)
+    print '{0:.2f}'.format(ans)
 def countchars(stra):
     s=Counter(stra)
     return s
@@ -233,8 +233,8 @@ def knapSack(W , wt , val , n):
         return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
                    knapSack(W , wt , val , n-1))
 
-# m = 329885391853
-# lim =  prelongfact(m)
+m = 329885391853
+lim =  prelongfact(m)
 
 mod = 10 ** 9 + 7
 # fact=[1]
@@ -243,9 +243,31 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-for __ in range(readInt()):
-    n,k = readInts()
+sumi = 0
+t = readInt()
+i=0
+for t0 in range(t):
+    n = readInt()
+    if n>=90:
+        sumi+=n
+        i+=1
+printdec(round(sumi/float(i),2))
+# printdec(round(95.345,2))
+
 
 '''
+Sample Input 0
+
+5
+84
+92
+61
+50
+95
+
+Sample Output 0
+
+93.50
+
 
 '''

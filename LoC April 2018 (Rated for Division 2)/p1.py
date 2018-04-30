@@ -243,9 +243,64 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-for __ in range(readInt()):
-    n,k = readInts()
+t = readInt()
+r,w = [],[]
+for __ in range(t):
+    a,b = readInts()
+    r.append(a)
+    w.append(b)
+f = 0
+for i in range(t-1):
+    if r[i]>r[i+1]:
+        f=1
+        break
+    if w[i]>w[i+1]:
+        f=1
+        break
+    if w[i]>10 or w[t-1]>10:
+        f=1
+        break
+    if w[i]==10 and i!=t-2:
+        f=1
+        break
+
+if f :
+    print "NO"
+else:
+    print "YES"
+
+
 
 '''
+Sample Input:
+
+5
+1 1
+4 1
+7 6
+21 10
+22 10
+
+Sample Output:
+
+YES
+
+Sample Input:
+
+3
+1 1
+9 1
+7 6
+
+Sample Output:
+
+NO
+
+5
+1 1
+9 1
+12 4
+32 8
+56 11
 
 '''

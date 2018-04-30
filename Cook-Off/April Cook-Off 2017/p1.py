@@ -244,8 +244,39 @@ mod = 10 ** 9 + 7
 # print "Case #{}: {}".format(i+1,ans)
 
 for __ in range(readInt()):
-    n,k = readInts()
+    n,m = readInts()
+    ans1 = n**0.5
+    ans2 = ((m*4+1)**0.5-1)/2.0
+    # print ans1,ans2
+    if int(ans1)>int(ans2):
+        print "Limak"
+    else:
+        print "Bob"
 
 '''
+Input:
+10
+3 2
+4 2
+1 1
+1 2
+1 3
+9 3
+9 11
+9 12
+9 1000
+8 11
+
+Output:
+Bob
+Limak
+Limak
+Bob
+Bob
+Limak
+Limak
+Bob
+Bob
+Bob
 
 '''

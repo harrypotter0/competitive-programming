@@ -232,16 +232,9 @@ def knapSack(W , wt , val , n):
     else:
         return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
                    knapSack(W , wt , val , n-1))
-# def lengthOfNumber(a):
-#        curr = 0
-#        while 1:
-#                if a < 2**curr:
-#                        return curr
-#                        break
-#                curr += 1
 
-m = 329885391853
-lim =  prelongfact(m)
+# m = 329885391853
+# lim =  prelongfact(m)
 
 mod = 10 ** 9 + 7
 # fact=[1]
@@ -250,9 +243,35 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-for __ in range(readInt()):
-    n,k = readInts()
+a=int(raw_input())
+for i in range(a):
+    b=int(raw_input())
+    c=map(int,raw_input().split())
+    k=0
+    m=c[0]
+    for j in range(1,b):
+        c[j]+=k
+        if c[j]<m:
+            m=((m*j)+c[j])
+            k=m%(j+1)
+            m=m/(j+1)
+        else:
+            k=c[j]-m
+    print m
 
 '''
+Input:
+3
+3
+3 2 1
+4
+1 2 3 4
+3
+3 1 2
+
+Output:
+2
+1
+2
 
 '''
