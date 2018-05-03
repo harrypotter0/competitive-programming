@@ -1,115 +1,80 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+
 using namespace std;
-#define pb push_back
-vector<int> g[200000];
-int st[200000],en[200000];
-int co[200005],co1[200005];
 
-int block=448;
+const int N = 2e5 + 5, S = 445;
 
-struct query{
-    int l,r,id,fd;
-}Q[200000];
+int c[N], luck[N], ans[N];
+int st[N], en[N], node[N];
+int cnt[N], cur[N], cntr = 0;
 
-int ind=0;
-vector<int> ord;
-
-void dfs(int v,int par){
-    ord.pb(v);
-    st[v]=ind++;
-    for(int x:g[v]){
-        if(x==par)continue;
-        dfs(x,v);
-    }
-  //  ord.pb(v);
-    en[v]=ind;
+vector<int> g[N];
+bool cmp(int le, int ri) {
+  int gl = st[le]/S, gr = st[ri]/S;
+  if (gl == gr)
+    return en[le] < en[ri];
+  return gl < gr;
 }
 
-bool cmp(query x, query y)
-{
-    if (x.l/block != y.l/block)
-        return x.l/block < y.l/block;
-    return x.r < y.r;
+void dfs(int v, int par = -1) {
+  node[cntr] = c[v];
+  st[v] = cntr++;
+  for (int u : g[v]) if (u != par) {
+    dfs(u, v);
+  }
+  en[v] = cntr;
 }
 
+void add(int col) {
+  --cur[cnt[col]];
+  ++cnt[col];
+  ++cur[cnt[col]];
+}
+void rem(int col) {
+  --cur[cnt[col]];
+  --cnt[col];
+  ++cur[cnt[col]];
+}
 
-int main(){
-int n;
-cin>>n;
-int col[n],luc[n];
-set<int> c;
-for(int i=0;i<n;i++){scanf("%d",&col[i]);c.insert(col[i]);}
-int val=0;
-    map<int,int> my;
-    for(auto it=c.begin();it!=c.end();it++)my[*it]=val++;
-    for(int i=0;i<n;i++)col[i]=my[col[i]];
-
-    for(int i=0;i<n;i++)scanf("%d",&luc[i]);
-    for(int i=0;i<n-1;i++){
-        int a,b;
-        scanf("%d %d",&a,&b);
-        a--;b--;
-        g[a].pb(b);
-        g[b].pb(a);
-    }
-    dfs(0,0);
-
-    for(int i=0;i<n;i++){
-        Q[i].l=st[i];
-        Q[i].r=en[i]-1;
-        Q[i].id=i;
-        Q[i].fd=luc[i];
-    }
-    for(int i=0;i<ind;i++)ord[i]=col[ord[i]];
-    sort(Q,Q+n,cmp);
-  //  for(int x:ord)cout<<x<<" ";cout<<endl;
-    int ans[n];
-    int currL = 0, currR = 0;
-    for (int i=0; i<n; i++)
-    {
-
-        int L = Q[i].l, R = Q[i].r;
-
-        while (currL < L)
-        {
-            //currSum -= a[currL];
-            co1[co[ord[currL]]]--;
-            co[ord[currL]]--;
-            co1[co[ord[currL]]]++;
-            currL++;
-        }
-
-        while (currL > L)
-        {
-           // currSum += a[currL-1];
-            co1[co[ord[currL-1]]]--;
-            co[ord[currL-1]]++;
-            co1[co[ord[currL-1]]]++;
-            currL--;
-        }
-        while (currR <= R)
-        {
-           // currSum += a[currR];
-            co1[co[ord[currR]]]--;
-            co[ord[currR]]++;
-            co1[co[ord[currR]]]++;
-            currR++;
-        }
-
-        while (currR > R+1)
-        {
-          //  currSum -= a[currR-1];
-            co1[co[ord[currR-1]]]--;
-            co[ord[currR-1]]--;
-            co1[co[ord[currR-1]]]++;
-            currR--;
-        }
- if(Q[i].fd>200000)ans[Q[i].id]=0;
-        else ans[Q[i].id]=co1[Q[i].fd];
-
-    }
-for(int i=0;i<n;i++)printf("%d ",ans[i]);
-
-
-return 0;
+int main() {
+  int n;
+  scanf("%d", &n);
+  vector<int> vc;
+  for (int i = 0; i < n; ++i) {
+    scanf("%d", c+i);
+    vc.push_back(c[i]);
+  }
+  sort(vc.begin(), vc.end());
+  vc.erase(unique(vc.begin(), vc.end()), vc.end());
+  for (int i = 0; i < n; ++i)
+    c[i] = lower_bound(vc.begin(), vc.end(), c[i]) - vc.begin();
+  for (int i = 0; i < n; ++i) {
+    scanf("%d", luck+i);
+  }
+  for (int i = 1; i < n; ++i) {
+    int u, v;
+    scanf("%d %d", &u, &v);
+    --u, --v;
+    g[u].push_back(v);
+    g[v].push_back(u);
+  }
+  cntr = 0;
+  dfs(0);
+  vector<int > que;
+  for (int i = 0; i < n; ++i) {
+    que.emplace_back(i);
+  }
+  sort(que.begin(), que.end(), cmp);
+  int l = 0, r = 0;
+  for (int i : que) {
+    while (r < en[i]) add(node[r++]);
+    while (l > st[i]) add(node[--l]);
+    while (r > en[i]) rem(node[--r]);
+    while (l < st[i]) rem(node[l++]);
+    if (luck[i] <= n)
+      ans[i] = cur[luck[i]];
+  }
+  for (int i = 0; i < n; ++i)
+    printf("%d%c", ans[i], (i == n-1) ? '\n' : ' ');
+  return 0;
 }

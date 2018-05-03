@@ -259,8 +259,37 @@ mod = 10 ** 9 + 7
 # print "Case #{}: {}".format(i+1,ans)
 
 for __ in range(readInt()):
-    n,k = readInts()
+    sumi = 1
+    a = readInts()
+    f = 0
+    for i in range(29):
+        if a[i]==1 and a[i+1]==1:
+            sumi+=1
+        else:
+            sumi = 1
+        if sumi >5:
+            print "#coderlifematters"
+            f =1
+            break
+    if not f:
+        print "#allcodersarefun"
+    else:
+        continue
+
+
 
 '''
+Input
+4
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+1 1 1 1 1 0 0 1 1 1 1 1 0 0 1 1 1 1 1 0 0 1 1 1 1 1 0 0 1 1
+0 0 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 1 1 0 0
+
+Output
+#coderlifematters
+#allcodersarefun
+#allcodersarefun
+#coderlifematters
 
 '''

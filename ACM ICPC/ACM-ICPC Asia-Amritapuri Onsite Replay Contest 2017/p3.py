@@ -259,8 +259,50 @@ mod = 10 ** 9 + 7
 # print "Case #{}: {}".format(i+1,ans)
 
 for __ in range(readInt()):
-    n,k = readInts()
+    n = readInt()
+    arr = readInts()
+    brr = readInts()
+    max1,max2 = -1,-1
+    error,f = 0,1
+    for i in range(n):
+        if arr[i]==1:
+            if brr[i]<=max1 and brr[i]>max2:
+                error=error+1
+                max1=brr[i]
+            elif brr[i]<=max1 and brr[i]<=max2:
+                error=error+1
+            else:
+                max2=max1
+                max1=brr[i]
+        else:
+            pass
+    if error<=1 and f==1:
+        print "#laughing_arjun"
+    else:
+        print "#itsnot_arjun"
+
+
+
 
 '''
+Input
+4
+4
+1 1 -1 1
+1 4 2 4
+4
+1 1 -1 1
+3 1 2 4
+4
+1 1 -1 1
+4 3 2 1
+4
+-1 -1 -1 -1
+4 3 2 1
 
+Output
+#laughing_arjun
+#laughing_arjun
+#itsnot_arjun
+#laughing_arjun
 '''

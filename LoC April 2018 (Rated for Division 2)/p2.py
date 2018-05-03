@@ -120,10 +120,6 @@ def nck(n, k):
     for i in range(1, k+1):
         result = result* (n-i+1) / i
     return result
-def gcd(a,b):
-    while b > 0:
-        a, b = b, a % b
-    return a
 def lcm(a, b):
     return a * b / gcd(a, b)
 def matrixcheck(x,y):
@@ -243,66 +239,53 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-m = 1000000007
-from math import pow
-
-def modInverse(a, m) :
-
-        # If a and m are relatively prime,
-        # then modulo inverse is a^(m-2) mode m
-    return power(a, m - 2, m)
-
-# To compute x^y under modulo m
-def power(x, y, m) :
-
-    if (y == 0) :
-        return 1
-
-    p = power(x, y // 2, m) % m
-    p = (p * p) % m
-
-    if(y % 2 == 0) :
-        return p
-    else :
-        return (x * p) % m
-
-# Function to return gcd of a and b
-def gcd(a, b) :
-    if (a == 0) :
-        return b
-
-    return gcd(b % a, a)
-
-
-k = 576923081
-
-
-for _ in xrange(input()):
-
-    n = input()
-
-    if n%2==1:
-
-        p = n/2
-
-        if p == 0:
-            print 1
-        elif p == 1:
-             ans = 1+(2*576923081)%m
-             print ans
-        else:
-            print  (  1%m +  2%m *  k%m  *  (power(k,p,m) - 1 ) * modInverse(k-1,m)   )%m
-
+def gcd(a,b):
+    if (a == 0):
+        return b;
+    return gcd(b%a, a);
+def power(x,y,m=1000000007):
+    if (y == 0):
+        return 1;
+    p = power(x, y/2, m) % m;
+    p = (p * p) % m;
+    if(y%2 == 0):
+    	return p
     else:
+    	return (x * p) % m;
+def modInverse(a,m):
+   	g = gcd(a, m);
+	if(g!=1):
+		return -1
+ 	else:
+   		return power(a, m-2, m);
+t=input();
+while(t>0):
+	n=input()
+	if(n%2!=0):
+		temp = power(26,(n-1)/2);
+		num = 25*temp+2*(temp-1);
+		den = 25*temp;
+		g = gcd(num,den);
+		num = num/g;
+		den = den/g;
+		print((num*modInverse(den,1000000007))%1000000007);
+	else:
+		n=n-1;
+		temp = power(26,(n-1)/2);
+		num = 25*temp+2*(temp-1);
+		den = 25*temp;
+		g = gcd(num,den);
+		num = num/g;
+		den = den/g;
+		n+=1
+		num = num*power(26,n/2) + den;
+		den = den*power(26,n/2);
+		g = gcd(num,den);
+		num = num/g;
+		den = den/g;
+		print((num*modInverse(den,1000000007))%1000000007);
+	t=t-1
 
-        p = n/2 - 1
-
-        if n == 2:
-            print k+1
-
-        else:
-
-            print  ((  1%m +  2%m *  k%m  *  (power(k,p,m) - 1 ) * modInverse(k-1,m)   )%m + power(k,p+1,m))%m
 '''
 Input:
 3
