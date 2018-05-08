@@ -216,18 +216,6 @@ def coinchange(S, m, n):
     return table[n]
 def palincheck(i):
     return str(i) == str(i)[::-1]
-def bigMod(a, b, c):
-    if (a == 0 or b == 0) :
-        return 0
-    if (a == 1) :
-        return b
-    if (b == 1) :
-        return a
-    a2 = bigMod(a, b / 2, c)
-    if ((b & 1) == 0) :
-        return (a2 + a2) % c
-    else :
-        return ((a % c) + (a2 + a2)) % c
 def days(year1,year2):
     begin = date(year1, 1, 1)
     end = date(year2, 1, 1)
@@ -262,6 +250,13 @@ def knapSack(W , wt , val , n):
 
 # m = 329885391853
 # lim =  prelongfact(m)
+def find_gcd(x, y):
+
+	while(y):
+		x, y = y, x % y
+
+	return x
+
 
 mod = 10 ** 9 + 7
 # fact=[1]
@@ -271,8 +266,41 @@ mod = 10 ** 9 + 7
 # print "Case #{}: {}".format(i+1,ans)
 
 for __ in range(readInt()):
-    n,k = readInts()
+    n = readInt()
+    arr = readInts()
+    count = 0
+    num1 = arr[0]
+    num2 = arr[1]
+    gcd = find_gcd(num1, num2)
+    # print gcd
+    for i in range(2, n):
+    	gcd = find_gcd(gcd, arr[i])
+        # print gcd
+    if gcd==1:
+        print 0
+        continue
+    else:
+        print -1
+    
+
+
+
+
+
+
 
 '''
+Example Input
+
+2
+2
+2 3
+2
+2 4
+
+Example Output
+
+0
+-1
 
 '''

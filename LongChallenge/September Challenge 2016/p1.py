@@ -216,18 +216,6 @@ def coinchange(S, m, n):
     return table[n]
 def palincheck(i):
     return str(i) == str(i)[::-1]
-def bigMod(a, b, c):
-    if (a == 0 or b == 0) :
-        return 0
-    if (a == 1) :
-        return b
-    if (b == 1) :
-        return a
-    a2 = bigMod(a, b / 2, c)
-    if ((b & 1) == 0) :
-        return (a2 + a2) % c
-    else :
-        return ((a % c) + (a2 + a2)) % c
 def days(year1,year2):
     begin = date(year1, 1, 1)
     end = date(year2, 1, 1)
@@ -271,8 +259,22 @@ mod = 10 ** 9 + 7
 # print "Case #{}: {}".format(i+1,ans)
 
 for __ in range(readInt()):
-    n,k = readInts()
+    s = readStr()
+    a = s.count('1')
+    b = s.count('0')
+    if a==1 or b==1:
+        print "Yes"
+    else:
+        print "No"
 
 '''
+
+Input:
+2
+101
+11
+Output:
+Yes
+No
 
 '''

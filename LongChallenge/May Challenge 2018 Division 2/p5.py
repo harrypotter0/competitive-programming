@@ -216,18 +216,6 @@ def coinchange(S, m, n):
     return table[n]
 def palincheck(i):
     return str(i) == str(i)[::-1]
-def bigMod(a, b, c):
-    if (a == 0 or b == 0) :
-        return 0
-    if (a == 1) :
-        return b
-    if (b == 1) :
-        return a
-    a2 = bigMod(a, b / 2, c)
-    if ((b & 1) == 0) :
-        return (a2 + a2) % c
-    else :
-        return ((a % c) + (a2 + a2)) % c
 def days(year1,year2):
     begin = date(year1, 1, 1)
     end = date(year2, 1, 1)
@@ -270,9 +258,65 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
+def binarySearch(arr, l, r, x):
+
+    while l <= r:
+
+        mid = l + (r - l)/2;
+
+        # Check if x is present at mid
+        if arr[mid] == x:
+            return mid,0,0
+
+        # If x is greater, ignore left half
+        elif arr[mid] < x:
+            l = mid + 1
+
+        # If x is smaller, ignore right half
+        else:
+            r = mid - 1
+
+    # If we reach here, then the element
+    # was not present
+    return (-1,l,r)
+
 for __ in range(readInt()):
-    n,k = readInts()
+    n,q = readInts()
+    arr = readInts()
+    for i in range(q):
+        x = readInt()
+        result = binarySearch(arr, 0, len(arr)-1, x)
+        if result[0] != -1:
+            print 0
+        else:
+            print result[1],result[2]
+        
+
+
 
 '''
+Example Input
+
+1
+7 7
+3 1 6 7 2 5 4
+1
+2
+3
+4
+5
+6
+7
+
+Example Output
+
+0
+1
+1
+2
+1
+0
+0
+
 
 '''
