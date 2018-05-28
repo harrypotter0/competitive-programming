@@ -1,4 +1,3 @@
-# AGGRCOW
 # /*
 #  *
 #  ********************************************************************************************
@@ -217,18 +216,6 @@ def coinchange(S, m, n):
     return table[n]
 def palincheck(i):
     return str(i) == str(i)[::-1]
-def bigMod(a, b, c):
-    if (a == 0 or b == 0) :
-        return 0
-    if (a == 1) :
-        return b
-    if (b == 1) :
-        return a
-    a2 = bigMod(a, b / 2, c)
-    if ((b & 1) == 0) :
-        return (a2 + a2) % c
-    else :
-        return ((a % c) + (a2 + a2)) % c
 def days(year1,year2):
     begin = date(year1, 1, 1)
     end = date(year2, 1, 1)
@@ -271,9 +258,146 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
+
+# PHI = 1.6180339
+#
+# f = [0]*6
+# def fib (n):
+# 	# Fibonacci numbers for n < 6
+# 	if n < 6:
+# 		return f[n]
+# 	# Else start counting from
+# 	# 5th term
+# 	t = 5
+# 	fn = 5
+# 	while t < n:
+# 		fn = round(fn * PHI)
+# 		t+=1
+# 	return fn
+
+
+# # (Public) Returns F(n).
+# def fibonacci(n):
+# 	if n < 0:
+# 		raise ValueError("Negative arguments not implemented")
+# 	return _fib(n)[0]
+#
+#
+# # (Private) Returns the tuple (F(n), F(n+1)).
+# def _fib(n):
+# 	if n == 0:
+# 		return (0, 1)
+# 	else:
+# 		a, b = _fib(n // 2)
+# 		c = a * (b * 2 - a)
+# 		d = a * a + b * b
+# 		if n % 2 == 0:
+# 			return (c, d)
+# 		else:
+# 			return (d, c + d)
+
+# Python 3 Program to find n'th fibonacci Number in
+# with O(Log n) arithmatic operations
+# MAX = 203216
+#
+# # Create an array for memoization
+# f = [0] * MAX
+#
+# # Returns n'th fuibonacci number using table f[]
+# def fib(n) :
+#     # Base cases
+#     if (n == 0) :
+#         return 0
+#     if (n == 1 or n == 2) :
+#         f[n] = 1
+#         return (f[n])
+#
+#     # If fib(n) is already computed
+#     if (f[n]) :
+#         return f[n]
+#
+#     if( n & 1) :
+#         k = (n + 1) // 2
+#     else :
+#         k = n // 2
+#
+#     # Applyting above formula [Note value n&1 is 1
+#     # if n is odd, else 0.
+#     if((n & 1) ) :
+#         f[n] = (fib(k)%mod * fib(k)%mod + fib(k-1)%mod * fib(k-1)%mod)%mod
+#     else :
+#         f[n] = (2*fib(k-1)%mod + fib(k)%mod)*fib(k)%mod
+#
+#     return f[n]
+#
+
+def bigMod(a, b, c):
+    if (a == 0 or b == 0) :
+        return 0
+    if (a == 1) :
+        return b
+    if (b == 1) :
+        return a
+    a2 = bigMod(a, b / 2, c)
+    if ((b & 1) == 0) :
+        return (a2 + a2) % c
+    else :
+        return ((a % c) + (a2 + a2)) % c
+
+f = [0]
+a, b, c = 1, 1,0
+while c <= 100032:
+    f.append(a%mod)
+    a%=mod
+    b%=mod
+    a, b = b%mod, a%mod + b%mod
+    c+=1
+# print f
+
 for __ in range(readInt()):
-    n,k = readInts()
+    m,n = readInts()
+    arr = readInts()
+    brr = readInts()
+    res,ans,ans1,ans2 = 0,0,0,0
+    if n>=2:
+        ans1 = bigMod(f[n-2],sum(arr)%mod,mod)%mod
+        ans2 += bigMod(f[n-1],sum(brr)%mod,mod)%mod
+        ans = bigMod((ans1+ans2)%mod,m,mod)%mod
+    else:
+        if n==1:
+            ans2 += sum(brr)%mod
+            ans = bigMod((ans2)%mod,m,mod)%mod
+
+
+    # for i in range(m**2):
+    #     ans = (f[n-1]*arr[i%m])%mod+(f[n-1]*brr[i%m])%mod
+    #     ans += bigMod(f[n-2],brr[i],mod)%mod
+    #     ans = bigMod(ans,m,mod)%mod
+    #     print ans
+    #     res +=ans%mod
+    #     res%=mod
+    # for i in range(m):
+    #     for j in range(m):
+    #         # print fibonacci(n,a[i],b[j])%mod
+    #         res += (f[n-1]*arr[i]+f[n-2]*brr[j])%mod
+    print ans%mod
+
 
 '''
+Example Input
+
+1
+7 14345
+1 2 3 5 7 8 9
+4 5 6 8 23 24 24
+
+1
+3 3
+1 2 3
+4 5 6
+
+Example Output
+
+63
 
 '''

@@ -1,4 +1,3 @@
-# AGGRCOW
 # /*
 #  *
 #  ********************************************************************************************
@@ -217,18 +216,6 @@ def coinchange(S, m, n):
     return table[n]
 def palincheck(i):
     return str(i) == str(i)[::-1]
-def bigMod(a, b, c):
-    if (a == 0 or b == 0) :
-        return 0
-    if (a == 1) :
-        return b
-    if (b == 1) :
-        return a
-    a2 = bigMod(a, b / 2, c)
-    if ((b & 1) == 0) :
-        return (a2 + a2) % c
-    else :
-        return ((a % c) + (a2 + a2)) % c
 def days(year1,year2):
     begin = date(year1, 1, 1)
     end = date(year2, 1, 1)
@@ -271,9 +258,105 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
+# ans = [0]*(100000+5)
+ans = [0]*20
+
+def binarySearch (arr, l, r, x,check):
+    if len(arr) > x:
+        mid = l + (r - l)/2
+        if x >0:
+            for i in range(l,r+1):
+                if arr[i]>arr[mid] and check==1:
+                    ans[i]+=1
+                elif arr[i]<arr[mid] and check==2:
+                    ans[i]+=1
+        print ans,x,l,r,mid
+        return binarySearch(arr, l, mid-1, x+1,1)
+        print ans,x,l,r,mid
+        return binarySearch(arr, mid+1, r, x+1,2)
+
+
 for __ in range(readInt()):
-    n,k = readInts()
+    n,q = readInts()
+    arr = readInts()
+    for i in range(n+1):
+        ans[i]= 0
+    maxi,mini = max(arr),min(arr)
+    result = binarySearch(arr, 0, len(arr)-1,0,0)
+    print ans
+    for i in range(q):
+        x = readInt()
+        ind = arr.index(x)
+        if x== mini and ind>(n-1)/2:
+            print -1
+            continue
+        if x== maxi and ind<(n-1)/2:
+            print -1
+            continue
+        # result = binarySearch(arr, 0, len(arr)-1, x,ind,mini,maxi)
+        print ans[ind]
+
+
 
 '''
+Example Input
+1
+7 7
+3 1 6 7 2 5 4
+1
+2
+3
+4
+5
+6
+7
+
+2
+12 12
+3 4 10 6 2 5 1 8 9 7 14 12
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+12
+14
+7 7
+3 5 7 1 6 2 4
+1
+2
+3
+4
+5
+6
+7
+
+1
+7 2
+1 5 6 4 3 2 7
+1
+2
+3
+4
+5
+6
+7
+
+
+Example Output
+
+0
+1
+1
+2
+1
+0
+0
+
 
 '''

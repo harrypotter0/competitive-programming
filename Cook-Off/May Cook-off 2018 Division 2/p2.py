@@ -1,4 +1,3 @@
-# AGGRCOW
 # /*
 #  *
 #  ********************************************************************************************
@@ -271,9 +270,40 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
+def maximumXOR(arr , n , k):
+    current_xor = 0
+    for i in range(k):
+        current_xor  = current_xor ^ arr[i]
+    max_xor = current_xor
+    for (int i = k ; i < n; i++)
+    for i in range(k,n):
+        current_xor = current_xor ^ arr[i-k]
+        current_xor = current_xor ^ arr[i]
+        if current_xor>max_xor:
+            val 
+        max_xor = max(max_xor, current_xor)
+    return max_xor
+
 for __ in range(readInt()):
     n,k = readInts()
+    arr =[]
+    for i in range(1,k+1):
+        arr.append(i)
+    if n<k:
+        maximumXOR(arr,n,k)
+    else:
+
 
 '''
+Example Input
+
+2
+3 5
+4 3
+
+Example Output
+
+5 1 3
+1 2 3 3
 
 '''

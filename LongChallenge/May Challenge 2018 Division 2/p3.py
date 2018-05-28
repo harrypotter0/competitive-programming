@@ -1,4 +1,3 @@
-# AGGRCOW
 # /*
 #  *
 #  ********************************************************************************************
@@ -217,18 +216,6 @@ def coinchange(S, m, n):
     return table[n]
 def palincheck(i):
     return str(i) == str(i)[::-1]
-def bigMod(a, b, c):
-    if (a == 0 or b == 0) :
-        return 0
-    if (a == 1) :
-        return b
-    if (b == 1) :
-        return a
-    a2 = bigMod(a, b / 2, c)
-    if ((b & 1) == 0) :
-        return (a2 + a2) % c
-    else :
-        return ((a % c) + (a2 + a2)) % c
 def days(year1,year2):
     begin = date(year1, 1, 1)
     end = date(year2, 1, 1)
@@ -273,7 +260,45 @@ mod = 10 ** 9 + 7
 
 for __ in range(readInt()):
     n,k = readInts()
+    arr = readInts()
+    bo,co = [],[]
+    for i in range(n):
+        if i&1:
+            co.append(arr[i])
+        else:
+            bo.append(arr[i])
+    bo = rsorted(bo)
+    co = sorted(co)
+    # print bo,co
+    if sum(bo)<sum(co):
+        print "YES"
+        continue
+    diff = (sum(bo)-sum(co))
+    f =1
+    for i in range(k):
+        if len(bo)==i or len(co)==i:
+            break
+        diff -= 2*(bo[i]-co[i])
+        if diff<0:
+            f = 0
+            break
+    if not f:
+        print "YES"
+    else:
+        print "NO"
 
 '''
+Example Input
+
+2
+6 0
+1 1 1 1 1 1
+5 2
+2 4 6 3 4
+
+Example Output
+
+NO
+YES
 
 '''
