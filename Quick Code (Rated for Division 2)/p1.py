@@ -214,6 +214,9 @@ def coinchange(S, m, n):
         for j in range(S[i],n+1):
             table[j] += table[j-S[i]]
     return table[n]
+import itertools
+def permutation_of_list(lista):
+    return list(itertools.permutations(lista))
 def palincheck(i):
     return str(i) == str(i)[::-1]
 def bigMod(a, b, c):
@@ -259,10 +262,6 @@ def knapSack(W , wt , val , n):
     else:
         return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
                    knapSack(W , wt , val , n-1))
-import itertools
-def permutation_of_list(lista):
-    return list(itertools.permutations(lista))
-
 
 # m = 329885391853
 # lim =  prelongfact(m)
@@ -275,47 +274,44 @@ mod = 10 ** 9 + 7
 # print "Case #{}: {}".format(i+1,ans)
 
 for __ in range(readInt()):
-    n,k = readInts()
-    arr = readInts()
-    found,ind = [],[]
-    for i in range(n):
-        if i+1 not in arr:
-            found.append(i+1)
-    for i in range(n):
-        if arr[i] == 0:
-            ind.append(i)        
-    b = []
-    b = permutation_of_list(found)
-    # print(b)
-    brr = arr 
-    ans = 0
-    for i in range(len(b)):
-        count,co = 0,0
-        for j in range(n):
-            if j in ind:
-                brr[j] = b[i][co]
-                co+=1
-        # print("Value in {}".format(brr))
-        for l in range(n-1):
-            if brr[l]<brr[l+1]:
-                count+=1
-        if count == k:
-            ans+=1
-            # print(brr)
-    print(ans)    
-            
-           
+    a = readStr()
+    srr = "frieza"
+    arr = []
+    a1,a2 =0,0
+    c1,c2 = 0,0
+    for i in a:
+        # print(i)
+        c = 0
+        if i in srr:
+            arr.append(c2)
+            c1+=1
+            c2=0
+            # print("1")
+        else:
+            arr.append(c1)
+            c2+=1
+            c1=0
+            # print("2")
+    if c1>0 :
+        arr.append(c1)
+    else:
+        arr.append(c2)
+    brr =[]
+    for i in arr:
+        if i > 0 :
+            brr.append(i)
+    # print(brr)
+    print(numlistTostr(brr))
+
 '''
-Example Input
+Sample Input:
 
 2
-3 1
-2 0 0
-6 2 
-3 2 1 0 0 0 
+krillinisdead
+futuretrunks
+Sample Output:
 
-Example Output
-
-2
+122111221
+132114
 
 '''

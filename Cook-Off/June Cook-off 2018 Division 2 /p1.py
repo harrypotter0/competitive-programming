@@ -271,29 +271,32 @@ mod = 10 ** 9 + 7
 # print "Case #{}: {}".format(i+1,ans)
 
 for __ in range(readInt()):
-    x1,x2,x3,v1,v2 = readInts()
-    r1 = abs(x3-x1)/(v1*1.0)
-    r2 = abs(x3-x2)/(v2*1.0)
-    if(r1==r2):
-        print "Draw"
-    elif(r1>r2):
-        print "Kefa"
+    a,b,n = readInts()
+    if n%2==0:
+        if abs(a)==abs(b):
+            print(0)
+        elif abs(a)>abs(b):
+            print(1)
+        else:
+            print(2)
     else:
-        print "Chef"
-
+        if a>b:
+            print(1)
+        elif a<b:
+            print(2)
+        else:
+            print(0)
 
 '''
 Example Input
 
-3
-1 3 2 1 2
-1 5 2 1 2
-1 5 3 2 2
+2
+3 4 5
+-3 2 4
 
 Example Output
 
-Kefa
-Chef
-Draw
+2
+1
 
 '''

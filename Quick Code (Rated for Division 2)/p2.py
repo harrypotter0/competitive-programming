@@ -214,6 +214,9 @@ def coinchange(S, m, n):
         for j in range(S[i],n+1):
             table[j] += table[j-S[i]]
     return table[n]
+import itertools
+def permutation_of_list(lista):
+    return list(itertools.permutations(lista))
 def palincheck(i):
     return str(i) == str(i)[::-1]
 def bigMod(a, b, c):
@@ -259,14 +262,10 @@ def knapSack(W , wt , val , n):
     else:
         return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
                    knapSack(W , wt , val , n-1))
-import itertools
-def permutation_of_list(lista):
-    return list(itertools.permutations(lista))
-
 
 # m = 329885391853
 # lim =  prelongfact(m)
-
+# prime = primes_sieve(1000000)
 mod = 10 ** 9 + 7
 # fact=[1]
 # for i in xrange(1,100001):
@@ -274,48 +273,34 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-for __ in range(readInt()):
-    n,k = readInts()
-    arr = readInts()
-    found,ind = [],[]
-    for i in range(n):
-        if i+1 not in arr:
-            found.append(i+1)
-    for i in range(n):
-        if arr[i] == 0:
-            ind.append(i)        
-    b = []
-    b = permutation_of_list(found)
-    # print(b)
-    brr = arr 
-    ans = 0
-    for i in range(len(b)):
-        count,co = 0,0
-        for j in range(n):
-            if j in ind:
-                brr[j] = b[i][co]
-                co+=1
-        # print("Value in {}".format(brr))
-        for l in range(n-1):
-            if brr[l]<brr[l+1]:
-                count+=1
-        if count == k:
-            ans+=1
-            # print(brr)
-    print(ans)    
-            
-           
+# for __ in range(readInt()):
+#     n,k = readInts()
+#     sumi = 0
+
+
+MAX = 10**6
+    
+numFactors = [0 for _ in xrange(MAX+1)]
+    
+for i in xrange(2, MAX+1):
+    if numFactors[i] == 0:
+        for j in xrange(i, MAX+1, i):
+            numFactors[j] += 1
+    
+for _ in xrange(input()):
+    n, m = map(int, raw_input().split())
+    print sum(numFactors[n:m]) 
+
+
 '''
-Example Input
+Sample Input:
 
 2
-3 1
-2 0 0
-6 2 
-3 2 1 0 0 0 
+3 7
+1 1023
+Sample Output:
 
-Example Output
+5
 
-2
-
+2177
 '''
