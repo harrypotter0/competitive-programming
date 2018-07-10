@@ -21,19 +21,53 @@ from itertools import product
 from datetime import date
 from string import ascii_uppercase
 
-def printdec(ans):
-    print '{0:.6f}'.format(ans)
-def countchars(stra):
-    s=Counter(stra)
-    return s
+import math
+# from itertools import permutations
+# import statistics
+import calendar
 def readInts():
-    return list(map(int, raw_input().strip().split()))
+    return list(map(int, raw_input().strip().split(',')))
 def readInt():
     return int(raw_input())
 def readStrs():
     return raw_input().split()
 def readStr():
-    return raw_input().strip()
+    return raw_input()
+def readnumbertolist():
+    a=[int(i) for i in list(raw_input())]
+    return a
+def dec2hex(num):
+    if num == 0:
+        return 0
+    ans = ""
+    while num > 0:
+        ans = str(num%6) + ans
+        num /= 6
+    return int(ans)
+
+def hex2dec(num):
+    if num == 0:
+        return 0
+    num = str(num)
+    ans = int(num[0])
+    for i in num[1:]:
+        ans *= 6
+        ans += int(i)
+    return ans
+
+def printdec(ans):
+    print '{0:.6f}'.format(ans)
+def countchars(stra):
+    s=Counter(stra)
+    return s
+# def readInts():
+#     return list(map(int, raw_input().strip().split()))
+# def readInt():
+#     return int(raw_input())
+# def readStrs():
+#     return raw_input().split()
+# def readStr():
+#     return raw_input().strip()
 def readarr(n):
     return [map(int,list(readStr())) for i in xrange(n)]
 def readnumbertolist():
@@ -273,69 +307,70 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-# n = readInt()
-# arr = readInts()
-# start = 0
-# for i in range(n):
-#     brr = []
-#     if arr[i] ==0 :
-#         brr.append(arr[start:i+1])
-#         start = i+1
-#         for j in range(len(brr)):
-            
-n = readInt()
-a = readInts()
-#b = [int(i) for i in input().split()]
-b = []
-    
-    
-vish = max(a)
-    
+# for __ in range(readInt()):
+n,m = readInts()
+arr = [[0 for x in range(100)] for y in range(100)] 
 for i in range(n):
-    b.append(vish-a[i]+1)
-    a[i]=a[i]+vish
-    
-impossible = False
-cutting = []
-r = 0
-print b
-print a
-for i in range(n):
-    
-    if a[i] < b[i]:
-        impossible = True
-        print(-1)
-        break
-    
-    while cutting and cutting[-1] < b[i]:
-        cutting.pop()
-        print("check 1 {}".format(cutting))
-        r += 1
-    while cutting and cutting[0] > a[i]:
-        cutting.pop(0)
-        print("check 2 {}".format(cutting))
-        r += 1
-    
-    if a[i] > b[i] and ((not cutting) or not cutting[-1] == b[i]):
-        cutting.append(b[i])
-    print("check 3 {}".format(cutting))
-        
-    
-if not impossible:
-    r += len(cutting)
-    print(r)  
-    
+    arr[i] = readInts()
+# print(arr)
+ans = []
+posx,posy= 0,0
+tada = 0
+j = m-1
+i = 0
+for __ in range(n*m):
+    maxi = -1e9
+    for i in range(n):
+        # j = j%k
+        # print(j),
+        # print("maxi :{}".format(arr[i][j])),
+        # print 
+        if arr[i][j]>maxi:
+            maxi = arr[i][j]
+            # print("maxi{} :{}".format(i,j)),
+            posx = i
+            posy = j
+        elif arr[i][j]==maxi:
+            # print("aaya hu")
+            try:
+                a = posy
+                b = posy
+                while a>0 and b>0:
+                    if arr[i][a]>arr[posx][b]:
+                        posx = i
+                    a-=1
+                    b-=1 
+            except:
+                tada+=1
+    ans.append(maxi)
+    # print()
+    for k in range(m-1,0,-1):
+        arr[posx][k] = arr[posx][k-1]
+        arr[posx][k-1] = -1e9
+        # print(arr[n-1])
+    # print(ans)
+# print(numlistTostr(ans).strip())
+print(int(numlistTostr(ans)))
+
+
 '''
+4,4
+7,5,5,2
+3,6,1,7
+8,7,0,4
+8,7,3,9
 
-Sample Input:
+4,4
+7,5,5,2
+3,6,1,8
+8,7,1,8
+8,7,3,6
 
-5
-1 2 3 2 1
 
-6
-3 6 0 23 3 11
-Sample Output:
+9743782557163078
 
-3
-
+2,3
+1,2,3
+2,4,6
+643221
 '''

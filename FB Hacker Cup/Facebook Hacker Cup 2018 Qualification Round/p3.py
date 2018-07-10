@@ -263,79 +263,57 @@ def knapSack(W , wt , val , n):
         return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
                    knapSack(W , wt , val , n-1))
 
-# m = 329885391853
-# lim =  prelongfact(m)
-
 mod = 10 ** 9 + 7
 # fact=[1]
 # for i in xrange(1,100001):
 #     fact.append(((arr[i-1]%mod)*(i%mod))%mod)
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
+########################################
+import os
+cdir = os.getcwd()
+cdir+="/"
+filename = "ethan_searches_for_a_string.txt"
+text_file = open(cdir+filename, "r")
+lines = text_file.readlines()
+text_file.close()
+# print(lines[0])
+file1 = open("{}".format((filename[:-4]+".out").replace("_", "")), "w")#append mode
+count = 0
+c1 =0
+save = "CHUTIYAHAITUBSDKGAANDMARAMC"
+while count<len(lines)-1:
+    count+=1
+    string = lines[count].strip()
+    ans = ""
+    ans = save + string[::2] + string    
+    # print ans
+    # print ans[:len(ans)-len(string)+1]
+    # print ans
+    if string in ans[:len(ans)-len(string)]:
+        file1.write("Case #{}: {}\n".format(count,"Impossible")) 
+    else:    
+        file1.write("Case #{}: {}\n".format(count,ans)) 
+file1.close()
 
-# n = readInt()
-# arr = readInts()
-# start = 0
-# for i in range(n):
-#     brr = []
-#     if arr[i] ==0 :
-#         brr.append(arr[start:i+1])
-#         start = i+1
-#         for j in range(len(brr)):
-            
-n = readInt()
-a = readInts()
-#b = [int(i) for i in input().split()]
-b = []
-    
-    
-vish = max(a)
-    
-for i in range(n):
-    b.append(vish-a[i]+1)
-    a[i]=a[i]+vish
-    
-impossible = False
-cutting = []
-r = 0
-print b
-print a
-for i in range(n):
-    
-    if a[i] < b[i]:
-        impossible = True
-        print(-1)
-        break
-    
-    while cutting and cutting[-1] < b[i]:
-        cutting.pop()
-        print("check 1 {}".format(cutting))
-        r += 1
-    while cutting and cutting[0] > a[i]:
-        cutting.pop(0)
-        print("check 2 {}".format(cutting))
-        r += 1
-    
-    if a[i] > b[i] and ((not cutting) or not cutting[-1] == b[i]):
-        cutting.append(b[i])
-    print("check 3 {}".format(cutting))
-        
-    
-if not impossible:
-    r += len(cutting)
-    print(r)  
-    
+
+
+
 '''
+Set i and j to each be equal to 1.
+If i > |A|, return true.
+If j > |B|, return false.
+If Ai = Bj, increment i and j by 1 each, and return to Step 2.
+If i = 1, increment j by 1, and return to Step 2.
+Set i to be equal to 1, and return to Step 2.
 
-Sample Input:
-
-5
-1 2 3 2 1
-
-6
-3 6 0 23 3 11
-Sample Output:
-
-3
-
+4
+ABACUS
+FACEBOOK
+XYZXZYX
+FBFBF
+Case #1: ASUCABABACUSA
+Case #2: Impossible
+Case #3: XZYXYZXYZXZYXYZXYZYX
+Case #4: Impossible
 '''

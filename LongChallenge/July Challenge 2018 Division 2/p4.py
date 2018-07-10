@@ -273,69 +273,9 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-# n = readInt()
-# arr = readInts()
-# start = 0
-# for i in range(n):
-#     brr = []
-#     if arr[i] ==0 :
-#         brr.append(arr[start:i+1])
-#         start = i+1
-#         for j in range(len(brr)):
-            
-n = readInt()
-a = readInts()
-#b = [int(i) for i in input().split()]
-b = []
-    
-    
-vish = max(a)
-    
-for i in range(n):
-    b.append(vish-a[i]+1)
-    a[i]=a[i]+vish
-    
-impossible = False
-cutting = []
-r = 0
-print b
-print a
-for i in range(n):
-    
-    if a[i] < b[i]:
-        impossible = True
-        print(-1)
-        break
-    
-    while cutting and cutting[-1] < b[i]:
-        cutting.pop()
-        print("check 1 {}".format(cutting))
-        r += 1
-    while cutting and cutting[0] > a[i]:
-        cutting.pop(0)
-        print("check 2 {}".format(cutting))
-        r += 1
-    
-    if a[i] > b[i] and ((not cutting) or not cutting[-1] == b[i]):
-        cutting.append(b[i])
-    print("check 3 {}".format(cutting))
-        
-    
-if not impossible:
-    r += len(cutting)
-    print(r)  
-    
+for __ in range(readInt()):
+    n,k = readInts()
+
 '''
-
-Sample Input:
-
-5
-1 2 3 2 1
-
-6
-3 6 0 23 3 11
-Sample Output:
-
-3
 
 '''

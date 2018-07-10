@@ -272,70 +272,82 @@ mod = 10 ** 9 + 7
 #     fact.append(((arr[i-1]%mod)*(i%mod))%mod)
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
+import os
+cdir = os.getcwd()
+cdir+="/"
+filename = "progress_pie.txt"
+filename = "tourist.txt"
+text_file = open(cdir+filename, "r")
+lines = text_file.readlines()
+text_file.close()
+print(lines[0])
+file1 = open("{}".format((filename[:-4]+".out").replace("_", "")), "w")#append mode
+count = 0
+c1 =0
+while count<len(lines)-1:
+    count+=1
+    c1+=1
+    lines[count] = list(map(int, lines[count].strip().split()))
+    n,k,v = lines[count]
+    arr =[]
+    for i in range(n):
+        count+=1
+        s = lines[count].strip()
+        arr.append(s)
+    v-=1
+    val = ((k%n)*(v%n))%n
+    brr = []
+    for i in range(k):
+        brr.append(arr[(i+val)%n])
+    file1.write("Case #{}: ".format(c1)) 
+    for i in range(n):
+        if arr[i] in brr:
+            file1.write("{} ".format(arr[i],))
+            print(arr[i],)
+    print
+    file1.write("\n")
+    print("fuck")
+    print count
 
-# n = readInt()
-# arr = readInts()
-# start = 0
-# for i in range(n):
-#     brr = []
-#     if arr[i] ==0 :
-#         brr.append(arr[start:i+1])
-#         start = i+1
-#         for j in range(len(brr)):
-            
-n = readInt()
-a = readInts()
-#b = [int(i) for i in input().split()]
-b = []
-    
-    
-vish = max(a)
-    
-for i in range(n):
-    b.append(vish-a[i]+1)
-    a[i]=a[i]+vish
-    
-impossible = False
-cutting = []
-r = 0
-print b
-print a
-for i in range(n):
-    
-    if a[i] < b[i]:
-        impossible = True
-        print(-1)
-        break
-    
-    while cutting and cutting[-1] < b[i]:
-        cutting.pop()
-        print("check 1 {}".format(cutting))
-        r += 1
-    while cutting and cutting[0] > a[i]:
-        cutting.pop(0)
-        print("check 2 {}".format(cutting))
-        r += 1
-    
-    if a[i] > b[i] and ((not cutting) or not cutting[-1] == b[i]):
-        cutting.append(b[i])
-    print("check 3 {}".format(cutting))
-        
-    
-if not impossible:
-    r += len(cutting)
-    print(r)  
-    
+file1.close()
+
 '''
-
-Sample Input:
-
-5
-1 2 3 2 1
-
 6
-3 6 0 23 3 11
-Sample Output:
+4 1 3
+LikeSign
+Arcade
+SweetStop
+SwagStore
+4 4 100
+FoxGazebo
+MPK20Roof
+WoodenSculpture
+Biryani
+4 3 1
+LikeSign
+Arcade
+SweetStop
+SwagStore
+4 3 3
+LikeSign
+Arcade
+SweetStop
+SwagStore
+4 3 10
+LikeSign
+Arcade
+SweetStop
+SwagStore
+2 1 1000000000000
+RainbowStairs
+WallOfPhones
 
-3
+Case #1: SweetStop
+Case #2: FoxGazebo MPK20Roof WoodenSculpture Biryani
+Case #3: LikeSign Arcade SweetStop
+Case #4: LikeSign SweetStop SwagStore
+Case #5: LikeSign Arcade SwagStore
+Case #6: WallOfPhones
 
 '''
+
