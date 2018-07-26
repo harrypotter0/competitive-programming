@@ -262,6 +262,8 @@ def knapSack(W , wt , val , n):
     else:
         return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
                    knapSack(W , wt , val , n-1))
+def matrix(h,w):
+    return [[0 for x in range(w)] for y in range(h)]
 
 # m = 329885391853
 # lim =  prelongfact(m)
@@ -272,82 +274,140 @@ mod = 10 ** 9 + 7
 #     fact.append(((arr[i-1]%mod)*(i%mod))%mod)
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
-import os
-cdir = os.getcwd()
-cdir+="/"
-filename = "progress_pie.txt"
-filename = "tourist.txt"
-text_file = open(cdir+filename, "r")
-lines = text_file.readlines()
-text_file.close()
-print(lines[0])
+# import os
+# cdir = os.getcwd()
+# cdir+="/"
+# filename = "progress_pie.txt"
+# filename = "tourist.txt"
+# text_file = open(cdir+filename, "r")
+# lines = text_file.readlines()
+# text_file.close()
+# print(lines[0])
+filename = "let_it_flow_sample_input.txt"
 file1 = open("{}".format((filename[:-4]+".out").replace("_", "")), "w")#append mode
 count = 0
-c1 =0
-while count<len(lines)-1:
-    count+=1
-    c1+=1
-    lines[count] = list(map(int, lines[count].strip().split()))
-    n,k,v = lines[count]
-    arr =[]
+for __ in range(readInt()):
+    n = readInt()
+    arr = matrix(3,n)     
+    a = [[] for y in range(n)]    
+    for i in range(3):
+        brr = readStrs()
+        brr = strlistTostr(brr)
+        # print brr
+        for j in range(len(brr)):
+            arr[i][j] = brr[j]
+    # print arr
+    # for i in range(3):
+    #     print arr[i][0]
+    #     for val in arr[i]:
+    #         print val
+    f = 0
+    c1,c2=0,0
     for i in range(n):
-        count+=1
-        s = lines[count].strip()
-        arr.append(s)
-    v-=1
-    val = ((k%n)*(v%n))%n
-    brr = []
-    for i in range(k):
-        brr.append(arr[(i+val)%n])
-    file1.write("Case #{}: ".format(c1)) 
-    for i in range(n):
-        if arr[i] in brr:
-            file1.write("{} ".format(arr[i],))
-            print(arr[i],)
-    print
-    file1.write("\n")
-    print("fuck")
-    print count
-
+        if n%2==1:
+            f=1
+            break
+        if i<1 :
+            if arr[0][0]=="#" or arr[2][n-1]=="#" or arr[1][0]=="#" or arr[1][1]=="#" or arr[1][n-1]=="#" or arr[1][n-2]=="#":
+                f = 1 
+                break
+        else:
+            if arr[0][i]=="." and arr[2][i]=="." and i%2==0 and arr[0][i-1]=="." and arr[2][i-1]==".":
+                c1+=1
+            elif arr[1][i]=="." and i%2==1:
+                c2+=1
+            if arr[0][i]=="#" and arr[2][i]=="#" and i%2==0:
+                f=1
+                break
+            elif arr[1][i]=="#" and i%2==1:
+                f =1 
+                break
+            if i<n-1:
+                if arr[0][i+1]=="#" and i%2==1:
+                    if arr[2][i+1]==".":
+                        if arr[2][i]=="#":
+                            f=1 
+                            break
+                if arr[2][i+1]=="#" and i%2==1:
+                    if arr[0][i+1]==".":
+                        if arr[0][i]=="#":
+                            f=1 
+                            break
+            if arr[0][i]=="." and arr[2][i]=="." and i%2==0 and arr[0][i-1]=="#" and arr[2][i-1]=="#":
+                f=1
+                break
+    
+    if f==1:
+        print(0)
+        file1.write("Case #{}: {}\n".format(__+1,0)) 
+    else:
+        print((power(2,c1))%mod)
+        file1.write("Case #{}: {}\n".format(__+1,(power(2,c1))%mod)) 
 file1.close()
 
+    
+#     file1.write("Case #{}: ".format(c1)) 
+#     for i in range(n):
+#         if arr[i] in brr:
+#             file1.write("{} ".format(arr[i],))
+#             print(arr[i],)
+#     print
+#     file1.write("\n")
+#     print("fuck")
+#     print count
+
+# file1.close()
+
 '''
+
+7
+2
+..
+..
+..
+2
+#.
+..
+.#
+4
+...#
+....
+.#..
+4
+..##
+....
+.#..
+5
+.#...
+.....
+.....
+8
+....#...
+........
+#.......
+70
+......................................................................
+......................................................................
+......................................................................
+
+
+1
+4
+.#.#
+....
+.#..
+
+1
 6
-4 1 3
-LikeSign
-Arcade
-SweetStop
-SwagStore
-4 4 100
-FoxGazebo
-MPK20Roof
-WoodenSculpture
-Biryani
-4 3 1
-LikeSign
-Arcade
-SweetStop
-SwagStore
-4 3 3
-LikeSign
-Arcade
-SweetStop
-SwagStore
-4 3 10
-LikeSign
-Arcade
-SweetStop
-SwagStore
-2 1 1000000000000
-RainbowStairs
-WallOfPhones
+..#.#.
+......
+....#.
 
-Case #1: SweetStop
-Case #2: FoxGazebo MPK20Roof WoodenSculpture Biryani
-Case #3: LikeSign Arcade SweetStop
-Case #4: LikeSign SweetStop SwagStore
-Case #5: LikeSign Arcade SwagStore
-Case #6: WallOfPhones
-
+Case #1: 1
+Case #2: 0
+Case #3: 1
+Case #4: 0
+Case #5: 0
+Case #6: 4
+Case #7: 179869065
 '''
-

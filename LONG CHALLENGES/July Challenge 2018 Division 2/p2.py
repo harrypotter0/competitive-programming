@@ -124,7 +124,7 @@ def gcd(a,b):
     if (a == 0):
         return b;
     return gcd(b%a, a);
-def power(x,y,m=1000000007):
+def powerm(x,y,m=1000000007):
     if (y == 0):
         return 1;
     p = power(x, y/2, m) % m;
@@ -133,6 +133,15 @@ def power(x,y,m=1000000007):
     	return p
     else:
     	return (x * p) % m;
+def power(x,y):
+    if (y == 0):
+        return 1;
+    p = power(x, y/2) ;
+    p = (p * p) ;
+    if(y%2 == 0):
+    	return p
+    else:
+    	return (x * p) ;
 def modInverse(a,m):
    	g = gcd(a, m);
 	if(g!=1):
@@ -277,32 +286,11 @@ mod = 10 ** 9 + 7
 for __ in range(readInt()):
     n,m = readInts()
     arr = readInts()
-    d = {}
-    for i in range(1,n+1):
-        subseq = findsubsets(arr,i)
-        for j in subseq:
-            if sum(j)%m == 0:
-                d[j] = 1
-            else:
-                d[j] = 0
-            # print d
-    count =0 
-    for key in d.keys():
-        f = 1
-        print key,d[key]
-        for i in key:
-            print i
-        # if d[key] == 1:
-        #     for i in key:
-        #         print i
-                # if d[i]==0:
-                #     print i
-                #     f = 0 
-                #     break
-            # if f:
-            #     print key
-            #     count+=1        
-    print count
+    count =0
+    for i in arr:
+        if i%m==0:
+            count+=1
+    print power(2,count)-1
 
 
 '''

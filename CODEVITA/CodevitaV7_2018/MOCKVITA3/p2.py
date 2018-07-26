@@ -21,19 +21,53 @@ from itertools import product
 from datetime import date
 from string import ascii_uppercase
 
+import math
+# from itertools import permutations
+# import statistics
+import calendar
+def readInts():
+    return list(map(int, raw_input().strip().split(',')))
+def readInt():
+    return int(raw_input())
+def readStrs():
+    return raw_input().split(',')
+def readStr():
+    return raw_input()
+def readnumbertolist():
+    a=[int(i) for i in list(raw_input())]
+    return a
+def dec2hex(num):
+    if num == 0:
+        return 0
+    ans = ""
+    while num > 0:
+        ans = str(num%6) + ans
+        num /= 6
+    return int(ans)
+
+def hex2dec(num):
+    if num == 0:
+        return 0
+    num = str(num)
+    ans = int(num[0])
+    for i in num[1:]:
+        ans *= 6
+        ans += int(i)
+    return ans
+
 def printdec(ans):
     print '{0:.6f}'.format(ans)
 def countchars(stra):
     s=Counter(stra)
     return s
-def readInts():
-    return list(map(int, raw_input().strip().split()))
-def readInt():
-    return int(raw_input())
-def readStrs():
-    return raw_input().split()
-def readStr():
-    return raw_input().strip()
+# def readInts():
+#     return list(map(int, raw_input().strip().split()))
+# def readInt():
+#     return int(raw_input())
+# def readStrs():
+#     return raw_input().split()
+# def readStr():
+#     return raw_input().strip()
 def readarr(n):
     return [map(int,list(readStr())) for i in xrange(n)]
 def readnumbertolist():
@@ -124,30 +158,21 @@ def gcd(a,b):
     if (a == 0):
         return b;
     return gcd(b%a, a);
-def powerm(x,y,m=1000000007):
+def power(x,y,m=1000000007):
     if (y == 0):
         return 1;
-    p = powerm(x, y/2, m) % m;
+    p = power(x, y/2, m) % m;
     p = (p * p) % m;
     if(y%2 == 0):
     	return p
     else:
     	return (x * p) % m;
-def power(x,y):
-    if (y == 0):
-        return 1;
-    p = power(x, y/2) ;
-    p = (p * p) ;
-    if(y%2 == 0):
-    	return p
-    else:
-    	return (x * p) ;        
 def modInverse(a,m):
    	g = gcd(a, m);
 	if(g!=1):
 		return -1
  	else:
-   		return powerm(a, m-2, m);
+   		return power(a, m-2, m);
 def lcm(a, b):
     return a * b / gcd(a, b)
 def matrixcheck(x,y):
@@ -282,14 +307,78 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-# file1 = open("abc.txt","w")
-# for i in range(1000):
-#     file1.write("HITESH SIR ")
-# file1.close()    
-
-for __ in range(readInt()):
-    n,k = readInts()
+# for __ in range(readInt()):
+arr = readInts()
+arr = sorted(arr)
+a,b,c,d,e,f =-1,-1,-1,-1,-1,-1
+c0 = arr.count(0)
+c2 = arr.count(2)
+c4 = arr.count(4)
+################
+val1,val2=-1,-1
+for i in range(len(arr)):
+    for j in range(len(arr)):
+        if i!=j and (arr[i]*10+arr[j])<=23:
+            a = max(a,arr[i]*10+arr[j])
+            val1,val2 = arr[i],arr[j]
+if val1 in arr:
+    arr.remove(val1)
+if val2 in arr:
+    arr.remove(val2)
+################
+for i in arr:
+    if i<=5:
+        c = max(c,i)
+if c in arr:
+    arr.remove(c)
+for i in arr:
+    if i<=9:
+        d = max(d,i)
+if d in arr:
+    arr.remove(d)
+for i in arr:
+    if i<=5:
+        e = max(e,i)
+if e in arr:
+    arr.remove(e)
+for i in arr:
+    if i<=9:
+        f = max(f,i)
+if f in arr:
+    arr.remove(f)
+# print a,b,c,d,e,f
+if c2>0 and c4>0 and c0>=4:
+    print("24:00:00")
+elif val1==-1 or val2==-1 or c==-1 or d==-1 or e==-1 or f==-1:
+    print "Impossible"
+else: 
+    stri = str(val1)+str(val2)+":"+str(c)+str(d)+":"+str(e)+str(f)
+    print stri
 
 '''
+Example 1
+
+Input
+0,1,3,4,2,1,5,8,0
+0,0,7,8,2,4,5,0,0
+0,0,0,0,0,0
+0,0,1,1,3,5,6,7,7
+
+0,0,5,6,7,7
+Output
+
+17:57:36
+
+The maximum valid time in a 24 hour clock that can be formed using some six of the 9 digits precisely once is 17:57:36
+
+Example 2
+
+Input
+
+3,3,3,3,3,3,3,3,3
+
+Output
+
+Impossible
 
 '''

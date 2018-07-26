@@ -124,21 +124,30 @@ def gcd(a,b):
     if (a == 0):
         return b;
     return gcd(b%a, a);
-def power(x,y,m=1000000007):
+def powerm(x,y,m=1000000007):
     if (y == 0):
         return 1;
-    p = power(x, y/2, m) % m;
+    p = powerm(x, y/2, m) % m;
     p = (p * p) % m;
     if(y%2 == 0):
     	return p
     else:
     	return (x * p) % m;
+def power(x,y):
+    if (y == 0):
+        return 1;
+    p = power(x, y/2) ;
+    p = (p * p) ;
+    if(y%2 == 0):
+    	return p
+    else:
+    	return (x * p) ;        
 def modInverse(a,m):
    	g = gcd(a, m);
 	if(g!=1):
 		return -1
  	else:
-   		return power(a, m-2, m);
+   		return powerm(a, m-2, m);
 def lcm(a, b):
     return a * b / gcd(a, b)
 def matrixcheck(x,y):
@@ -274,8 +283,22 @@ mod = 10 ** 9 + 7
 # print "Case #{}: {}".format(i+1,ans)
 
 for __ in range(readInt()):
-    n,k = readInts()
+    
+
 
 '''
+Example Input
+
+1
+3 3
+010
+000
+001
+
+Example Output
+
+1 0 1
+2 1 1
+1 1 0
 
 '''

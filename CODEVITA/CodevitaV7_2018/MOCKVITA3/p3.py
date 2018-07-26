@@ -21,19 +21,53 @@ from itertools import product
 from datetime import date
 from string import ascii_uppercase
 
+import math
+# from itertools import permutations
+# import statistics
+import calendar
+def readInts():
+    return list(map(int, raw_input().strip().split(',')))
+def readInt():
+    return int(raw_input())
+def readStrs():
+    return raw_input().split(',')
+def readStr():
+    return raw_input()
+def readnumbertolist():
+    a=[int(i) for i in list(raw_input())]
+    return a
+def dec2hex(num):
+    if num == 0:
+        return 0
+    ans = ""
+    while num > 0:
+        ans = str(num%6) + ans
+        num /= 6
+    return int(ans)
+
+def hex2dec(num):
+    if num == 0:
+        return 0
+    num = str(num)
+    ans = int(num[0])
+    for i in num[1:]:
+        ans *= 6
+        ans += int(i)
+    return ans
+
 def printdec(ans):
     print '{0:.6f}'.format(ans)
 def countchars(stra):
     s=Counter(stra)
     return s
-def readInts():
-    return list(map(int, raw_input().strip().split()))
-def readInt():
-    return int(raw_input())
-def readStrs():
-    return raw_input().split()
-def readStr():
-    return raw_input().strip()
+# def readInts():
+#     return list(map(int, raw_input().strip().split()))
+# def readInt():
+#     return int(raw_input())
+# def readStrs():
+#     return raw_input().split()
+# def readStr():
+#     return raw_input().strip()
 def readarr(n):
     return [map(int,list(readStr())) for i in xrange(n)]
 def readnumbertolist():
@@ -134,7 +168,7 @@ def power(x,y,m=1000000007):
     else:
     	return (x * p) % m;
 def modInverse(a,m):
-   	g = gcd(a, m);
+   	g = gcd(a, m);perm
 	if(g!=1):
 		return -1
  	else:
@@ -267,31 +301,55 @@ def knapSack(W , wt , val , n):
 # lim =  prelongfact(m)
 
 mod = 10 ** 9 + 7
+mod = 1009
 # fact=[1]
 # for i in xrange(1,100001):
 #     fact.append(((arr[i-1]%mod)*(i%mod))%mod)
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-for __ in range(readInt()):
-    n,k = readInts()
-    
+# for __ in range(readInt()):
+
 
 '''
-Example Input
+Example 1
 
-3
-6 3
-aabbcc
-5 2
-abccc
-4 3
-aabb
+Input
 
-Example Output
+10 2 345 604 321 433 704 470 808 718 517 811 300 350 400 700
+
+Output
+
+2
 
 4
-3
+
+Explanation
+
+There are 10 sampes (S) and 2 ranges ( R ). The samples are 345, 604,…811. The ranges are 300-350 and 400-700. There are 2 samples in the first range (345 and 321) and 4 samples in the second range (604, 433, 470, 517). Hence the two lines of the output are 2 and 4.
+
+Example 2
+
+Input
+
+20 3
+
+921 107 270 631 926 543 589 520 595 93 873 424 759 537 458 614 725 842 575 195
+
+1 100
+
+50 600
+
+1 1000
+
+Output
+
 1
 
-'''
+12
+
+20
+
+Explanation
+
+There are 20 samples, and 3 ranges. The samples are 921, 107 … 195. The ranges are 1-100, 50-600 and 1-1000. Note that the ranges are overlapping. The number of samples in each of the three ranges are 1, 12 and 20 respectively. Hence the three lines of the output are 1, 12 and 20.'''

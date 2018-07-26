@@ -21,19 +21,53 @@ from itertools import product
 from datetime import date
 from string import ascii_uppercase
 
-def printdec(ans):
-    print '{0:.6f}'.format(ans)
-def countchars(stra):
-    s=Counter(stra)
-    return s
+import math
+# from itertools import permutations
+# import statistics
+import calendar
 def readInts():
     return list(map(int, raw_input().strip().split()))
 def readInt():
     return int(raw_input())
 def readStrs():
-    return raw_input().split()
+    return raw_input().split(',')
 def readStr():
-    return raw_input().strip()
+    return raw_input()
+def readnumbertolist():
+    a=[int(i) for i in list(raw_input())]
+    return a
+def dec2hex(num):
+    if num == 0:
+        return 0
+    ans = ""
+    while num > 0:
+        ans = str(num%6) + ans
+        num /= 6
+    return int(ans)
+
+def hex2dec(num):
+    if num == 0:
+        return 0
+    num = str(num)
+    ans = int(num[0])
+    for i in num[1:]:
+        ans *= 6
+        ans += int(i)
+    return ans
+
+def printdec(ans):
+    print '{0:.6f}'.format(ans)
+def countchars(stra):
+    s=Counter(stra)
+    return s
+# def readInts():
+#     return list(map(int, raw_input().strip().split()))
+# def readInt():
+#     return int(raw_input())
+# def readStrs():
+#     return raw_input().split()
+# def readStr():
+#     return raw_input().strip()
 def readarr(n):
     return [map(int,list(readStr())) for i in xrange(n)]
 def readnumbertolist():
@@ -124,30 +158,21 @@ def gcd(a,b):
     if (a == 0):
         return b;
     return gcd(b%a, a);
-def powerm(x,y,m=1000000007):
+def power(x,y,m=1000000007):
     if (y == 0):
         return 1;
-    p = powerm(x, y/2, m) % m;
+    p = power(x, y/2, m) % m;
     p = (p * p) % m;
     if(y%2 == 0):
     	return p
     else:
     	return (x * p) % m;
-def power(x,y):
-    if (y == 0):
-        return 1;
-    p = power(x, y/2) ;
-    p = (p * p) ;
-    if(y%2 == 0):
-    	return p
-    else:
-    	return (x * p) ;        
 def modInverse(a,m):
    	g = gcd(a, m);
 	if(g!=1):
 		return -1
  	else:
-   		return powerm(a, m-2, m);
+   		return power(a, m-2, m);
 def lcm(a, b):
     return a * b / gcd(a, b)
 def matrixcheck(x,y):
@@ -274,22 +299,42 @@ def knapSack(W , wt , val , n):
 
 # m = 329885391853
 # lim =  prelongfact(m)
-
+# Python3 program to count subarrays
+# having product less than k.
+ 
+ 
 mod = 10 ** 9 + 7
-# fact=[1]
-# for i in xrange(1,100001):
-#     fact.append(((arr[i-1]%mod)*(i%mod))%mod)
-# for i,j in product(xrange(R),xrange(C)):
-# print "Case #{}: {}".format(i+1,ans)
-
-# file1 = open("abc.txt","w")
-# for i in range(1000):
-#     file1.write("HITESH SIR ")
-# file1.close()    
-
-for __ in range(readInt()):
-    n,k = readInts()
+from operator import mul
+n,m = readInts()
+arr = readInts()
+pro = reduce(mul, arr, 1)
+ar = list(factors(pro))
+for i in ar:
+    for j in ar:
+        
 
 '''
+
+Example 1
+
+Input
+
+2 4
+2 3
+
+Output
+
+2
+
+Example 2
+
+Input
+
+2 3
+4 16
+
+Output
+
+7
 
 '''

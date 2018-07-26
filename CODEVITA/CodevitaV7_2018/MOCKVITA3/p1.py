@@ -21,19 +21,53 @@ from itertools import product
 from datetime import date
 from string import ascii_uppercase
 
+import math
+# from itertools import permutations
+# import statistics
+import calendar
+def readInts():
+    return list(map(int, raw_input().strip().split(',')))
+def readInt():
+    return int(raw_input())
+def readStrs():
+    return raw_input().split(',')
+def readStr():
+    return raw_input()
+def readnumbertolist():
+    a=[int(i) for i in list(raw_input())]
+    return a
+def dec2hex(num):
+    if num == 0:
+        return 0
+    ans = ""
+    while num > 0:
+        ans = str(num%6) + ans
+        num /= 6
+    return int(ans)
+
+def hex2dec(num):
+    if num == 0:
+        return 0
+    num = str(num)
+    ans = int(num[0])
+    for i in num[1:]:
+        ans *= 6
+        ans += int(i)
+    return ans
+
 def printdec(ans):
     print '{0:.6f}'.format(ans)
 def countchars(stra):
     s=Counter(stra)
     return s
-def readInts():
-    return list(map(int, raw_input().strip().split()))
-def readInt():
-    return int(raw_input())
-def readStrs():
-    return raw_input().split()
-def readStr():
-    return raw_input().strip()
+# def readInts():
+#     return list(map(int, raw_input().strip().split()))
+# def readInt():
+#     return int(raw_input())
+# def readStrs():
+#     return raw_input().split()
+# def readStr():
+#     return raw_input().strip()
 def readarr(n):
     return [map(int,list(readStr())) for i in xrange(n)]
 def readnumbertolist():
@@ -124,30 +158,21 @@ def gcd(a,b):
     if (a == 0):
         return b;
     return gcd(b%a, a);
-def powerm(x,y,m=1000000007):
+def power(x,y,m=1000000007):
     if (y == 0):
         return 1;
-    p = powerm(x, y/2, m) % m;
+    p = power(x, y/2, m) % m;
     p = (p * p) % m;
     if(y%2 == 0):
     	return p
     else:
     	return (x * p) % m;
-def power(x,y):
-    if (y == 0):
-        return 1;
-    p = power(x, y/2) ;
-    p = (p * p) ;
-    if(y%2 == 0):
-    	return p
-    else:
-    	return (x * p) ;        
 def modInverse(a,m):
    	g = gcd(a, m);
 	if(g!=1):
 		return -1
  	else:
-   		return powerm(a, m-2, m);
+   		return power(a, m-2, m);
 def lcm(a, b):
     return a * b / gcd(a, b)
 def matrixcheck(x,y):
@@ -282,14 +307,56 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-# file1 = open("abc.txt","w")
-# for i in range(1000):
-#     file1.write("HITESH SIR ")
-# file1.close()    
+# for __ in range(readInt()):
 
-for __ in range(readInt()):
-    n,k = readInts()
+def baseN(num,b,numerals="0123456789abcdefghijklmnopqrstuvwxyz"):
+    return ((num == 0) and numerals[0]) or (baseN(num // b, b, numerals).lstrip(numerals[0]) + numerals[num % b])
+
+n = readInt()
+arr = readInts()
+brr = []
+for i in range(n):
+    brr.append(sum_digits(int(baseN(int(arr[i]),6))))
+
+count = 0
+for i in range(n):
+    for j in range(i+1,n):
+        # print brr[i],brr[j]
+        if brr[i]>brr[j]:
+            # print brr[i],brr[j]
+            count+=1
+print count
+
 
 '''
+Example 1
 
-'''
+Input
+
+5
+55, 53, 88, 27, 33
+
+Output
+
+2
+
+Explanation
+
+The number of integers is 5, as specified in the first line. The given sequence is 55, 53, 88, 27, 33.
+
+The base 6 representation is 131, 125, 224, 43, 53 The derived sequence is 5,8,8,7,8 (corresponding to the sum of digits). The number of inversions in this is 2, namely (8, 7), (8, 7)
+
+Example 2
+
+Input
+
+8
+120,21,47,64,72,35,18,98
+
+Output
+
+11
+
+Explanation
+
+The base 6 representation of this is 320,33,115,144,200,55,30,242, and the derived sequence (sum of digits) is 5,6,7,9,2,10,3,8. The number of inversions is 11 (5,2), (5,3),(6,2) (6,3), (7,2), (7,3) (9,2),(9,3) (9,8),(10,3), (10,8)'''

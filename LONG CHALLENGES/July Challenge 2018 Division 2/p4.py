@@ -124,21 +124,30 @@ def gcd(a,b):
     if (a == 0):
         return b;
     return gcd(b%a, a);
-def power(x,y,m=1000000007):
+def powerm(x,y,m=1000000007):
     if (y == 0):
         return 1;
-    p = power(x, y/2, m) % m;
+    p = powerm(x, y/2, m) % m;
     p = (p * p) % m;
     if(y%2 == 0):
     	return p
     else:
     	return (x * p) % m;
+def power(x,y):
+    if (y == 0):
+        return 1;
+    p = power(x, y/2) ;
+    p = (p * p) ;
+    if(y%2 == 0):
+    	return p
+    else:
+    	return (x * p) ;        
 def modInverse(a,m):
    	g = gcd(a, m);
 	if(g!=1):
 		return -1
  	else:
-   		return power(a, m-2, m);
+   		return powerm(a, m-2, m);
 def lcm(a, b):
     return a * b / gcd(a, b)
 def matrixcheck(x,y):
@@ -273,9 +282,42 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-for __ in range(readInt()):
+import math
+# mod= int(10e8+7)
+def C(n,r):
+    f = math.factorial
+    if(n<r):
+        return 0
+    else:
+        return f(n) // (f(r) * f(n-r))
+for t in range(readInt()):
     n,k = readInts()
+    a = readInts()
+    a.sort()
+    min_count=[]
+    tot,ans=nck(n-1,k-1),1
+    x=tot
+    for i in range(n-k+1):
+        min_count.append(x)
+        x=(x*(n-k-i))//(n-i-1)
+    for i in range(n-k+1,n):
+        min_count.append(0)
+    #print(min_count)
+    for i in range(n//2):
+        t=tot-(min_count[n-1-i]+min_count[i])
+        ans = (ans*(pow(a[i]*a[n-i-1],t,mod)))%mod
+    if(n%2!=0):
+        t=tot-2*(min_count[n//2])
+        ans=(ans*pow(a[n//2],t,mod))%mod
+    #print(min_count,power)
+    print(ans%mod) 
 
 '''
 
+1
+4 3 
+1 2 3 4 
+
+36
 '''
+

@@ -21,19 +21,53 @@ from itertools import product
 from datetime import date
 from string import ascii_uppercase
 
+import math
+# from itertools import permutations
+# import statistics
+import calendar
+def readInts():
+    return list(map(int, raw_input().strip().split(',')))
+def readInt():
+    return int(raw_input())
+def readStrs():
+    return raw_input().split(',')
+def readStr():
+    return raw_input()
+def readnumbertolist():
+    a=[int(i) for i in list(raw_input())]
+    return a
+def dec2hex(num):
+    if num == 0:
+        return 0
+    ans = ""
+    while num > 0:
+        ans = str(num%6) + ans
+        num /= 6
+    return int(ans)
+
+def hex2dec(num):
+    if num == 0:
+        return 0
+    num = str(num)
+    ans = int(num[0])
+    for i in num[1:]:
+        ans *= 6
+        ans += int(i)
+    return ans
+
 def printdec(ans):
     print '{0:.6f}'.format(ans)
 def countchars(stra):
     s=Counter(stra)
     return s
-def readInts():
-    return list(map(int, raw_input().strip().split()))
-def readInt():
-    return int(raw_input())
-def readStrs():
-    return raw_input().split()
-def readStr():
-    return raw_input().strip()
+# def readInts():
+#     return list(map(int, raw_input().strip().split()))
+# def readInt():
+#     return int(raw_input())
+# def readStrs():
+#     return raw_input().split()
+# def readStr():
+#     return raw_input().strip()
 def readarr(n):
     return [map(int,list(readStr())) for i in xrange(n)]
 def readnumbertolist():
@@ -273,9 +307,39 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-for __ in range(readInt()):
-    n,k = readInts()
+# for __ in range(readInt()):
+n,m = readInts()
+arr = [[0 for x in range(100)] for y in range(100)] 
+for i in range(n):
+    arr[i] = readInts()
 
 '''
+
+Example 1:
+
+Input:
+
+3,4
+5,4,9,3
+4,3,5,6
+2,2,1,1
+
+Output:
+
+32
+
+Example 2:
+
+Input
+
+4,7
+27,26,28,14,15,38,0
+38,40,35,2,20,43,39
+18,48,43,2,47,18,26
+38,2,29,23,14,31,32
+
+Output
+
+242
 
 '''
