@@ -287,8 +287,6 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-# arr = [[0 for x in range(100)] for y in range(100)] 
-
 for __ in range(readInt()):
     n,k = readInts()
 

@@ -27,7 +27,7 @@ def countchars(stra):
     s=Counter(stra)
     return s
 def readInts():
-    return list(map(int, raw_input().strip().split()))
+    return list(map(int, raw_input().strip().split(',')))
 def readInt():
     return int(raw_input())
 def readStrs():
@@ -124,30 +124,21 @@ def gcd(a,b):
     if (a == 0):
         return b;
     return gcd(b%a, a);
-def powerm(x,y,m=1000000007):
+def power(x,y,m=1000000007):
     if (y == 0):
         return 1;
-    p = powerm(x, y/2, m) % m;
+    p = power(x, y/2, m) % m;
     p = (p * p) % m;
     if(y%2 == 0):
     	return p
     else:
     	return (x * p) % m;
-def power(x,y):
-    if (y == 0):
-        return 1;
-    p = power(x, y/2) ;
-    p = (p * p) ;
-    if(y%2 == 0):
-    	return p
-    else:
-    	return (x * p) ;        
 def modInverse(a,m):
    	g = gcd(a, m);
 	if(g!=1):
 		return -1
  	else:
-   		return powerm(a, m-2, m);
+   		return power(a, m-2, m);
 def lcm(a, b):
     return a * b / gcd(a, b)
 def matrixcheck(x,y):
@@ -282,16 +273,27 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-# file1 = open("abc.txt","w")
-# for i in range(1000):
-#     file1.write("HITESH SIR ")
-# file1.close()    
-
-# arr = [[0 for x in range(100)] for y in range(100)] 
-
-for __ in range(readInt()):
-    n,k = readInts()
+## Problem 1
+# for __ in range(readInt()):
+#     n,k = readInts()
+n = readInt()
+arr = readInts()
+for i in range(n):
+    arr[i] = abs(arr[i])
+arr = sorted(arr)
+m = len(set(arr))
+print nck(n,3)-nck(m,3)
 
 '''
+Input
+5
+20,-20,0,50,50
+Output
+7
 
+Input
+5
+50,-50,50,-50,50
+Output
+0
 '''

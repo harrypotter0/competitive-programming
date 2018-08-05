@@ -282,16 +282,76 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-# file1 = open("abc.txt","w")
-# for i in range(1000):
-#     file1.write("HITESH SIR ")
-# file1.close()    
-
-# arr = [[0 for x in range(100)] for y in range(100)] 
-
+# Python program to find maximum contiguous subarray
+ 
+def maxSubArraySum(a,size,o,d):
+     
+    max_so_far = -1e15
+    curr_max = -1e15
+     
+    for i in range(1,size):
+        print "value of d ",d,
+        if a[i]&1 and o and a[i]<=d:
+            curr_max = max(a[i], curr_max + a[i])
+            o-=1
+            d-=a[i]
+            max_so_far = max(max_so_far,curr_max)
+        elif a[i]<=d:
+            curr_max = max(a[i], curr_max + a[i])
+            d-=a[i]
+            max_so_far = max(max_so_far,curr_max)
+         
+    return max_so_far
+ 
+ 
+file1 = open("abc.txt","w")
 for __ in range(readInt()):
-    n,k = readInts()
+    n,o,d = readInts()
+    x1,x2,a,b,c,m,l = readInts()
+    x,s = [x1,x2],[]
+    for i in range(2,n):
+        x.append((x[i-1]*a+x[i-2]*b+c)%m)
+    for i in range(n):
+        s.append(x[i]+l)
+    
+    # s = rsorted(s)
+    arr = []
+    print s
+    ans = maxSubArraySum(s,len(s),o,d)
+    print ans
+
+    # if len(arr):
+    #     print "Case #{}: {}".format(__+1,ans)
+    #     file1.write("Case #{}: {}\n".format(__+1,ans))
+    # else:
+    #     print "Case #{}: {}".format(__+1,"IMPOSSIBLE")
+    #     file1.write("Case #{}: {}\n".format(__+1,"IMPOSSIBLE"))
+file1.close()    
+
+
 
 '''
+Input 
+ 	
+Output 
+ 
+5
+6 1 1000000000000000
+1 1 1 1 0 100 0
+6 1 -100
+1 1 1 1 0 100 0
+10 1 8
+4 3 4 1 5 20 -10
+10 2 8
+4 3 4 1 5 20 -10
+10 1 8
+4 3 4 1 5 20 -19
+
+Case #1: 13
+Case #2: IMPOSSIBLE
+Case #3: 7
+Case #4: 8
+Case #5: -5
+
 
 '''

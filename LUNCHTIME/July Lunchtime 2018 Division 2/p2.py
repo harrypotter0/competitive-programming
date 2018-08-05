@@ -287,11 +287,27 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-# arr = [[0 for x in range(100)] for y in range(100)] 
-
 for __ in range(readInt()):
-    n,k = readInts()
+    a,b,c,x,y = readInts()
+    if a+b+c>=x+y:
+        print "YES"
+    else:
+        print "NO"
 
 '''
+Example Input
+
+4
+1 2 3 2 4
+3 2 5 6 5
+2 4 2 6 2
+6 5 2 12 1
+
+Example Output
+
+YES
+NO
+YES
+NO
 
 '''

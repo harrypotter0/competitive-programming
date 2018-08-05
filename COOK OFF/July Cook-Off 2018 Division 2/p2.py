@@ -283,9 +283,40 @@ mod = 10 ** 9 + 7
 # print "Case #{}: {}".format(i+1,ans)
 
 for __ in range(readInt()):
+    n,m = readInts()
+    for i in range(n):
+        for i in range(m):
+            arr = []
+    arr = [[0 for i in range(m)] for i in range(n)]
+    r = [0 for i in range(n)] 
+    c = [0 for i in range(m)]
+    f =1 
+    for i in range(n):
+        a = readStr()
+        for j in range(m):
+            arr[i][j] = a[j]
+            if arr[i][j]=='1':
+                f = 0
     
-
-
+    for i in range(n):
+        for j in range(m):
+            if arr[i][j]=='1':
+                r[i]+=1
+                c[j]+=1
+    
+    for i in range(n):
+        for j in range(m):
+            if f ==1:
+                print(-1),
+            elif arr[i][j]=='1':
+                print(0),
+            elif r[i] or c[j]:
+                print(1),
+            else :
+                print(2),
+        print
+            
+            
 '''
 Example Input
 
@@ -294,6 +325,13 @@ Example Input
 010
 000
 001
+
+1
+3 3
+000
+000
+000
+
 
 Example Output
 

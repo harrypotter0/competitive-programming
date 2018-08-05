@@ -287,11 +287,36 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-# arr = [[0 for x in range(100)] for y in range(100)] 
-
 for __ in range(readInt()):
-    n,k = readInts()
+    n,o,d = readInts()
+    x1,x2,a,b,c,m,l = readInts()
+    x = [x1,x2]
+    for i in range(2,n):
+        x.append((x[i-1]*a+x[i-2]+c)%m+l)
+    print x
 
 '''
+Input 
+ 	
+Output 
+ 
+5
+6 1 1000000000000000
+1 1 1 1 0 100 0
+6 1 -100
+1 1 1 1 0 100 0
+10 1 8
+4 3 4 1 5 20 -10
+10 2 8
+4 3 4 1 5 20 -10
+10 1 8
+4 3 4 1 5 20 -19
+
+Case #1: 13
+Case #2: IMPOSSIBLE
+Case #3: 7
+Case #4: 8
+Case #5: -5
+
 
 '''

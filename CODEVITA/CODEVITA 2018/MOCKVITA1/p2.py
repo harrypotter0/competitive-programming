@@ -21,19 +21,53 @@ from itertools import product
 from datetime import date
 from string import ascii_uppercase
 
-def printdec(ans):
-    print '{0:.6f}'.format(ans)
-def countchars(stra):
-    s=Counter(stra)
-    return s
+import math
+# from itertools import permutations
+# import statistics
+import calendar
 def readInts():
-    return list(map(int, raw_input().strip().split()))
+    return list(map(int, raw_input().strip().split(',')))
 def readInt():
     return int(raw_input())
 def readStrs():
     return raw_input().split()
 def readStr():
-    return raw_input().strip()
+    return raw_input()
+def readnumbertolist():
+    a=[int(i) for i in list(raw_input())]
+    return a
+def dec2hex(num):
+    if num == 0:
+        return 0
+    ans = ""
+    while num > 0:
+        ans = str(num%6) + ans
+        num /= 6
+    return int(ans)
+
+def hex2dec(num):
+    if num == 0:
+        return 0
+    num = str(num)
+    ans = int(num[0])
+    for i in num[1:]:
+        ans *= 6
+        ans += int(i)
+    return ans
+
+def printdec(ans):
+    print '{0:.6f}'.format(ans)
+def countchars(stra):
+    s=Counter(stra)
+    return s
+# def readInts():
+#     return list(map(int, raw_input().strip().split()))
+# def readInt():
+#     return int(raw_input())
+# def readStrs():
+#     return raw_input().split()
+# def readStr():
+#     return raw_input().strip()
 def readarr(n):
     return [map(int,list(readStr())) for i in xrange(n)]
 def readnumbertolist():
@@ -124,30 +158,21 @@ def gcd(a,b):
     if (a == 0):
         return b;
     return gcd(b%a, a);
-def powerm(x,y,m=1000000007):
+def power(x,y,m=1000000007):
     if (y == 0):
         return 1;
-    p = powerm(x, y/2, m) % m;
+    p = power(x, y/2, m) % m;
     p = (p * p) % m;
     if(y%2 == 0):
     	return p
     else:
     	return (x * p) % m;
-def power(x,y):
-    if (y == 0):
-        return 1;
-    p = power(x, y/2) ;
-    p = (p * p) ;
-    if(y%2 == 0):
-    	return p
-    else:
-    	return (x * p) ;        
 def modInverse(a,m):
    	g = gcd(a, m);
 	if(g!=1):
 		return -1
  	else:
-   		return powerm(a, m-2, m);
+   		return power(a, m-2, m);
 def lcm(a, b):
     return a * b / gcd(a, b)
 def matrixcheck(x,y):
@@ -282,16 +307,46 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-# file1 = open("abc.txt","w")
-# for i in range(1000):
-#     file1.write("HITESH SIR ")
-# file1.close()    
+# for __ in range(readInt()):
+m, n = readInts()
+a = []
+for i in range(m):
+    a.append(readInts())
+high = [0]*m
+for i in range(m):
+    high[i] = a[i][-1]
+ans = []
+for i in range(m*n):
+    h = max(high)
+    ans.append(str(h))
+    if len(a[high.index(h)]) != 0:
+        a[high.index(h)].pop()
+    if len(a[high.index(h)]) == 0:
+        high[high.index(h)] = -1
+    else:
+        high[high.index(h)] = a[high.index(h)][-1]
+print("".join(ans))
 
-# arr = [[0 for x in range(100)] for y in range(100)] 
 
-for __ in range(readInt()):
-    n,k = readInts()
 
 '''
+4,4
+7,5,5,2
+3,6,1,7
+8,7,0,4
+8,7,3,9
 
+4,4
+7,5,5,2
+3,6,1,8
+8,7,1,8
+8,7,3,6
+
+
+9743782557163078
+
+2,3
+1,2,3
+2,4,6
+643221
 '''

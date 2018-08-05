@@ -27,7 +27,7 @@ def countchars(stra):
     s=Counter(stra)
     return s
 def readInts():
-    return list(map(int, raw_input().strip().split()))
+    return list(map(int, raw_input().strip().split(',')))
 def readInt():
     return int(raw_input())
 def readStrs():
@@ -286,11 +286,17 @@ mod = 10 ** 9 + 7
 # for i in range(1000):
 #     file1.write("HITESH SIR ")
 # file1.close()    
+from decimal import Decimal, ROUND_HALF_UP
 
-# arr = [[0 for x in range(100)] for y in range(100)] 
+# for __ in range(readInt()):
+#     n,k = readInts()
+# print Decimal(0.91).quantize(0, ROUND_HALF_UP)
+# print Decimal(0.45).quantize(0, ROUND_HALF_UP)
+for i in range(readInt()):
+    arr = readInts()
 
-for __ in range(readInt()):
-    n,k = readInts()
+
+
 
 '''
 

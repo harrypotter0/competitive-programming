@@ -291,7 +291,35 @@ mod = 10 ** 9 + 7
 
 for __ in range(readInt()):
     n,k = readInts()
+    arr = readInts()
+    crr = readInts()
+    arr = rsorted(arr)
+    crr = rsorted(crr)
+    # print arr
+    # print crr
+    c,l = 0,0
+    for i in range(n):
+        if arr[i]<crr[l]:
+            c+=1 
+            l+=1
+    if c>=k:
+        print "YES"
+    else:
+        print "NO"
+
+
+
+
+
 
 '''
+SAMPLE INPUT
 
+1
+5 3
+6 2 3 5 4
+5 4 7 2 3
+SAMPLE OUTPUT
+
+YES 
 '''

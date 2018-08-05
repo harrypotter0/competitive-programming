@@ -286,12 +286,70 @@ mod = 10 ** 9 + 7
 # for i in range(1000):
 #     file1.write("HITESH SIR ")
 # file1.close()    
+def isAnagram(str1, str2):
+    str1_list = list(str1)
+    str1_list.sort()
+    str2_list = list(str2)
+    str2_list.sort()
 
-# arr = [[0 for x in range(100)] for y in range(100)] 
+    return (str1_list == str2_list)
 
-for __ in range(readInt()):
-    n,k = readInts()
+def get_all_substrings(input_string):
+  length = len(input_string)
+  return [input_string[i:j+1] for i in xrange(length) for j in xrange(i,length)]
+
+
+s = readStr()
+s0 =s 
+n = readInt()
+s1 = ""
+for i in range(n):
+    a = readStrs()
+    b = int(a[1])
+    if a[0]=='L':
+        s1+=(s[b:]+s[:b])[0]
+        s = s[b:]+s[:b]
+    else:
+        s1+=(s[-b:]+s[:-b])[0]
+        s = s[-b:]+s[:-b]
+    # print s
+    # print s1
+arr = get_all_substrings(s0)
+f = 0
+for i in arr:
+    # print i
+    # print i,s1
+    if isAnagram(i,s1):
+        print "YES"
+        f = 1
+        break
+if not f:
+    print "NO"
+
 
 '''
+Output
+YES or NO
+
+
+Explanation
+Example 1
+
+Input
+
+carrace
+3
+L 2
+R 2
+L 3
+
+
+Output
+
+NO
+
+Explanation
+After applying all the rotations the FIRSTCHARSTRING string will be "rcr" which is 
+not anagram of any sub string of original string "carrace".
 
 '''

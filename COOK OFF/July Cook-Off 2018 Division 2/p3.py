@@ -282,16 +282,24 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-# file1 = open("abc.txt","w")
-# for i in range(1000):
-#     file1.write("HITESH SIR ")
-# file1.close()    
-
-# arr = [[0 for x in range(100)] for y in range(100)] 
-
 for __ in range(readInt()):
-    n,k = readInts()
+    n,m = readInts()
+    
+            
+            
 
 '''
+Example Input
+
+2
+2
+1 25
+5
+27 3 15 1024 15
+
+Example Output
+
+1
+6
 
 '''

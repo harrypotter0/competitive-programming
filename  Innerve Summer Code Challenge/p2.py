@@ -287,11 +287,23 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-# arr = [[0 for x in range(100)] for y in range(100)] 
-
 for __ in range(readInt()):
     n,k = readInts()
+    if n%3==0 or k%3==0:
+        print "0"
+    else:
+        print((n%3*k%3)%3)
 
 '''
+Input
+
+2
+2435 56789 
+124 234 
+
+Output:
+
+1
+0
 
 '''

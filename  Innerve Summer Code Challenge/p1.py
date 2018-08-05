@@ -287,11 +287,35 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-# arr = [[0 for x in range(100)] for y in range(100)] 
-
+pr = primes_sieve(1000)
+# print pr
 for __ in range(readInt()):
-    n,k = readInts()
+    n = readInt()
+    f = 0
+    arr = readInts()
+    arr = sorted(arr)
+    for i in arr:
+        if(i in pr and 1 in arr):
+            print(i)
+            f = 1
+            break
+    if not f:
+        print "-1"
+
+
 
 '''
+Input
+
+2
+3
+1 2 3
+4
+5 5 5 2
+
+Output:
+
+2
+-1
 
 '''

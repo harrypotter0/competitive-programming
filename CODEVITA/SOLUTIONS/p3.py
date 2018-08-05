@@ -21,11 +21,10 @@ from itertools import product
 from datetime import date
 from string import ascii_uppercase
 
-def printdec(ans):
-    print '{0:.6f}'.format(ans)
-def countchars(stra):
-    s=Counter(stra)
-    return s
+import math
+# from itertools import permutations
+# import statistics
+import calendar
 def readInts():
     return list(map(int, raw_input().strip().split()))
 def readInt():
@@ -33,7 +32,42 @@ def readInt():
 def readStrs():
     return raw_input().split()
 def readStr():
-    return raw_input().strip()
+    return raw_input()
+def readnumbertolist():
+    a=[int(i) for i in list(raw_input())]
+    return a
+def dec2hex(num):
+    if num == 0:
+        return 0
+    ans = ""
+    while num > 0:
+        ans = str(num%6) + ans
+        num /= 6
+    return int(ans)
+
+def hex2dec(num):
+    if num == 0:
+        return 0
+    num = str(num)
+    ans = int(num[0])
+    for i in num[1:]:
+        ans *= 6
+        ans += int(i)
+    return ans
+
+def printdec(ans):
+    print '{0:.6f}'.format(ans)
+def countchars(stra):
+    s=Counter(stra)
+    return s
+# def readInts():
+#     return list(map(int, raw_input().strip().split()))
+# def readInt():
+#     return int(raw_input())
+# def readStrs():
+#     return raw_input().split()
+# def readStr():
+#     return raw_input().strip()
 def readarr(n):
     return [map(int,list(readStr())) for i in xrange(n)]
 def readnumbertolist():
@@ -124,30 +158,21 @@ def gcd(a,b):
     if (a == 0):
         return b;
     return gcd(b%a, a);
-def powerm(x,y,m=1000000007):
+def power(x,y,m=1000000007):
     if (y == 0):
         return 1;
-    p = powerm(x, y/2, m) % m;
+    p = power(x, y/2, m) % m;
     p = (p * p) % m;
     if(y%2 == 0):
     	return p
     else:
     	return (x * p) % m;
-def power(x,y):
-    if (y == 0):
-        return 1;
-    p = power(x, y/2) ;
-    p = (p * p) ;
-    if(y%2 == 0):
-    	return p
-    else:
-    	return (x * p) ;        
 def modInverse(a,m):
-   	g = gcd(a, m);
+   	g = gcd(a, m);perm
 	if(g!=1):
 		return -1
  	else:
-   		return powerm(a, m-2, m);
+   		return power(a, m-2, m);
 def lcm(a, b):
     return a * b / gcd(a, b)
 def matrixcheck(x,y):
@@ -274,7 +299,7 @@ def knapSack(W , wt , val , n):
 
 # m = 329885391853
 # lim =  prelongfact(m)
-
+// counting sort
 mod = 10 ** 9 + 7
 # fact=[1]
 # for i in xrange(1,100001):
@@ -282,16 +307,56 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-# file1 = open("abc.txt","w")
-# for i in range(1000):
-#     file1.write("HITESH SIR ")
-# file1.close()    
+# for __ in range(readInt()):
 
-# arr = [[0 for x in range(100)] for y in range(100)] 
-
-for __ in range(readInt()):
-    n,k = readInts()
+a = [0]*1001
+arr = readInts()
+n,t = arr[0],arr[1]
+print n,t,
+for i in range(2,2+n):
+    v = arr[i]
+    print v,
+    a[v]+=1
+for i in range(1,1001):
+    a[i]+=a[i-1]
+for i in range(n+2,2*t+n+2,2):
+    p,q= arr[i],arr[i+1]
+    print p,q,
+    if p>0:
+        print a[q]-a[p-1]
+    else:
+        print a[q]
 
 '''
+Explanation
+Example 1
 
+Input
+10 2 345 604 321 433 704 470 808 718 517 811 300 350 400 700
+Output
+2
+4
+Explanation
+There are 10 sampes (S) and 2 ranges ( R ). The samples are 345, 604,...
+811. The ranges are 300-350 and 400-700. There are 2 samples in the first
+range (345 and 321) and 4 samples in the second range (604, 433, 470,
+517). Hence the two lines of the output are 2 and 4.
+
+Example 2
+Input
+20 3
+921 107 270 631 926 543 589 520 595 93 873 424 759 537 458 614 725
+842 575 195
+1 100
+50 600
+1 1000
+Output
+1
+12
+20
+Explanation
+There are 20 samples, and 3 ranges. The samples are 921, 107 ... 195. The
+ranges are 1-100, 50-600 and 1-1000. Note that the ranges are
+overlapping. The number of samples in each of the three ranges are 1, 12
+and 20 respectively. Hence the three lines of the output are 1, 12 and 20.
 '''

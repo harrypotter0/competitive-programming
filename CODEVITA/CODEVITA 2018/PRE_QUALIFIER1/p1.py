@@ -271,7 +271,6 @@ def knapSack(W , wt , val , n):
     else:
         return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
                    knapSack(W , wt , val , n-1))
-
 # m = 329885391853
 # lim =  prelongfact(m)
 
@@ -287,11 +286,43 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-# arr = [[0 for x in range(100)] for y in range(100)] 
-
 for __ in range(readInt()):
     n,k = readInts()
+    arr = readInts()
+    mul = 1
+
+    for i in range(n-k):
+        ans = 1 
+        if len(arr)>10:
+            arr = arr[len(arr)-10:]
+        for j in range(1,k+1):
+            ans = (ans * arr[-j]%mod)%mod
+        arr.append(ans%mod)
+    # print arr
+    print arr[-1]
 
 '''
-
+Example 1
+Input
+1
+4 3
+1 2 3
+Output
+6
+Explanation
+4th modified Fibonacci number will be 1*2*3=6
+Example 2
+Input
+1
+10 3
+1 2 3
+Output
+845114970
+Explanation
+4th , 5th , 6th modified Fibonacci numbers are 6 , 36 , 648 respectively
+Similarly 10th modified Fibonacci number will be 845114970
+1
+1000000 9
+4 6 9 31 14 23 32 2 3
+  
 '''
