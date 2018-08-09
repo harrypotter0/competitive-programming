@@ -20,11 +20,6 @@ import calendar
 from itertools import product
 from datetime import date
 from string import ascii_uppercase
-import sys
-from bisect import bisect_left
-from collections import defaultdict
-
-sys.setrecursionlimit(10000)
 
 def printdec(ans):
     print '{0:.6f}'.format(ans)
@@ -278,17 +273,6 @@ def knapSack(W , wt , val , n):
                    knapSack(W , wt , val , n-1))
 def findOccurrences(s, ch):
     return [i for i, letter in enumerate(s) if letter == ch]
-def common_between_two_strings(str1,str2):
-    dict1 = Counter(str1)
-    dict2 = Counter(str2)
-    commonDict = dict1 & dict2 
-    if len(commonDict) == 0:
-        print -1
-        return 
-    commonChars = list(commonDict.elements()) 
-    commonChars = sorted(commonChars)
-  
-    return ''.join(commonChars)
 
 # m = 329885391853
 # lim =  prelongfact(m)
@@ -305,14 +289,53 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-# d = defaultdict(int)
-# d = [ [] for i in range(101) ]
+# l = [ [] for i in range(k) ]
 # arr = [[0 for x in range(100)] for y in range(100)] 
 
-for i in range(readInt()):
-    n,k = readInts()
+import sys
+sys.setrecursionlimit(10000)
+ 
+ 
+def possible(str1, str2, match):                                         
+    if (str1 + str2 == match) or (str2 + str1 == match):
+        return True
+    
+    else:
+        ans = False
+        if (len(str1) > 0) and match[-1] == str1[-1]:
+            ans |= possible(str1[:-1], str2, match[:-1])
+        elif (len(str2) > 0) and match[-1] == str2[-1]:
+            ans |= possible(str1, str2[:-1], match[:-1])
+ 
+        return ans
+ 
+for _ in range(readInt()):
+    one, two, queries = readStrs()
+    one = one[::-1]
+    two = two[::-1]
+ 
+    for q in range(int(queries)):
+        string = readStr()[::-1]
+ 
+        if len(string) != len(one) + len(two):
+            print('NO')
+        elif possible(one[:], two[:], string):
+            print('YES')
+        else:
+            print('NO')
+            
+    
+'''
+Input:
+1
+tsec codecell 3
+tseccodecell
+codetseccell
+codecell
 
-
+Output:
+YES
+YES
+NO
 '''
 
-'''

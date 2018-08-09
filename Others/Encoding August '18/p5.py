@@ -21,9 +21,6 @@ from itertools import product
 from datetime import date
 from string import ascii_uppercase
 import sys
-from bisect import bisect_left
-from collections import defaultdict
-
 sys.setrecursionlimit(10000)
 
 def printdec(ans):
@@ -305,14 +302,27 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-# d = defaultdict(int)
 # d = [ [] for i in range(101) ]
 # arr = [[0 for x in range(100)] for y in range(100)] 
 
-for i in range(readInt()):
-    n,k = readInts()
+n = readInt()
+arr = readInts()
+arr.sort()
+a = arr[:n/2]
+sumi = 0
+for i in range(n):
+    sumi+=abs(arr[i]-arr[n-i-1])
+    # print sumi
+print sumi
 
 
 '''
+Input:
+5
+1 2 4 6 8
+Output:
+18
+Explanation:
+We can reorder the given sequence to form 1 8 2 4, which yields the strength of |1-8| + |8-2| + |2-4| + |4-1| = 18.
 
 '''

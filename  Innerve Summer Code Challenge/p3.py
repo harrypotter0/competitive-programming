@@ -271,7 +271,14 @@ def knapSack(W , wt , val , n):
     else:
         return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
                    knapSack(W , wt , val , n-1))
-
+def hcf(a,b):
+    if (a==0 or b==0):
+        return 0
+    elif (a%b==0):
+        return b
+    else:
+        return hcf(b,a%b)
+ 
 # m = 329885391853
 # lim =  prelongfact(m)
 
@@ -287,8 +294,21 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-for __ in range(readInt()):
-    n,k = readInts()
+t=readInt()
+arr1=[None]*t
+for i in range(t):
+    n=readInt()
+    arr=readInts()
+    if n>=2:
+        for i in range(n-1):
+            h=hcf(arr[i],arr[i+1])
+            arr[i+1]=h
+        if (arr[n-1]==1):
+            print("YES")
+        else:
+            print("NO")       
+    else:
+        print("NO")
 
 '''
 Input

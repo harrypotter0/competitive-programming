@@ -21,9 +21,6 @@ from itertools import product
 from datetime import date
 from string import ascii_uppercase
 import sys
-from bisect import bisect_left
-from collections import defaultdict
-
 sys.setrecursionlimit(10000)
 
 def printdec(ans):
@@ -305,14 +302,36 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-# d = defaultdict(int)
 # d = [ [] for i in range(101) ]
 # arr = [[0 for x in range(100)] for y in range(100)] 
 
+arr = []
+n = 0
+i = 1
+# while n<=100:
+while n<=10000001:
+    n = i*(i+1)/2
+    arr.append(n)
+    i+=1
+
+# print arr
 for i in range(readInt()):
-    n,k = readInts()
+    n = readInt()
+    if n in arr:
+        print arr.index(n)+1
+    else:
+        print "-1"
+
+
 
 
 '''
+Input:
+2
+3
+4
 
+Output:
+2
+-1
 '''

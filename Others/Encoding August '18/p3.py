@@ -21,9 +21,6 @@ from itertools import product
 from datetime import date
 from string import ascii_uppercase
 import sys
-from bisect import bisect_left
-from collections import defaultdict
-
 sys.setrecursionlimit(10000)
 
 def printdec(ans):
@@ -305,14 +302,25 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-# d = defaultdict(int)
 # d = [ [] for i in range(101) ]
 # arr = [[0 for x in range(100)] for y in range(100)] 
 
 for i in range(readInt()):
-    n,k = readInts()
+    n = readInt()
+    arr = binar(n)
+    arr = str(arr)
+    print arr.count('1')
 
 
 '''
+Example
 
+Input:
+2
+1
+10
+
+Output:
+1
+2
 '''

@@ -287,9 +287,67 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-for __ in range(readInt()):
-    n,k = readInts()
+n = readInt()
+m = readInt()
+arr = [0]*n
+for i in range(m):
+    a,b = readInts()
+    for i in range(a-1,b):
+        arr[i]+=1
+    # print arr
+arr = rsorted(arr)
+# print arr
+q = readInt()
+for i in range(q):
+    val = readInt()
+    count = 0
+    for i in arr:
+        if i>=val:
+            count+=1
+        else:
+            break
+    print count
 
+# OR
+
+from bisect import bisect_left
+def main():
+    noc = int(input())
+    nod = int(input())
+    arr = [0] * noc
+    for i in range(nod):
+        l, r = [int(x) for x in input().split()]
+        for j in range(l-1, r): arr[j] += 1
+    arr = sorted(arr)
+    for _ in range(int(input())):
+        pos = bisect_left(arr, int(input()))
+        print(len(arr) - pos)
+ 
+ 
+ 
+if __name__ == '__main__':
+    main()
+ 
 '''
+Input:
+
+7
+4
+1 3
+2 5
+1 2
+5 6
+4
+1
+7
+4
+2
+
+Output:
+
+6
+0
+0
+4
 
 '''

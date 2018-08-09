@@ -20,11 +20,6 @@ import calendar
 from itertools import product
 from datetime import date
 from string import ascii_uppercase
-import sys
-from bisect import bisect_left
-from collections import defaultdict
-
-sys.setrecursionlimit(10000)
 
 def printdec(ans):
     print '{0:.6f}'.format(ans)
@@ -276,19 +271,6 @@ def knapSack(W , wt , val , n):
     else:
         return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
                    knapSack(W , wt , val , n-1))
-def findOccurrences(s, ch):
-    return [i for i, letter in enumerate(s) if letter == ch]
-def common_between_two_strings(str1,str2):
-    dict1 = Counter(str1)
-    dict2 = Counter(str2)
-    commonDict = dict1 & dict2 
-    if len(commonDict) == 0:
-        print -1
-        return 
-    commonChars = list(commonDict.elements()) 
-    commonChars = sorted(commonChars)
-  
-    return ''.join(commonChars)
 
 # m = 329885391853
 # lim =  prelongfact(m)
@@ -305,13 +287,10 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-# d = defaultdict(int)
-# d = [ [] for i in range(101) ]
 # arr = [[0 for x in range(100)] for y in range(100)] 
 
-for i in range(readInt()):
+for __ in range(readInt()):
     n,k = readInts()
-
 
 '''
 

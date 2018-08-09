@@ -20,11 +20,6 @@ import calendar
 from itertools import product
 from datetime import date
 from string import ascii_uppercase
-import sys
-from bisect import bisect_left
-from collections import defaultdict
-
-sys.setrecursionlimit(10000)
 
 def printdec(ans):
     print '{0:.6f}'.format(ans)
@@ -278,17 +273,6 @@ def knapSack(W , wt , val , n):
                    knapSack(W , wt , val , n-1))
 def findOccurrences(s, ch):
     return [i for i, letter in enumerate(s) if letter == ch]
-def common_between_two_strings(str1,str2):
-    dict1 = Counter(str1)
-    dict2 = Counter(str2)
-    commonDict = dict1 & dict2 
-    if len(commonDict) == 0:
-        print -1
-        return 
-    commonChars = list(commonDict.elements()) 
-    commonChars = sorted(commonChars)
-  
-    return ''.join(commonChars)
 
 # m = 329885391853
 # lim =  prelongfact(m)
@@ -305,14 +289,74 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-# d = defaultdict(int)
-# d = [ [] for i in range(101) ]
+# l = [ [] for i in range(k) ]
 # arr = [[0 for x in range(100)] for y in range(100)] 
 
-for i in range(readInt()):
-    n,k = readInts()
+def binarySearch (arr, l, r, x):
+ 
+    # Check base case
+    if r >= l:
+ 
+        mid = l + (r - l)/2
+        sum1 = sum(arr[:mid])
+        sum2 = sum(arr[mid+1:])
+ 
+        # If element is present at the middle itself
+        if sum1 == sum2:
+            return mid
+         
+        # If element is smaller than mid, then it 
+        # can only be present in left subarray
+        elif sum1>sum2:
+            return binarySearch(arr, l, mid-1, x)
+ 
+        # Else the element can only be present 
+        # in right subarray
+        else:
+            return binarySearch(arr, mid+1, r, x)
+ 
+    else:
+        # Element is not present in the array
+        return -1
+ 
+
+tc=int(raw_input())
+for tce in xrange(tc):
+    n=int(raw_input())
+    sum1=0
+    sum2=0
+    ar=[0 for i in xrange(n)]
+    inp=raw_input().split(" ")
+    for i in range(n):
+        ar[i]=int(inp[i])
+        sum2+=ar[i]
+    found=False
+    for pos in xrange(n):
+        sum2-=ar[pos]
+        if(pos>0):
+            sum1+=ar[pos-1]
+        if(sum1==sum2):
+            found=True
+            break
+    if(found==True):
+        print pos
+    else:
+        print "-1" 
 
 
 '''
+
+Example
+
+Input:
+2
+7
+7 8 9 1 9 8 7
+6
+1 100 50 -51 1 1
+
+Output:
+3
+1
 
 '''

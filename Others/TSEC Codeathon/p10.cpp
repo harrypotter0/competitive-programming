@@ -118,22 +118,25 @@ ll subtraction_modulo(ll x, ll y ){
 
 
 int main() {
-  // your code goes here
-  ios_base::sync_with_stdio(0);
-  cin.tie(NULL);
-  cout.tie(NULL);
-  ll t;
-  cin>>t;
-  while(t--)
-    {
-        ll n,k;
-        string s;
-        cin>>s;
-        // memset(G,0,sizeof(G[0][0])*26*100001);
-        
-
-        // cout << setprecision(3) << dis << "\n";
-    }
+    // your code goes here
+    ios_base::sync_with_stdio(0);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int a[1000001] = {};
+    a[0]=a[1]=1;
+    for(int i=2;i<1000001;i++)
+    a[i]= (a[i-1]%mod+ ((ll)((i-1)%mod)*(a[i-2]%mod)%mod))%mod;
+    ll t;
+    cin>>t;
+    while(t--)
+        {
+            ll n,k;
+            cin>>n;
+            // memset(G,0,sizeof(G[0][0])*26*100001);
+            cout<<a[n]<<endl;
+            // cout << setprecision(3) << dis << "\n";
+        }
 
 return 0;
 }
+

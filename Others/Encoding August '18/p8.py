@@ -21,9 +21,6 @@ from itertools import product
 from datetime import date
 from string import ascii_uppercase
 import sys
-from bisect import bisect_left
-from collections import defaultdict
-
 sys.setrecursionlimit(10000)
 
 def printdec(ans):
@@ -305,14 +302,56 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-# d = defaultdict(int)
 # d = [ [] for i in range(101) ]
 # arr = [[0 for x in range(100)] for y in range(100)] 
 
-for i in range(readInt()):
-    n,k = readInts()
+for __ in range(readInt()):
+
+    #include <bits/stdc++.h>
+    using namespace std;
+    #define LL long long
+    #define PB push_back
+    #define N 2000100
+    #define LB lower_bound
+    #define M 1000000007
+    #define UB upper_bound
+    #define MP make_pair
+    #define LD long double
+    #define F first
+    #define S second
+     
+def pathlen(a,b):
+    if a==b: return 0
+    sp = [-1]*2001
+    sp[a] = 0
+    buf = [a]
+    for n in buf:
+        spn = sp[n]
+        for m in [n-1, n+3, n*2]:
+            if m > 0 and m < 2001:
+                if sp[m] < 0:
+                    if m==b: return spn+1
+                    sp[m] = spn+1
+                    buf.append(m)
+    
+for _ in range(readInt()):
+    a,b = readInts()
+    print(pathlen(a,b))
+     
 
 
 '''
+Example
+Input:
+
+2
+4 7
+0 10
+
+Output:
+
+1
+4
+
 
 '''

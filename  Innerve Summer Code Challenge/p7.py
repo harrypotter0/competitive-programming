@@ -287,9 +287,34 @@ mod = 10 ** 9 + 7
 #     file1.write("HITESH SIR ")
 # file1.close()    
 
-for __ in range(readInt()):
-    n,k = readInts()
+from collections import defaultdict
+for t in range(readInt()):
+    a = readInt()
+    n = readInts()
+    d = defaultdict(int)
+    for i in range(a):
+        for j in range(a):
+            w = (n[i]**2)+n[j]
+            d[w]+=1
+    # print d
+    s = 0
+    for i in range(a):
+        for j in range(a):
+            w = (n[i]**2)+(n[j]**2)
+            if w in d:
+                s+=d[w]
+    print s 
+
 
 '''
+Input:
+
+1
+4
+1 2 3 4
+
+Output:
+
+15
 
 '''
