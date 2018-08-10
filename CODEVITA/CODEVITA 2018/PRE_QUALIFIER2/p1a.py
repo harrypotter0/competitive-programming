@@ -323,16 +323,16 @@ for i in range(k):
 # print drr
 # print arr
 dist1,c,abc = 0,0,0
-for l in range(n):  # for rows (x) axis
-    for o in range(m): # for cols
+for l in range(n):
+    for o in range(m):
         ans = []
-        for i in range(k): # calculating distance for all boats
+        for i in range(k):
             x1 = crr[i][0]
             y1 = crr[i][1]
             ans.append(calc(x1,y1,l,o))
-        ans.sort() ## sort it
+        ans.sort()
         # print ans
-        if ans[0]==ans[1]: ## if two boats reach at the same square with the fastest time or min time or the one reaching the square the fastest is more than one then add it.
+        if ans[0]==ans[1]:
             c+=1
 print c
 

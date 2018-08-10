@@ -308,35 +308,31 @@ mod = 10 ** 9 + 7
 # d = defaultdict(int)
 # d = [ [] for i in range(101) ]
 # arr = [[0 for x in range(100)] for y in range(100)] 
-# for i in range(readInt()):
-def calc(x1,y1,x2,y2):
-    return abs(x1-x2) + abs(y1-y2)
-m,n,k = readInts()
-val = 100
-# drr = [[0 for x in range(m)] for y in range(n)] 
-arr = [[0 for x in range(m)] for y in range(n)] 
-crr = []
-for i in range(k):
-    brr = readInts()
-    crr.append(brr)
-    # drr[brr[0]][brr[1]]=1
-# print drr
-# print arr
-dist1,c,abc = 0,0,0
-for l in range(n):  # for rows (x) axis
-    for o in range(m): # for cols
-        ans = []
-        for i in range(k): # calculating distance for all boats
-            x1 = crr[i][0]
-            y1 = crr[i][1]
-            ans.append(calc(x1,y1,l,o))
-        ans.sort() ## sort it
-        # print ans
-        if ans[0]==ans[1]: ## if two boats reach at the same square with the fastest time or min time or the one reaching the square the fastest is more than one then add it.
-            c+=1
-print c
+
+# prime = primes_sieve(400000)
+## Calculate the index of the normal number from the coordinates
+def valAt(x,y):
+	if x>y:
+		if x+y > 0:
+			n  = 4*x*x - 3*x + y
+		else :
+			n  = 4*y*y - 3*y + x
+	else:
+		if x+y > 0:
+			n  = 4*y*y -  x - y
+		else :
+			n  = 4*x*x -  y - x
+	return n
 
 
+n =readInt()
+for i in range(n):
+    a,b = readInts()
+    if a== b and a== 0:
+        print "2"
+    else:
+        # print valAt(a,b)
+        print prime[valAt(a,b)] ## trying to get the value of the prime at index i 
 
 
 '''
@@ -344,47 +340,40 @@ Example 1
 
 Input
 
-3,4,2
-2,0
-0,2
-
-
-
-6,8,6
-2,0
-0,2
-1,2
-4,3
-4,5
-7,5
-
-4,4,2
-3,0
-0,3
+3
+1,0
+0,1
+-130,-130
 
 Output
 
-4
+3
+7
 
 Explanation
 
-M=3,N=4,k=2. There are 3 rows and 4 columns. There are 2 boats at (2,0) and (0,2).
-
-The position is the same as in the earlier figure. There are 4 uncontrolled squares. Hence the result is 4.
+N=2. There are 2 sets of coordinates in this test case. The coordinates are (1,0) and (0,1).. The corresponding primes in the spiral are 3 and 7. The output hence has these.
 
 Example 2
 
 Input
 
-2,4,2
-0,0
-1,2
+3
+1,1
+-1,1
+-1,0
 
 Output
 
-0
+5
+11
+13
 
 Explanation
 
-M=2, N=4, k=2. There are two boats positioned as below
+There are 3 sets of coordinates in this test case (N=3). The coordinates are (1,1),(-1,1) and (-1,0). The corresponding primes at these positions are 5, 11, 13. Hence the output has these in 3 lines.
 '''
+
+
+
+

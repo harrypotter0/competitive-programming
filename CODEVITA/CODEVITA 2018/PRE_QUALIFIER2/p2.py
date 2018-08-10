@@ -308,83 +308,116 @@ mod = 10 ** 9 + 7
 # d = defaultdict(int)
 # d = [ [] for i in range(101) ]
 # arr = [[0 for x in range(100)] for y in range(100)] 
-# for i in range(readInt()):
-def calc(x1,y1,x2,y2):
-    return abs(x1-x2) + abs(y1-y2)
-m,n,k = readInts()
-val = 100
-# drr = [[0 for x in range(m)] for y in range(n)] 
-arr = [[0 for x in range(m)] for y in range(n)] 
-crr = []
-for i in range(k):
-    brr = readInts()
-    crr.append(brr)
-    # drr[brr[0]][brr[1]]=1
-# print drr
-# print arr
-dist1,c,abc = 0,0,0
-for l in range(n):  # for rows (x) axis
-    for o in range(m): # for cols
-        ans = []
-        for i in range(k): # calculating distance for all boats
-            x1 = crr[i][0]
-            y1 = crr[i][1]
-            ans.append(calc(x1,y1,l,o))
-        ans.sort() ## sort it
-        # print ans
-        if ans[0]==ans[1]: ## if two boats reach at the same square with the fastest time or min time or the one reaching the square the fastest is more than one then add it.
-            c+=1
-print c
 
+# prime = primes_sieve(100005)
 
+import math
+def sqfree(r):
+	lis = []
+	for i in range(r+1):
+		x = int(math.sqrt(i))
+		#print x,
+		flag = 0
+        # if i in prime:
+        #     lis.append(i)
+        #     continue
+		for j in range(2,x+1):
+		#	print i,j
+			if(i%(j*j)==0):
+				# lis.append(0)
+				flag = 1
+				break
+		if(flag==0):
+			lis.append(i)
+	return lis
+# C++ Program to print 
+# all prime factors
+from math import sqrt
+ 
+# Returns true if n is
+# a square free number, 
+# else returns false.
+def isSquareFree(n):
+     
+    if n % 2 == 0:
+        n = n / 2
+ 
+    # If 2 again divides n, 
+    # then n is not a square
+    # free number.
+    if n % 2 == 0:
+        return False
+ 
+    # n must be odd at this
+    # point. So we can skip
+    # one element 
+    # (Note i = i + 2)
+    for i in range(3, int(sqrt(n) + 1)):
+         
+        # Check if i is a prime
+        # factor
+        if n % i == 0:
+            n = n / i
+ 
+        # If i again divides, then 
+        # n is not square free
+        if n % i == 0:
+            return False
+    return True
+
+# squarefree = sqfree(100005) 
+# f1 = open("abc.txt","w")
+# for i in squarefree:
+#     f1.write("{},".format(i))
+# f1.close()
+n = readInt()
+fa = list(factors(n)) # first get all factors of the number
+# print fa
+sumi = 0
+for i in range(len(fa)):
+    if pow(fa[i]**(1/2),2)==fa[i]: # then check for perfect squares as they are not square free numbers remove them
+        continue
+    if isSquareFree(fa[i]): # now check is the number is square free ? if it is increment sumi by 1
+        # print fa[i]
+        sumi+=1
+print sumi,    
 
 
 '''
-Example 1
-
 Input
 
-3,4,2
-2,0
-0,2
-
-
-
-6,8,6
-2,0
-0,2
-1,2
-4,3
-4,5
-7,5
-
-4,4,2
-3,0
-0,3
+20
 
 Output
 
-4
+3
 
 Explanation
 
-M=3,N=4,k=2. There are 3 rows and 4 columns. There are 2 boats at (2,0) and (0,2).
+N=20
 
-The position is the same as in the earlier figure. There are 4 uncontrolled squares. Hence the result is 4.
+If we list the numbers that divide 20, they are
+
+1, 2, 4, 5, 10, 20
+
+1 is not a square free number, 4 is a perfect square, and 20 is divisible by 4, a perfect square. 2 and 5, being prime, are square free, and 10 is divisible by 1,2,5 and 10, none of which are perfect squares. Hence the square free numbers that divide 20 are 2, 5, 10. Hence the result is 3.
 
 Example 2
 
 Input
 
-2,4,2
-0,0
-1,2
+72
 
 Output
 
-0
+3
 
 Explanation
 
-M=2, N=4, k=2. There are two boats positioned as below
+N=72. The numbers that divide 72 are
+
+1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72
+
+1 is not considered square free. 4, 9 and 36 are perfect squares, and 8,12,18,24 and 72 are divisible by one of the. Hence only 2, 3 and 6 are square free. (It is easily seen that none of them are divisible by a perfect square). The result is 3
+
 '''
