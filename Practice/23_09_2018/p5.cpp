@@ -116,7 +116,12 @@ long long optcoins(int n){
     dp[n]=optcoins(n/2)+optcoins(n/3)+optcoins(n/4);
     return dp[n];
 }
-
+// int main(){
+//     int x;
+//     while(scanf("%d",&x)!=EOF)
+//         printf("%lld\n",optcoins(x));
+//     return 0;
+// }
 
 int main() {
     // your code goes here
@@ -124,24 +129,21 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
     int x;
-    // while(scanf("%d",&x)!=EOF)
-    //     cout<<optcoins(x)<<"\n";
+    while(scanf("%d",&x)!=EOF)
+        cout<<optcoins(x)<<"\n";
+    // ll t;
+    // cin>>t;
+    // while(t--)
+    // {
+    //     ll n,k;
+    //     string s;
+    //     cin>>s;
+    //     memset(G,0,sizeof(G[0][0])*26*100001);
+        
 
-    ll t;
-    cin>>t;
-    while(t--)
-    {
-        ll z,i,c;
-        z = 0;
-        cin>>i;
-        c=5;
-        while((i/c)>0){
-            z = z+(i/c);
-            c=c*5;
-        }        
-        cout<<z<<"\n";
-        // cout << setprecision(3) << dis << "\n";
-    }
+    //     // cout << setprecision(3) << dis << "\n";
+    // }
 
 return 0;
 }
+
