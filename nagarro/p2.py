@@ -9,6 +9,8 @@
 #  ********************************************************************************************
 #  *
 #  */
+from collections import Counter
+from math import ceil
 from fractions import gcd
 import math
 import itertools
@@ -16,6 +18,19 @@ from itertools import permutations
 from itertools import combinations
 import calendar
 from itertools import product
+from datetime import date
+from string import ascii_uppercase
+import sys
+from bisect import bisect_left
+from collections import defaultdict
+
+sys.setrecursionlimit(10000)
+
+def printdec(ans):
+    print '{0:.6f}'.format(ans)
+def countchars(stra):
+    s=Counter(stra)
+    return s
 def readInts():
     return list(map(int, raw_input().strip().split()))
 def readInt():
@@ -44,7 +59,7 @@ def precise(num):
 def rsorted(a):
     return sorted(a,reverse=True)
 def binar(x):
-    return '{0:031b}'.format(x)
+    return '{0:063b}'.format(x)
 def findpermute(word):
     perms = [''.join(p) for p in permutations(word)]
     perms = list(set(perms))
@@ -72,6 +87,11 @@ def vowel_count(str):
     return count
 def leapyear(year):
     return calendar.isleap(year)
+def factorial(n):
+	p=1
+	for i in range(2,n+1):
+		p=p*i
+	return p
 def primes_sieve(limit):
     limitn = limit+1
     not_prime = set()
@@ -106,9 +126,33 @@ def nck(n, k):
         result = result* (n-i+1) / i
     return result
 def gcd(a,b):
-    while b > 0:
-        a, b = b, a % b
-    return a
+    if (a == 0):
+        return b;
+    return gcd(b%a, a);
+def powerm(x,y,m=1000000007):
+    if (y == 0):
+        return 1;
+    p = powerm(x, y/2, m) % m;
+    p = (p * p) % m;
+    if(y%2 == 0):
+    	return p
+    else:
+    	return (x * p) % m;
+def power(x,y):
+    if (y == 0):
+        return 1;
+    p = power(x, y/2) ;
+    p = (p * p) ;
+    if(y%2 == 0):
+    	return p
+    else:
+    	return (x * p) ;        
+def modInverse(a,m):
+   	g = gcd(a, m);
+	if(g!=1):
+		return -1
+ 	else:
+   		return powerm(a, m-2, m);
 def lcm(a, b):
     return a * b / gcd(a, b)
 def matrixcheck(x,y):
@@ -149,6 +193,25 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def find_duplicate(expr):
+  stack=[]
+  char_in_between = 0
+  f =1
+  for i in range(0, len(expr)):
+    if expr[i] == '}' or expr[i] == ')':
+      pair = '{' if expr[i] == '}' else '('
+      pop=''
+      while(len(stack) > 0 and pop != pair):
+        pop = stack.pop()
+        if (pop != '{' and pop != '('): char_in_between +=1
+      if char_in_between == 0:
+        print "Duplicate"
+        f =0
+        break
+      char_in_between = 0
+    else:
+      stack.append(expr[i])
+  return f
 def dictlist(keys,values):
     {d.setdefault(key,[]).append(value) for key, value in zip(keys,values)}
     return d
@@ -165,31 +228,91 @@ def coinchange(S, m, n):
         for j in range(S[i],n+1):
             table[j] += table[j-S[i]]
     return table[n]
+import itertools
+def permutation_of_list(lista):
+    return list(itertools.permutations(lista))
+def palincheck(i):
+    return str(i) == str(i)[::-1]
+def bigMod(a, b, c):
+    if (a == 0 or b == 0) :
+        return 0
+    if (a == 1) :
+        return b
+    if (b == 1) :
+        return a
+    a2 = bigMod(a, b / 2, c)
+    if ((b & 1) == 0) :
+        return (a2 + a2) % c
+    else :
+        return ((a % c) + (a2 + a2)) % c
+def days(year1,year2):
+    begin = date(year1, 1, 1)
+    end = date(year2, 1, 1)
+    return (end-begin).days
+from functools import reduce
+def factors(n):
+    return set(reduce(list.__add__,
+                ([i, n//i] for i in range(1, int(pow(n, 0.5) + 1)) if n % i == 0)))
+def prelongfact(factt):
+    for i in reversed(range(1,int(factt**0.5))):
+        if factt%i==0:
+            break
+    return  factt/i
+def factmul(n,lim,m):
+    mul=1
+    ans=1
+    if(n>=lim):
+        print 0
+    else:
+        for j in range(1,n+1):
+            mul=(mul*j)%m
+            ans=(ans*mul)%m
+        print ans
+def knapSack(W , wt , val , n):
+    if n == 0 or W == 0 :
+        return 0
+    if (wt[n-1] > W):
+        return knapSack(W , wt , val , n-1)
+    else:
+        return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
+                   knapSack(W , wt , val , n-1))
+def findOccurrences(s, ch):
+    return [i for i, letter in enumerate(s) if letter == ch]
+def common_between_two_strings(str1,str2):
+    dict1 = Counter(str1)
+    dict2 = Counter(str2)
+    commonDict = dict1 & dict2 
+    if len(commonDict) == 0:
+        print -1
+        return 
+    commonChars = list(commonDict.elements()) 
+    commonChars = sorted(commonChars)
+  
+    return ''.join(commonChars)
+
+# m = 329885391853
+# lim =  prelongfact(m)
 
 mod = 10 ** 9 + 7
+# fact=[1]
+# for i in xrange(1,100001):
+#     fact.append(((arr[i-1]%mod)*(i%mod))%mod)
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-for __ in range(readInt()):
-    n = readInt()
-    x = n/2
-    if n&1:
-        print x-n
-    else:
-        print x
+# file1 = open("abc.txt","w")
+# for i in range(1000):
+#     file1.write("HITESH SIR ")
+# file1.close()    
+
+# d = defaultdict(int)
+# d = [ [] for i in range(101) ]
+# arr = [[0 for x in range(100)] for y in range(100)] 
+
+for i in range(readInt()):
+    n,k = readInts()
+
 
 '''
- Sample Input:
-
-2
-5
-4
-
-Sample Output:
-
--3
-2
-
-
 
 '''

@@ -131,17 +131,22 @@ int main() {
     cin>>t;
     while(t--)
     {
-        ll z,i,c;
-        z = 0;
-        cin>>i;
-        c=5;
-        while((i/c)>0){
-            z = z+(i/c);
-            c=c*5;
-        }        
-        cout<<z<<"\n";
+        ll x;
+        cin>>x;
+        float ans = (float)((sqrt(8*x+1))-1)/2;
+        // cout<<ans<<"\n";
+        cout<<floor(ans)<<"\n";
         // cout << setprecision(3) << dis << "\n";
     }
 
 return 0;
 }
+
+/*
+4 
+2 
+5 
+8 
+3 
+
+*/
