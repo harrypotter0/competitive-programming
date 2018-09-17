@@ -4,7 +4,7 @@
 #  * AUTHOR : AKASH KANDPAL                                                                   *
 #  * Language : Python2                                                                       *
 #  * Motto : The master has failed more times than the beginner has even tried.               *
-#  * IDE used: VSCode                                                                           *
+#  * IDE used: Atom                                                                           *
 #  * My Domain : http://harrypotter.tech/                                                     *
 #  ********************************************************************************************
 #  *
@@ -309,27 +309,61 @@ mod = 10 ** 9 + 7
 # d = [ [] for i in range(101) ]
 # arr = [[0 for x in range(100)] for y in range(100)] 
 
+# arr = [0 for i in range(100005)]
+# Returns number of pairs in arr[0..n-1] 
+# with sum equal to 'sum'
 
-for i in range(readInt()):
+def getPairsCount(arr, arr_size, sum):
+     
+    # Create an empty hash set
+    # s = set()
+     
+    for i in range(0,arr_size):
+        temp = sum-arr[i]
+        if (temp>0 and temp in arr and temp%2==arr[i]%2):
+            # if arr[list.index()]%2==temp%2:
+            return True
+            # print ("Pair with the given sum is", arr[i], "and", temp)
+        # s.add(arr[i])
+    return False
+
+
+
+p  = primes_sieve(1000000)
+for __ in range(readInt()):
     n = readInt()
     arr = readInts()
-    for i in arr:
-        for j in 
-
-
+    brr = []
+    for i in range(n-1):
+        for j in range(i+1,n):
+            # print(i,j,arr[i]^arr[j])
+            brr.append(arr[i]^arr[j])
+    count =0 
+    for i in brr:
+        if i%2==0 and i/2 in p:
+            count+=1
+            continue
+        check = getPairsCount(p, len(p), i)
+        if check:
+            count+=1
+        # print count,i
+    print count
+# print len(p)
+    
 
 '''
-Sample Input:
+Example Input
 
-2
+1
+5
+2 4 8 1 3
+
+Example Output
+
 3
-1 2 3
-4
-1 2 3 4
+
+Explanation
 
 
-Sample Output:
 
-2
-4
 '''

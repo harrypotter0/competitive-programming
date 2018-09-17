@@ -20,6 +20,11 @@ import calendar
 from itertools import product
 from datetime import date
 from string import ascii_uppercase
+import sys
+from bisect import bisect_left
+from collections import defaultdict
+
+sys.setrecursionlimit(10000)
 
 def printdec(ans):
     print '{0:.6f}'.format(ans)
@@ -124,21 +129,30 @@ def gcd(a,b):
     if (a == 0):
         return b;
     return gcd(b%a, a);
-def power(x,y,m=1000000007):
+def powerm(x,y,m=1000000007):
     if (y == 0):
         return 1;
-    p = power(x, y/2, m) % m;
+    p = powerm(x, y/2, m) % m;
     p = (p * p) % m;
     if(y%2 == 0):
     	return p
     else:
     	return (x * p) % m;
+def power(x,y):
+    if (y == 0):
+        return 1;
+    p = power(x, y/2) ;
+    p = (p * p) ;
+    if(y%2 == 0):
+    	return p
+    else:
+    	return (x * p) ;        
 def modInverse(a,m):
    	g = gcd(a, m);
 	if(g!=1):
 		return -1
  	else:
-   		return power(a, m-2, m);
+   		return powerm(a, m-2, m);
 def lcm(a, b):
     return a * b / gcd(a, b)
 def matrixcheck(x,y):
@@ -214,6 +228,9 @@ def coinchange(S, m, n):
         for j in range(S[i],n+1):
             table[j] += table[j-S[i]]
     return table[n]
+import itertools
+def permutation_of_list(lista):
+    return list(itertools.permutations(lista))
 def palincheck(i):
     return str(i) == str(i)[::-1]
 def bigMod(a, b, c):
@@ -259,6 +276,19 @@ def knapSack(W , wt , val , n):
     else:
         return max(val[n-1] + knapSack(W-wt[n-1] , wt , val , n-1),
                    knapSack(W , wt , val , n-1))
+def findOccurrences(s, ch):
+    return [i for i, letter in enumerate(s) if letter == ch]
+def common_between_two_strings(str1,str2):
+    dict1 = Counter(str1)
+    dict2 = Counter(str2)
+    commonDict = dict1 & dict2 
+    if len(commonDict) == 0:
+        print -1
+        return 
+    commonChars = list(commonDict.elements()) 
+    commonChars = sorted(commonChars)
+  
+    return ''.join(commonChars)
 
 # m = 329885391853
 # lim =  prelongfact(m)
@@ -270,46 +300,53 @@ mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
-def ok(a,n,c,x):
-    cows =1
-    current = 0
-    for i in range(1,n):
-        if(current+a[i]-a[i-1]<=x):
-            current+=(a[i]-a[i-1])
-        else:
-            cows+=1
-            current = 0
-    return cows<c
+# file1 = open("abc.txt","w")
+# for i in range(1000):
+#     file1.write("HITESH SIR ")
+# file1.close()    
+
+# d = defaultdict(int)
+# d = [ [] for i in range(101) ]
+# arr = [[0 for x in range(100)] for y in range(100)] 
+
 
 for __ in range(readInt()):
-    n,c = readInts()
-    a = []
-    for i in range(n):
-        an = readInt()
-        a.append(an)
-    a = sorted(a)
-    lo = 0
-    hi = a[n-1]-a[0]
-    while(lo<hi):
-        mid = lo+(hi-lo)>>1
-        if ok(a,n,c,mid):
-            hi = mid
-        else:
-            lo = mid+1
-        print(hi,lo)
-    print(lo)
+    n,m,x,y = readInts()
+    f = 0
+    # print n,m    
+    if((n-1>=0 and m-1>=0) and ((n-1)%x==(m-1)%y and (n-1)%x==0) ):
+        f=1    
+    if((n-2>=0 and m-2>=0) and ((n-2)%x==(m-2)%y and (n-2)%x==0) ):
+        f=1    
+    if f==1:
+        print "Chefirnemo"
+    else:
+        print "Pofik"
+            
 
 '''
-1
-5 3
-1
+Example Input
+
+6
+2 2 1 2
+11 10 5 9
+11 11 5 9
+12 11 5 9
+1 2 1 100
+1 1 12 12 
+
 2
-4
-8
-9
+1 1 1 1 
+1000327832 1000327832 4 4
 
-Output:
+Example Output
 
-3
+
+Chefirnemo
+Chefirnemo
+Pofik
+Chefirnemo
+Pofik
+Chefirnemo
 
 '''
