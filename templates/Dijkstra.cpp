@@ -1,9 +1,13 @@
+int arrival[N], departure[N], vis[N], parent[N];
+vector<pair<int, int> > g[N];
+
 void dijkstra(int source, int destination)
 {
 	for(int i=1;i<=n;i++)
 	{
 		arrival[i]=1e18;
 		departure[i]=1e18;
+		vis[i]=0;
 	}
 	arrival[source]=0;
 	set<pair<int, int> > s;

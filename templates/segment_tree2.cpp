@@ -1,87 +1,99 @@
-#include<iostream>
-#include<set>
 #include<bits/stdc++.h>
+
+#define pii pair<int,int>
+#define fi first
+#define se second
+#define mp make_pair
+#define pb push_back
+#define pf push_front
+#define pb2 pop_back
+#define pf2 pop_front
+#define line printf("\n")
+#define pq priority_queue
+#define rep(k,i,j) for(int k = (int)i;k<(int)j;k++)
+#define repd(k,i,j) for(int k = (int)i;k>=(int)j;k--)
 #define ll long long
+
 using namespace std;
-int arr[100001];
-multiset< int > seg[400001];
-multiset< int > :: iterator it;
-ll solve(int i, int j, ll b){
-    ll A = - (b * b);
-    ll B = (arr[i] + arr[j]);
-    B *= b;
-    ll C = -(arr[i] * 1LL * arr[j]);
-    return A + B + C;
+
+double EPS = 1e-9;
+int INF = 1e9+7;;
+long long INFLL = 1e17;
+double pi = acos(-1);
+int dirx[8] = {-1,0,0,1,-1,-1,1,1};
+int diry[8] = {0,1,-1,0,-1,1,-1,1};
+
+clock_t first_attempt = clock();
+inline void cek_time(){
+	clock_t cur = clock()- first_attempt;
+	cerr<<"TIME : "<<(double) cur/CLOCKS_PER_SEC<<endl;
+}
+inline void OPEN (string s) {
+  freopen ((s + ".in").c_str (), "r", stdin);
+  freopen ((s + ".out").c_str (), "w", stdout);
 }
 
-ll query(int node, int l, int r, int s, int e, int b){
-    if(s > r || l > e) return LONG_LONG_MIN;
-    if(l >= s && r <= e){
-        it = seg[node].lower_bound(b);
-        // cout<<*it<<"it"<<endl;
-        ll curr = LONG_LONG_MIN;
-        if(it != seg[node].end()){
-            // cout<<*it<<"it"<<(*seg[node].end())<<"chu";
-            // printf("lodu1\n");
-          curr =  max(curr, solve(s, e, *it));
-        }
-        if(it != seg[node].begin()){
-            // cout<<*it<<"it"<<(*seg[node].begin())<<"chu";
-            // printf("lodu2\n");
-            --it;
-            curr = max(curr, solve(s, e, *it));
-        }
-           return curr;
-     }
-    ll p = query(2 * node, l , (l + r)/2 , s, e, b);
-    ll q = query(2 * node + 1, (l + r)/2 + 1, r, s, e, b);
-    return max(p, q);
+//end of template
+
+
+const int maxm = 1e6+6;
+const int maxn = 1e5+5;
+struct node{
+	int v;
+	node *l,*r;
+	node(int a,node *b,node *c):v(a),l(b),r(c){}
+}*root[maxn];
+
+int l,r,v;
+node *insert(node *a,int ki,int ka){
+	if(ka<l || ki>l)return a;
+	if(ki==ka)return new node(a->v+v,NULL,NULL);
+	else{
+		int mid = (ki+ka)>>1;
+		return new node(a->v+v,insert(a->l,ki,mid),insert(a->r,mid+1,ka));
+	}
 }
-void update(int node, int l, int r, int idx, int value){
-    if(idx > r || l > idx) return;
-    it = seg[node].find(arr[idx]);
-    seg[node].erase(it);
-    seg[node].insert(value);
-    if(l != r){
-        update(2 * node, l, (l + r)/2 , idx, value);
-        update(2 * node + 1, (l + r)/2 + 1, r, idx, value);
-    }
+
+int query(node *a,node *b,int ki,int ka){
+	if(ka<l || ki>r)return 0;
+	if(l<=ki && ka<=r)return b->v - a->v;
+	int mid = (ki+ka)>>1;
+	return query(a->l,b->l,ki,mid) + query(a->r,b->r,mid+1,ka);
 }
-void build(int node, int l, int r){
-    if(l == r){
-        seg[node].insert(arr[l]);
-        return;
-    }
-    build(2 * node, l, (l + r)/2);
-    build(2 * node + 1, (l + r)/2 + 1,  r);
-    for(it = seg[2 * node].begin() ; it != seg[2 * node].end(); ++it) seg[node].insert(*it);
-    for(it = seg[2 * node + 1].begin() ; it != seg[2 * node + 1].end(); ++it) seg[node].insert(*it);
-}
+
+int n,q;
+int prime[maxm];
+
 int main(){
-    int t;
-    scanf("%d", &t);
-    while(t--){
-        int n, q;
-        scanf("%d %d", &n, &q);
-        for(int i = 1 ; i <= 4 * n ; ++i) seg[i].clear();
-        for(int i = 1 ; i <= n ; ++i){
-            scanf("%d", arr + i);
-        }
-        build(1, 1, n);
-        while(q--){
-            int ty;
-            scanf("%d", &ty);
-            if(ty == 2){
-                int idx, val;
-                scanf("%d%d", &idx, &val);
-                update(1, 1, n, idx, val);
-                arr[idx] = val;
-            } else {
-                int l, r;
-                scanf("%d%d", &l, &r);
-                int b = (arr[l] + arr[r] + 1)/2;
-                printf("%lld\n", query(1, 1, n, l, r, b));
-            }
-        }
-    }
+	rep(k,1,maxm)prime[k] = k;
+	rep(k,2,maxm)if(prime[k]==k){
+		for(int i = 2*k;i<maxm;i+=k)prime[i]= k;
+	}
+	scanf("%d",&n);
+	
+	root[0] = new node(0,NULL,NULL);
+	root[0]->l = root[0]->r = root[0];
+		
+	rep(k,1,n+1){
+		int a;
+		scanf("%d",&a);
+		
+		int x = k-1;
+		while(a>1){
+			l = prime[a], v = 1;
+			
+			root[k] = insert(root[x],1,maxm);
+			x = k;
+			a/=prime[a];
+		}
+	}
+	
+	scanf("%d",&q);
+	while(q--){
+		int ki,ka;
+		scanf("%d%d%d%d",&ki,&ka,&l,&r);
+		printf("%d\n",query(root[ki-1],root[ka],1,maxm));
+	}
+	return 0;
 }
+
