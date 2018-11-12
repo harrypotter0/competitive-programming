@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp> // Common file
+#include <ext/pb_ds/tree_policy.hpp> // Including tree_order_statistics_node_update
 using namespace std;
 
 #pragma comment(linker, "/stack:200000000")
@@ -16,8 +18,8 @@ using namespace std;
 #define aint(v) v.begin(), v.end()
 #define x first
 #define y second
-#define rep(i, j, k) for(i=j; i<k; i++)
-#define sep(i, j, k) for(i=j; i>k; i--)
+#define REP(i,s,t) for(int i=(s);i<(t);i++)
+#define FILL(x,v) memset(x,v,sizeof(x))
 #define ios ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define watch(x) cout << (#x) << " is " << (x) << endl
 const int mod = 1e9+7;
@@ -28,6 +30,7 @@ typedef vector<int> vi;
 typedef vector<vi> vvi;
 typedef set<int> si;
 typedef map<int,int> mii;
+
 
 int fast_pow(int a, int b){
 	int res = a, ret = 1;
@@ -41,10 +44,9 @@ int fast_pow(int a, int b){
 
 void solve()
 {
-    int i, j,k, a, b, sum = 0,c=0;
-    int n, m,l;
+    int n,k;
     int arr[N];
-    cin>>n>>m>>k;
+    cin>>n>>k;
     
 }
 
