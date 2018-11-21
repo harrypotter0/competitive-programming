@@ -1,3 +1,4 @@
+// Normal Nim : the player that cannot make a move loses
 #pragma GCC optimize("O3", "unroll-loops")
 // God help me !!
 #include <iostream>
@@ -86,10 +87,35 @@ inline int mpow(int base, int ex, int mod = MOD) {
     return res;
 }
 
+/*
+2
+2 Dee
+101
+010
+2 Dum
+101
+010
+
+*/
+string solve_util(const vector<string>& stacks, const string& first){
+    int a=0, b=0;
+    for(const auto& stack : stacks){
+        if(stack[0]=='0')a+=count(stack.begin(), stack.end(), '0'); // counting the number of 0's in a stack as the player startng with the 0's will try to utilize all the 0's in a stack 
+        if(stack[0]=='1')b+=count(stack.begin(), stack.end(), '1'); // viceversa
+    }
+    if(a==b)return (first=="Dee" ? "Dum":"Dee"); // if similar no of moves possible for a and b then the answer is the second player to start // Normal Nim 
+    else return(a>b ? "Dee": "Dum"); // else the one with more moves
+}
+
 void solve()
 {
-
-    
+    int n;cin>>n;
+    string str;cin>>str;
+    vector<string> vec(n);
+    for(int i=0;i<n;i++){
+        cin>>vec[i];
+    }
+    cout<<solve_util(vec,str)<<endl;
 }
 
 signed main()
