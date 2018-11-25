@@ -2,32 +2,13 @@
 #  *
 #  ********************************************************************************************
 #  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python2                                                                          *
+#  * Language: Python3                                                                          *
 #  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
 #  * IDE used: Atom                                                                           *
-#  * My Domain : http://harrypotter.tech/                                                     *
+#  * My Domain : https://harrypotter0.github.io/                                                    *
 #  ********************************************************************************************
 #  *
 #  */
-# template begins 
-##################################### 
-  
-# import libraries for input/ output handling 
-# on generic level 
-import atexit, io, sys 
-  
-# A stream implementation using an in-memory bytes  
-# buffer. It inherits BufferedIOBase. 
-buffer = io.BytesIO() 
-sys.stdout = buffer
-  
-# print via here 
-@atexit.register 
-def write(): 
-    sys.__stdout__.write(buffer.getvalue()) 
-  
-##################################### 
-# template ends 
 
 from fractions import gcd
 import math
@@ -162,56 +143,43 @@ def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
 
-def strs():
-	str = input()
-	n = len(str)
-	
-	i = 1
-	while True:
-		while(n/i >20):
-			i +=1
-		
-		j = 0
-		while((n+j)%i != 0):
-			j+=1
-		
-		if((n+j)/i>20):
-			i += 1
-		
-		else:
-			break
-	
-	count = j
-	dis = count/i
-	lumshum = count%i
-	div = int((n+j)/i)
-	print(i,div)
-	
-	start = 0
-	end = div
-	for k in range(i):
-		just = 0
-		
-		if(count !=0 ):
-			#print(k,start,end-1)
-		
-			print(str[start:end-1] + '*')
-			start = end -1
-			end = start + div 
-			count -= 1
-		
-		else:
-			#print(k,start,end,'22222')
-			print(str[start:end])
-			start = end
-			end = start + div 
-		
-mod = 10 ** 9 + 7
+# mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
 # print "Case #{}: {}".format(i+1,ans)
 
 # MOD = 10 ** 9 + 7
 
-# for __ in range(readInt()):
-#     n,k = readInts()
-strs()
+
+'''
+
+3
+2
+2
+5
+8
+8
+223
+
+
+'''
+
+def solve():
+    n,k=map(int,input().strip().split())
+    red,green,blue=2*n,5*n,8*n 
+    cnt=0 
+    if red%k==0:
+        cnt+=red//k 
+    else:
+        cnt+=(red//k)+1 
+    if green%k==0:
+        cnt+=green//k 
+    else:
+        cnt+=(green//k)+1 
+    if blue%k==0:
+        cnt+=blue//k 
+    else:
+        cnt+=(blue//k)+1 
+    print(cnt)
+
+solve()
+
