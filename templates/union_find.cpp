@@ -1,6 +1,7 @@
 typedef long long ll;
 typedef vector<int> VI;
 typedef pair<int,int> PII;
+#define watch(x) cout << (#x) << " is " << (x) << endl
 
 #define REP(i,s,t) for(int i=(s);i<(t);i++)
 #define FILL(x,v) memset(x,v,sizeof(x))
@@ -28,6 +29,7 @@ public:
       }
     }
     int ans = 0;
+    // REP(i,0,n) cout<<st[i][0]<<" "<<st[i][1]<<" "<<find(i)<<endl;
     REP(i,0,n) if (find(i) == i) ans++;
     return n - ans;
   }

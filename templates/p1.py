@@ -9,6 +9,7 @@
 #  ********************************************************************************************
 #  *
 #  */
+from sys import stdin
 
 from fractions import gcd
 import math
@@ -16,6 +17,8 @@ from itertools import permutations
 from itertools import combinations
 import calendar
 from itertools import product
+from collections import Counter
+
 def readInts():
     return list(map(int, raw_input().strip().split()))
 def readInt():
@@ -142,6 +145,8 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
+def findOccurrences(s, ch):
+    return [i for i, letter in enumerate(s) if letter == ch]
 
 # mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
@@ -152,34 +157,14 @@ def decimal_to_hexadecimal(dec):
 
 '''
 
-3
-2
-2
-5
-8
-8
-223
-
 
 '''
 
 def solve():
-    n,k=map(int,input().strip().split())
-    red,green,blue=2*n,5*n,8*n 
-    cnt=0 
-    if red%k==0:
-        cnt+=red//k 
-    else:
-        cnt+=(red//k)+1 
-    if green%k==0:
-        cnt+=green//k 
-    else:
-        cnt+=(green//k)+1 
-    if blue%k==0:
-        cnt+=blue//k 
-    else:
-        cnt+=(blue//k)+1 
-    print(cnt)
+
+
+
+
 
 solve()
 

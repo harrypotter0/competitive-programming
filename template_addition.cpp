@@ -25,3 +25,4 @@ int ncr(int n, int r){
 	int res = (val*mpow(val2,MOD-2))%MOD;  
 	return res;
 }
+
