@@ -2,14 +2,13 @@
 #  *
 #  ********************************************************************************************
 #  * AUTHOR : Akash Kandpal                                                                    *
-#  * Language: Python3                                                                          *
+#  * Language: Python2                                                                          *
 #  * Motto : The master has failed more times than the beginner has even tried.               *                                                                *
 #  * IDE used: Atom                                                                           *
 #  * My Domain : https://harrypotter0.github.io/                                                    *
 #  ********************************************************************************************
 #  *
 #  */
-from sys import stdin
 
 from fractions import gcd
 import math
@@ -17,8 +16,6 @@ from itertools import permutations
 from itertools import combinations
 import calendar
 from itertools import product
-from collections import Counter
-
 def readInts():
     return list(map(int, raw_input().strip().split()))
 def readInt():
@@ -145,8 +142,6 @@ def decimal_to_binary(dec):
 def decimal_to_hexadecimal(dec):
     decimal = int(dec)
     return hex(decimal)
-def findOccurrences(s, ch):
-    return [i for i, letter in enumerate(s) if letter == ch]
 
 # mod = 10 ** 9 + 7
 # for i,j in product(xrange(R),xrange(C)):
@@ -154,17 +149,28 @@ def findOccurrences(s, ch):
 
 # MOD = 10 ** 9 + 7
 
-
-'''
-
-
-'''
-
 def solve():
-
-
-
+    alpha="0abcdefghijklmnopqrstuvwxyz"
+    t=int(input())
+    for _ in range(t):
+        n,k=map(int,input().strip().split())
+        string=""
+        t=n//k
+        if n%k!=0:
+            string=n%k*'a'
+        for i in range(1,k+1):
+            string+=t*alpha[i]
+        print(string)
 
 
 solve()
 
+
+'''
+aabaaabab
+3
+abcddcbaabce
+4
+abcdzzzzbcda
+4
+'''
