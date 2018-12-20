@@ -69,122 +69,53 @@ inline int power(int a, long long b) {
   }
   return res;
 }
- 
- 
-void solve_util(int m, int &cnt, int &sum){
- 
-    
-}
- 
-const int K = 27;
-int st[n5][K];
-int arr[n5];
-const int ZERO = 0; // ZERO + x = x + ZERO = x (for any x)
-int n;
 
-int logi[n5];
-void precompute_log(){
-    logi[1] = 0;
-    for (int i = 2; i <= n5; i++)
-        logi[i] = logi[i/2] + 1;
-}
 
-int range_sum(int L, int R){
-    long long sum = 0;
-    for (int j = K; j >= 0; j--) {
-        if ((1 << j) <= R - L + 1) {
-            sum += st[L][j];
-            L += 1 << j;
-        }
-    }
-    return sum;
-} 
+const int k = 16;
+const int N = 1e5;
+const int ZERO = 0; // gcd(ZERO, x) = gcd(x, ZERO) = x (for any x > 0)
 
-int func(int a, int b){
-    return __gcd(a,b);
-}
+int table[N][k + 1]; // k + 1 because we need to access table[r][k]
+int Arr[N];
 
-// build Sparse Table
-void build_sparse_table(){  
-    
-    for (int i = 0; i < n; i++)
-        st[i][0] = arr[i];
-    
-    for (int j = 1; j <= K; j++)
-        for (int i = 0; i + (1 << j) <= n; i++){
-            st[i][j] = func(st[i][j-1], st[i + (1 << (j - 1))][j - 1]);
-        }
-            
-}
-
-// Query here !!
-int ans = 0; 
-int RMQ(int L, int R){
-
-    int j = logi[R - L + 1];
-    int maxi = func(st[L][j], st[R - (1 << j) + 1][j]);
-    return maxi;
-}
-
-int binsearch(int start, int lo, int hi, int shouldbe)
-{
-	while(lo<hi)
-	{
-		int mid=(lo+hi+1)>>1;
-		if(query(start, mid)==shouldbe)
-			lo=mid;
-		else
-			hi=mid-1;
-	}
-	return lo;
-}
-
-void work()
-{
-	for(int i=1;i<=n;i++)
-	{
-		int curgcd=a[i];
-		int curlo=i;
-		while(true)
-		{
-			int index=binsearch(i, curlo, n, curgcd);
-			m[curgcd]+=(index-curlo+1);
-			if(index==n)
-				break;
-			curlo=index+1;
-			curgcd=query(i, curlo);
-		}
-	}
-}
-
-void solve(){
-    int l, r, q;
-    cin >> n; // array size
-    for(int i = 0; i < n; i++)
-        cin >> arr[i];
-    build_sparse_table();
-    cin>>q;
-    while(q--){
-        cin>>l>>r;
-        l--;r--;
-        // dbgv(l);dbgv(r);
-        cout<<RMQ(l,r)<<endl;
-    }
-    
-}
- 
 signed main()
 {
-    FAST; FIXED; RANDOM;
-    int t=1;
-    precompute_log();
-    // cin>>t;
-    // time_t time_t1, time_t2;
-    // time_t1 = clock();
-    while(t--)
-        solve();
- 
-    // time_t2 = clock();
-    // cout << "time taken :" << time_t2 - time_t1 << endl;
+    int n;
+    cin >> n; // array size
+    for(int i = 0; i < n; i++)
+        cin >> Arr[i]; // between 1 and 10^9
+
+    // build Sparse Table
+    for(int i = 0; i < n; i++)
+        table[i][0] = Arr[i];
+    for(int j = 1; j <= k; j++) {
+        for(int i = 0; i <= n - (1 << j); i++)
+            table[i][j] = __gcd(table[i][j - 1], table[i + (1 << (j - 1))][j - 1]);
+    }
+
+    // main part of the solution
+    long long answer = 0;
+    for(int i = 0; i < n; i++) {
+        int R = i; // we will move R forward as long as gcd(Arr_i, Arr_i+1, ..., Arr_R) != 1
+        // or until R reaches n.
+
+        int g = ZERO;
+        for(int j = k; j >= 0; j--) {
+            if(R + (1 << j) - 1 >= n)
+                continue; // we do not want to exceed array size
+
+            if(__gcd(g, table[R][j]) > 1) {
+                // Even if we add 2^j more values, gcd is still > 1. Therefore,
+                // we move R forward and update gcd appropriately.
+                g = __gcd(g, table[R][j]);
+                R += 1 << j;
+            }
+        }
+
+        // In the end, either R = n or gcd(Arr_i, Arr_i+1, ..., Arr_R) = 1.
+        answer += n - R;
+    }
+
+    cout << answer << endl;
     return 0;
-} 
+}

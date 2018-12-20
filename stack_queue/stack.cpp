@@ -131,20 +131,95 @@ inline int power(int a, long long b) {
 }
 /*******************************************************************************//*******************************************************************************/
 
-// sort(vp.begin(), vp.end(), [](auto &l, auto &r){
-//     if(l.second!=r.second)
-//         return l.second > r.second;
-//     return l.first < r.first;
-// }); 
+
+void showdq(deque <int> g) 
+{ 
+    for (auto it = g.begin(); it != g.end(); ++it) 
+        cout << *it << ' ' ; 
+    cout << '\n'; 
+} 
+
+void showstack(stack <int> s) 
+{ 
+    while(!s.empty()){
+        cout << s.top() << ' ';
+        s.pop();
+    }    
+    cout << '\n';
+    
+} 
+
+void showqueue(queue<int> q)
+{
+    while(!q.empty()){
+        cout << q.front() << ' ';
+        q.pop();
+    }    
+    cout << '\n';
+}
 
 
-void solve_util(int n, int cur){
+int solve_util(deque<int> &q){
 
     
 }
 
+void nextGreater(int arr[], int n, int next[], char order) 
+{ 
 
+    stack<int> S; 
+    for (int i=n-1; i>=0; i--) 
+    { 
+        // Keep removing top element from S while the top 
+        // element is smaller then or equal to arr[i] (if Key is G) 
+        // element is greater then or equal to arr[i] (if order is S) 
+        while (!S.empty() && 
+              ((order=='G')? arr[S.top()] <= arr[i]: 
+                           arr[S.top()] >= arr[i])) 
+            S.pop(); 
+  
+        // store the next greater element of current element 
+        if (!S.empty()) 
+            next[i] = S.top(); 
+  
+        // If all elements in S were smaller than arr[i] 
+        else
+            next[i] = -1; 
+  
+        // Push this element 
+        S.push(i); 
+    } 
+} 
+  
+
+void nextSmallerOfNextGreater(int arr[], int n) 
+{ 
+
+    int NG[n]; // stores indexes of next greater elements 
+    int RS[n]; // stores indexes of right smaller elements 
+  
+    nextGreater(arr, n, NG, 'G'); 
+
+    nextGreater(arr, n, RS, 'S'); 
+
+    for (int i=0; i< n; i++) 
+    { 
+        if (NG[i] != -1 && RS[NG[i]] != -1) 
+            cout << arr[RS[NG[i]]] << " "; 
+        else
+            cout<<"-1"<<" "; 
+    } 
+} 
+
+int l[n6], r[n6], arr[n6];
+// stack<int>st;
+int n;
 void solve(){
+    cin >> n ;
+    rep(i,0,n-1){
+        cin>>arr[i];
+    }
+    nextSmallerOfNextGreater(arr, n);
     
 }
 

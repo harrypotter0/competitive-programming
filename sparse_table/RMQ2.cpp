@@ -89,7 +89,7 @@ int main()
     for(int i = 0; i < n; i++)
         table[i][0] = arr[i];
     for(int j = 1; j <= k; j++) {
-        for(int i = 0; i <= n - (1 << j); i++)
+        for(int i = 0; i + (1 << j) <= n ; i++)
             table[i][j] = __gcd(table[i][j - 1], table[i + (1 << (j - 1))][j - 1]);
     }
 

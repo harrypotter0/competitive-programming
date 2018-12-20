@@ -131,21 +131,70 @@ inline int power(int a, long long b) {
 }
 /*******************************************************************************//*******************************************************************************/
 
-// sort(vp.begin(), vp.end(), [](auto &l, auto &r){
-//     if(l.second!=r.second)
-//         return l.second > r.second;
-//     return l.first < r.first;
-// }); 
+
+void showdq(deque <int> g) 
+{ 
+    for (auto it = g.begin(); it != g.end(); ++it) 
+        cout << *it << ' ' ; 
+    cout << '\n'; 
+} 
+
+void showstack(stack <int> s) 
+{ 
+    while(!s.empty()){
+        cout << s.top() << ' ';
+        s.pop();
+    }    
+    cout << '\n';
+    
+} 
+
+void showqueue(queue<int> q)
+{
+    while(!q.empty()){
+        cout << q.front() << ' ';
+        q.pop();
+    }    
+    cout << '\n';
+}
 
 
-void solve_util(int n, int cur){
+int solve_util(deque<int> &q){
 
     
 }
 
-
+int l[n6], r[n6], arr[n6];
+stack<int>st;
+int n;
 void solve(){
-    
+    cin >> n ;
+    rep(i,1,n){
+        cin>>arr[i];
+    }
+    memset(l,-1,sizeof(l));    
+    memset(r,-1,sizeof(r));    
+    rep(i,1,n){
+        while(!st.empty() and arr[i]>=arr[st.top()])
+            st.pop();    
+        if(!st.empty())l[i]=st.top();
+        st.push(i);
+        // showstack(st);
+    }
+    // dbga(l,n+1);
+    while(!st.empty())st.pop();
+
+    sep(i,n,1){
+        while(!st.empty() and arr[i]>=arr[st.top()])
+            st.pop();    
+        if(!st.empty())r[i]=st.top();
+        st.push(i);
+        // showstack(st);
+    }
+    // dbga(r,n+1);
+    while(!st.empty())st.pop();
+
+    rep(i,1,n)cout<<add(l[i],r[i])<<" ";
 }
 
 signed main()
