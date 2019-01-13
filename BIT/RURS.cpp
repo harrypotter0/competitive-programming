@@ -10,32 +10,51 @@ using namespace std;
 #define FIXED cout << fixed << setprecision(20)
 #define RANDOM srand(time(nullptr))
 #define sz(a) (int)a.size()
-#define int long long 
+
+#define ll long long
+#define ld long double
+#define ui unsigned int
+#define ull unsigned ll
+
+#define graph vector<vector<int>>
+#define V vector
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+typedef V<int> vi;
+typedef V<ll> vll;
+typedef V<string> vs;
+typedef V<double> vd;
+typedef V<pii> vpii;             
+typedef V<pll> vpll;             
+typedef pair<int,pii> piii;             
+typedef priority_queue<pi, vector<pi>, greater<pi> > pqq;             
+
+#define shuffle(a) \
+    for (int i = -sz(a); i < sz(a); ++i) \
+        swap(a[rand() % sz(a)], a[rand() % sz(a)])
 
 #define rep(i,a,b) for(int i=(int)a;i<=(int)b;i++)
 #define sep(i,a,b) for(int i=(int)a;i>=(int)b;i--)
-#define inf 0x3f3f3f3f
 #define mp make_pair
-#define pb push_back
 #define eb emplace_back
+#define pb push_back
 #define pf push_front
 #define popb pop_back
 #define popf pop_front
+#define hashmap unordered_map
+#define hashset unordered_set
 #define lb lower_bound
 #define ub upper_bound
-#define all(a) a.begin(),a.end()
+#define all(a) (a).begin(), (a).end()
+#define rall(a) (a).rbegin(), (a).rend()
 #define ff first
 #define ss second
 #define endl "\n"
 #define n6 3000005
 #define n3 3005
 #define n5 300005
-#define pi pair<int,int>
-#define pii pair<int,pi>
-#define pqq priority_queue<pi, vector<pi>, greater<pi> > 
-
-template<typename T>
-using ordered_set = __gnu_pbds::tree<T, __gnu_pbds::null_type, less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>; // find_by_order(), order_of_key()
+#define lbpos(v,x)              (int)(lower_bound(all(v),x)-v.begin())//=v.size()==>No LB 
+#define ubpos(v,x)              (int)(upper_bound(all(v),x)-v.begin())//=v.size()==>No UB
 /*******************************************************************************//*******************************************************************************/
 #define dbg1(x)                cout << #x << ": " << x << endl;
 #define dbg2(x, y)             cout << #x << ": " << x << " | " << #y << ": " << y << endl;
@@ -49,8 +68,12 @@ using ordered_set = __gnu_pbds::tree<T, __gnu_pbds::null_type, less<T>, __gnu_pb
 #define dbga(arr, len) {cout << #arr << " = "; for (int _ = 0; _ < len; _++)cout << arr[_] << " "; cout << endl;}
 #define dbgi(it) {cout << #it << " = "; for (const auto& _ : it)cout << _ << " "; cout << endl;}
 /*******************************************************************************//*******************************************************************************/
-template <typename T> inline void ckmax(T &x, T y) {if (y > x) x = y; }
-template <typename T> inline void ckmin(T &x, T y) {if (y < x) x = y; }
+template<class T> inline void sort(T &a) { sort(all(a)); }
+template<class T> inline void rsort(T &a) { sort(rall(a)); }
+template<class T> inline void reverse(T &a) { reverse(all(a)); }
+template<class T, class U> inline void amin(T &x, U y) { if (x > y) x = y; }
+template<class T, class U> inline void amax(T &x, U y) { if (x < y) x = y; }
+/*******************************************************************************//*******************************************************************************/
 #define error(args...) { string _s = #args; replace(_s.begin(), _s.end(), ',', ' '); stringstream _ss(_s); istream_iterator<string> _it(_ss); err(_it, args); }
 void err(istream_iterator<string> it) {}
 template<typename T, typename... Args>
@@ -101,38 +124,20 @@ inline std::ostream &operator << (std::ostream & os,const vector<vector<T>>& v) 
     for (auto &u: v) os << u << '\n';
     return os;
 }
-
-const int MOD = 1e9 + 7;
-const long long INF = 1e18;
-const double EPS = 1e-6;
 /*******************************************************************************//*******************************************************************************/
-inline int add(int a, int b) {
-    a += b;
-    if (a >= MOD) a -= MOD;
-    return a;
-}
-inline int sub(int a, int b) {
-    a -= b;
-    if (a < 0) a += MOD;
-    return a;
-}
-inline int mul(int a, int b) {
-    return (long long) a * b % MOD;
-}
-inline int power(int a, long long b) {
-  int res = 1;
-  while (b > 0) {
-    if (b & 1) {
-      res = mul(res, a);
-    }
-    a = mul(a, a);
-    b >>= 1;
-  }
-  return res;
-}
-/*******************************************************************************//*******************************************************************************/
+template <size_t r, size_t c>
+void printmatrix(int (&arr)[r][c], int r1, int c1)
+{
 
-
+	for (size_t i = 1; i <= r1; i++)
+	{
+		for (size_t j = 1; j <= c1; j++){
+		    cout<<arr[i][j]<<" ";
+		}
+    	cout<<"\n";
+	}
+	cout<<"\n***********\n";
+}
 void showdq(deque <int> g) 
 { 
     for (auto it = g.begin(); it != g.end(); ++it) 
@@ -169,45 +174,86 @@ void showpq(priority_queue <int> gq)
     } 
     cout << '\n'; 
 } 
+/*******************************************************************************//*******************************************************************************/
+const int mod = 1e9 + 7;
+const double eps = 1e-9;
+#define inf 1000000000000000007ll
+#define intinf ((1 << 31) - 1)
+/*******************************************************************************//*******************************************************************************/
+inline ll add(ll a, ll b) {
+    a += b;
+    if (a >= mod) a -= mod;
+    return a;
+}
+inline ll sub(ll a, ll b) {
+    a -= b;
+    if (a < 0) a += mod;
+    return a;
+}
+inline ll mul(ll a, ll b) {
+    return (long long) a * b % mod;
+}
+inline ll power(ll a, ll b) {
+  ll res = 1;
+  while (b > 0) {
+    if (b & 1) {
+      res = mul(res, a);
+    }
+    a = mul(a, a);
+    b >>= 1;
+  }
+  return res;
+}
+/*******************************************************************************//*******************************************************************************/
 
-int solve_util(deque<int> &q){
+// sort(vp.begin(), vp.end(), [](auto &l, auto &r){
+//     if(l.second!=r.second)
+//         return l.second > r.second;
+//     return l.first < r.first;
+// }); 
 
-    
+// > descend
+// < ascend
+
+
+// Point Update Range Sum
+int BIT[100010], n, arr[100010];
+
+void update(int x, int v)
+{
+	while(x <= n)
+	{
+		BIT[x] += v;
+		x += x & -x;
+	}
 }
 
-int l[n6], r[n6], arr[n6];
-stack<int>st;
-int n;
-// https://ideone.com/3HCOz7
+int query(int k)
+{
+	int s = 0;
+	while(k > 0)
+	{
+		s += BIT[k];
+		k -= k & -k;
+	}
+	return s;
+}
+
+
 void solve(){
-    cin >> n ;
-    rep(i,1,n){
+
+    cin>>n;
+	int q, r;
+	for(int i = 1 ; i <= n ; i++)
+	{
         cin>>arr[i];
-    }
-    memset(l,-1,sizeof(l));    
-    memset(r,-1,sizeof(r));    
-    rep(i,1,n){
-        while(!st.empty() and arr[i]>=arr[st.top()])
-            st.pop();    
-        if(!st.empty())l[i]=st.top();
-        st.push(i);
-        // showstack(st);
-    }
-    // dbga(l,n+1);
-    while(!st.empty())st.pop();
+		update(i , arr[i]);
+	}
+    cin>>l>>r;
+    cout<<query(r)-query(l-1)<<endl;
 
-    sep(i,n,1){
-        while(!st.empty() and arr[i]>=arr[st.top()])
-            st.pop();    
-        if(!st.empty())r[i]=st.top();
-        st.push(i);
-        // showstack(st);
-    }
-    // dbga(r,n+1);
-    while(!st.empty())st.pop();
-
-    rep(i,1,n)cout<<add(l[i],r[i])<<" ";
 }
+
 
 signed main()
 {
@@ -223,3 +269,5 @@ signed main()
     // cout << "time taken :" << time_t2 - time_t1 << endl;
     return 0;
 }
+
+

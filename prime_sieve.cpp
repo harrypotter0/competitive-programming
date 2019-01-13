@@ -1,15 +1,19 @@
-vector<bool>isprime(100000001,1);
+vector< bool >isp(n8, 1);
+vector< long >prime;
+vector< long >product;
 void pre()
 {
-	for(int i=2;i<100000001;i++)
-	{
-		if(isprime[i])
-		{
-			if(i<10001)
-			{
-				for(int j=i*i;j<100000001;j+=i)
-					isprime[j]=0;
-			}
-		}
-	}
+    for(int i=2; i<=n8; i++)
+    {
+        if(isp[i])
+        {
+            prime.push_back(i);
+            product.push_back(1LL*i*i*i);
+            if(i < 10001)
+            for(int j=i*i; j<=n8-2; j+=i)
+            {
+                isp[j] = 0;
+            }
+        }
+    }
 }
