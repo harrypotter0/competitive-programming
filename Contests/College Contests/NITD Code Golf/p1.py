@@ -1,4 +1,4 @@
-def readInts():
+def readInts():#start
     return list(map(int, raw_input().strip().split()))
 def readInt():
     return int(raw_input())
