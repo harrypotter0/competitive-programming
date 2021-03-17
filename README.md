@@ -6,3 +6,5 @@ All the templates and standard algorithms are correct upto my knowledge. Feel fr
 
 Hope it might be useful :)
 
+(Note : Try to share your thoughts and experience of competative coding in your github  profile, it might be useful for others.)
+
